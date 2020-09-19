@@ -16,4 +16,12 @@ def main():
 
     format=('%(asctime)s %(processName)s:%(name)s:'
                   '%(funcName)s:%(lineno)s:%(levelname)s: %(message)s')
-   
+    logging.basicConfig(level=logging.INFO, format=format)
+    directory = os.path.join(config.PROJECT_DIRECTORY, 'scraped_data')
+
+    steem = MPSteem(nodes=config.NODES, no_broadcast=True)
+    current_datetime = pd.to_datetime('2018-02-01')
+
+    crossval_filename = os.path.join(directory, 'xval_{}.gz'.format(current_datetime.date()))
+
+ 
