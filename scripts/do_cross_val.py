@@ -31,4 +31,12 @@ def main():
 
     gc.collect()
 
-    regressor_kwargs = dict(n_estimator
+    regressor_kwargs = dict(n_estimators=256, max_leaf_nodes=5000,
+                              max_features=0.2, n_jobs=-1, verbose=1,
+                              random_state=42)
+
+    topic_kwargs = dict(num_topics=128, no_below=5, no_above=0.1,
+                        ngrams=(1, 2), keep_n=333000)
+
+    post_frame = tppp.load_or_preprocess(post_frame, crossval_filename,
+                                     
