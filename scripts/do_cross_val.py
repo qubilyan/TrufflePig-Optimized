@@ -48,4 +48,13 @@ def main():
 
     gc.collect()
     # param_grid = {
-    #     'feature_generation__topic_model__no_above':[0.1
+    #     'feature_generation__topic_model__no_above':[0.1],
+    #     #'regressor__max_leaf_nodes': [500, 1000],
+    #    # 'regressor__max_features': [0.1, 0.2, 0.3]
+    #     }
+
+    # tpmo.cross_validate(post_frame, param_grid, topic_kwargs=topic_kwargs,
+    #                     regressor_kwargs=regressor_kwargs, n_iter=None,
+    #                     n_jobs=4, targets=['reward'])
+
+    pipe, test_frame = tpmo.
