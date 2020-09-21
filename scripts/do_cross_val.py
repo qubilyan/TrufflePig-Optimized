@@ -39,4 +39,13 @@ def main():
                         ngrams=(1, 2), keep_n=333000)
 
     post_frame = tppp.load_or_preprocess(post_frame, crossval_filename,
-                                     
+                                         steem_args_for_upvote=steem,
+                                         ncores=8, chunksize=500,
+                                         min_en_prob=0.9)
+
+    # Reduce training size
+    post_frame = post_frame.iloc[:40000, :]
+
+    gc.collect()
+    # param_grid = {
+    #     'feature_generation__topic_model__no_above':[0.1
