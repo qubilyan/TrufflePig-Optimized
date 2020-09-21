@@ -24,4 +24,11 @@ def main():
 
     crossval_filename = os.path.join(directory, 'xval_{}.gz'.format(current_datetime.date()))
 
- 
+    post_frame = tpgd.load_or_scrape_training_data(steem, directory,
+                                                   current_datetime=current_datetime,
+                                                   days=10,
+                                                   offset_days=0)
+
+    gc.collect()
+
+    regressor_kwargs = dict(n_estimator
