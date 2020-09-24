@@ -57,4 +57,8 @@ def main():
     #                     regressor_kwargs=regressor_kwargs, n_iter=None,
     #                     n_jobs=4, targets=['reward'])
 
-    pipe, test_frame = tpmo.
+    pipe, test_frame = tpmo.train_test_pipeline(post_frame,  topic_kwargs=topic_kwargs,
+                         regressor_kwargs=regressor_kwargs,
+                                                targets=['adjusted_reward',
+                                                         'adjusted_votes'],
+                                             
