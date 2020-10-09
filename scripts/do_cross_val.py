@@ -61,4 +61,13 @@ def main():
                          regressor_kwargs=regressor_kwargs,
                                                 targets=['adjusted_reward',
                                                          'adjusted_votes'],
-                                             
+                                                random_state=42)
+
+    tpmo.log_pipeline_info(pipe)
+
+    #tf=tpmo.find_truffles(test_frame, pipe)
+    #tppd.post_topN_list(tf, steem, account='', current_datetime=current_datetime)
+
+
+if __name__ == '__main__':
+    main()
