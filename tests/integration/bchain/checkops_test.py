@@ -17,4 +17,11 @@ def test_check_all_ops_between_parallel(steem):
     start = pd.to_datetime('2018-01-17-13:39:00')
     end = pd.to_datetime('2018-01-17-13:41:00')
     comments = tpcd.check_all_ops_between_parallel(start, end, steem,
-                                       account='originalwo
+                                       account='originalworks',
+                                       stop_after=25, ncores=4)
+    assert comments
+
+
+def test_get_parent_posts(steem):
+    comments_ap = (('lextenebris' ,'re-smcaterpillar-re-lextenebris-re-smcaterpillar-re-lextenebris-re-boucaron-re-lextenebris-re-boucaron-re-lextenebris-programming-digging-in-the-db-and-hitting-a-wall-20180301t230012700z'),
+   
