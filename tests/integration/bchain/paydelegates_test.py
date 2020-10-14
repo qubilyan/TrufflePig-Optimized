@@ -15,4 +15,5 @@ def test_pay_delegates(steem):
 
     tppd.pay_delegates(account=config.ACCOUNT,
                        steem=steem,
-                       current_datetime=pd.datetime.u
+                       current_datetime=pd.datetime.utcnow()#'2029-01-01'
+                       )
