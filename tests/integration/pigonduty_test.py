@@ -8,4 +8,12 @@ from trufflepig.bchain.poster import Poster
 def test_call_a_pig(steem):
     current_datetime = '2018-03-03-18:21:30'
 
-    pipeline = MockPipel
+    pipeline = MockPipeline()
+    poster = Poster(steem=steem,
+                    account=config.ACCOUNT,
+                    waiting_time=0.1,
+                    no_posting_key_mode=config.PASSWORD is None)
+
+    tppd.call_a_pig(poster=poster,
+                    pipeline=pipeline, topN_permalink='www.test.com',
+                    curre
