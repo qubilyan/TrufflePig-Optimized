@@ -16,4 +16,12 @@ def test_call_a_pig(steem):
 
     tppd.call_a_pig(poster=poster,
                     pipeline=pipeline, topN_permalink='www.test.com',
-                    curre
+                    current_datetime=current_datetime, hours=0.1,
+                    overview_permalink='dsfd')
+
+
+def test_call_a_pig_empty_frame(steem):
+    aacs = (('smcaterpillar','question-is-there-an-api-to-upload-images-to-steemit'),)
+
+    poster = Poster(steem=steem,
+                    account=config.ACCOUNT
