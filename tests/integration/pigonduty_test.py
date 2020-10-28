@@ -24,4 +24,12 @@ def test_call_a_pig_empty_frame(steem):
     aacs = (('smcaterpillar','question-is-there-an-api-to-upload-images-to-steemit'),)
 
     poster = Poster(steem=steem,
-                    account=config.ACCOUNT
+                    account=config.ACCOUNT,
+                    waiting_time=0.51,
+                    no_posting_key_mode=config.PASSWORD is None)
+
+    pipeline = MockPipeline()
+    tppd.execute_call(comment_authors_and_permalinks=aacs,
+                        pipeline=pipeline, topN_permalink='www.test.com',
+                        max_comments=1000,
+                        ove
