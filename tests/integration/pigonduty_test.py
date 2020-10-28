@@ -32,4 +32,5 @@ def test_call_a_pig_empty_frame(steem):
     tppd.execute_call(comment_authors_and_permalinks=aacs,
                         pipeline=pipeline, topN_permalink='www.test.com',
                         max_comments=1000,
-                        ove
+                        overview_permalink='jdsakd',
+                      poster=poster)
