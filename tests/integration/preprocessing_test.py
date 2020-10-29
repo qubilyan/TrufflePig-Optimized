@@ -30,4 +30,8 @@ def test_load_or_preproc(temp_dir):
 def test_load_or_preproc_with_real_data(steem, temp_dir):
     filename = os.path.join(temp_dir, 'pptest.gz')
 
-    sta
+    start_datetime = pd.datetime.utcnow() - pd.Timedelta(days=14)
+    end_datetime = start_datetime + pd.Timedelta(hours=2)
+    posts = tpgd.get_all_posts_between_parallel(start_datetime,
+                                                     end_datetime,
+                                                     ste
