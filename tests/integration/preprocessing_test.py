@@ -18,4 +18,16 @@ def test_load_or_preproc(temp_dir):
     frame = tppp.load_or_preprocess(post_frame, filename,
                                     ncores=5, chunksize=20)
 
-    assert len(os.listdir(temp_dir
+    assert len(os.listdir(temp_dir)) == 1
+
+    frame2 = tppp.load_or_preprocess(post_frame, filename,
+                                    ncores=5, chunksize=20)
+
+    assert len(os.listdir(temp_dir)) == 1
+    assert_frame_equal(frame, frame2)
+
+
+def test_load_or_preproc_with_real_data(steem, temp_dir):
+    filename = os.path.join(temp_dir, 'pptest.gz')
+
+    sta
