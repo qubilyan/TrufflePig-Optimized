@@ -34,4 +34,10 @@ def test_load_or_preproc_with_real_data(steem, temp_dir):
     end_datetime = start_datetime + pd.Timedelta(hours=2)
     posts = tpgd.get_all_posts_between_parallel(start_datetime,
                                                      end_datetime,
-                                                     ste
+                                                     steem,
+                                                     stop_after=15)
+    post_frame = pd.DataFrame(posts)
+    bots = ['okankarol', 'bidseption', 'highvote', 'oguzhangazi', 'ottoman',]
+    frame = tppp.load_or_preprocess(post_frame, filename,
+                                    steem_args_for_upvote=steem,
+                     
