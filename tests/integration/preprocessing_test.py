@@ -40,4 +40,13 @@ def test_load_or_preproc_with_real_data(steem, temp_dir):
     bots = ['okankarol', 'bidseption', 'highvote', 'oguzhangazi', 'ottoman',]
     frame = tppp.load_or_preprocess(post_frame, filename,
                                     steem_args_for_upvote=steem,
-                     
+                                    ncores=5, chunksize=20, bots=bots)
+
+    assert len(os.listdir(temp_dir)) == 1
+
+    frame2 = tppp.load_or_preprocess(post_frame, filename,
+                                    steem_args_for_upvote=steem,
+                                    ncores=5, chunksize=20, bots=bots)
+
+    assert len(os.listdir(temp_dir)) == 1
+   
