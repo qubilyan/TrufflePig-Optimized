@@ -49,4 +49,13 @@ def test_load_or_preproc_with_real_data(steem, temp_dir):
                                     ncores=5, chunksize=20, bots=bots)
 
     assert len(os.listdir(temp_dir)) == 1
-   
+    assert_frame_equal(frame, frame2)
+
+
+def test_bid_bot_correction_real_data(steem):
+    min_datetime = pd.datetime.utcnow() - pd.Timedelta(days=14)
+    max_datetime = min_datetime + pd.Timedelta(days=13)
+    upvotes = tpac.get_upvote_payments('brittuf', steem, min_datetime,
+                                       max_datetime)
+
+    author, permalink = list(upvo
