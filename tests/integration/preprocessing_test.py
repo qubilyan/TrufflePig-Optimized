@@ -58,4 +58,15 @@ def test_bid_bot_correction_real_data(steem):
     upvotes = tpac.get_upvote_payments('brittuf', steem, min_datetime,
                                        max_datetime)
 
-    author, permalink = list(upvo
+    author, permalink = list(upvotes.keys())[0]
+    data = tpgd.get_post_data([(author, permalink)], steem)
+    df = pd.DataFrame(data)
+
+    tppp.compute_bidbot_correction(df, upvotes)
+
+    assert upvotes
+    assert (df.sbd_bought_reward.mean() > 0) or (df.steem_bought_reward.mean() > 0)
+
+
+def test_filtered_body_no_images_regression(steem):
+    ""
