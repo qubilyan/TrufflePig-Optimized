@@ -78,4 +78,10 @@ def test_filtered_body_no_images_regression(steem):
     post_frame = pd.DataFrame(posts)
     post_frame = tppp.preprocess(post_frame, ncores=1)
 
-    assert not any(post_frame.filtered_body.ap
+    assert not any(post_frame.filtered_body.apply(lambda x: '.JPG' in x))
+
+
+def test_filtered_body_classtextjustify_regression(steem):
+    """ Test for error in fitlering as in these quotes: https://steemit.com/steemit/@trufflepig/daily-truffle-picks-2018-03-31"""
+    posts = tpgd.get_post_data([('colovhis', 'dofus-mastodon-cemetery-basic-tutorial'),
+                               ('j
