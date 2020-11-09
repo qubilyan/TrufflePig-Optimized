@@ -69,4 +69,6 @@ def test_bid_bot_correction_real_data(steem):
 
 
 def test_filtered_body_no_images_regression(steem):
-    ""
+    """ Test for error in filtering as in these quotes: https://steemit.com/steemit/@trufflepig/daily-truffle-picks-2018-03-31"""
+    posts = tpgd.get_post_data([('colovhis', 'dofus-mastodon-cemetery-basic-tutorial'),
+                               ('joshuaetim','rewarding-hardwork-and-excellence-amongst-schoo
