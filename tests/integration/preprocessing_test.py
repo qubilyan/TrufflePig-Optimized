@@ -89,4 +89,6 @@ def test_filtered_body_classtextjustify_regression(steem):
                                steem=steem)
 
     post_frame = pd.DataFrame(posts)
-    post_frame = tppp.preprocess(post_frame, 
+    post_frame = tppp.preprocess(post_frame, ncores=1)
+
+    assert not any(post_frame.filtered_body.apply(lambda x: 'classtextjustify' in x))
