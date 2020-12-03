@@ -26,4 +26,9 @@ def test_topN_post():
     date = pd.datetime.utcnow().date()
     df['image_urls'] = df.body.apply(lambda x: tptf.get_image_urls(x))
 
-    title, post = tbpo.t
+    title, post = tbpo.topN_post(topN_authors=df.author,
+                                 topN_permalinks=df.permalink,
+                                 topN_titles=df.title,
+                                 topN_filtered_bodies=df.filtered_body,
+                                 topN_image_urls=df.image_urls,
+                                 topN_rewards=df.rew
