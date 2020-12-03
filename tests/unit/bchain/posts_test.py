@@ -43,4 +43,15 @@ def test_topN_comment():
     df = pd.DataFrame(posts)
     df = tppp.preprocess(df, ncores=1)
 
-    post = tbpo.topN_comment(topN_authors=d
+    post = tbpo.topN_comment(topN_authors=df.author,
+                             topN_permalinks=df.permalink,
+                             topN_titles=df.title,
+                             topN_votes=df.votes,
+                             topN_rewards=df.reward)
+
+    assert post
+
+
+def test_post_on_call():
+
+    comment = tbpo.on_call_comment(reward=1000000, author='Douglas Adams',
