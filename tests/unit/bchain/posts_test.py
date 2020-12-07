@@ -64,4 +64,17 @@ def test_post_on_call():
 def test_weekly_update():
     current_datetime = pd.datetime.utcnow()
     start_datetime = current_datetime - pd.Timedelta(days=10)
-    end_datetime = start_datetime + pd
+    end_datetime = start_datetime + pd.Timedelta(days=4)
+
+    steem_per_mvests = 490
+    total_posts = 70000
+    total_votes = 99897788
+    total_reward = 79898973
+
+    bid_bots_sbd = 4242
+    bid_bots_steem = 12
+    bid_bots_percent = 99.9998
+
+    median_reward = 0.012
+    mean_reward = 6.2987347329
+    dollar_percent = 69.809213
