@@ -77,4 +77,15 @@ def test_weekly_update():
 
     median_reward = 0.012
     mean_reward = 6.2987347329
-    dollar_percent = 69.809213
+    dollar_percent = 69.80921393
+    spelling_percent = 1.435
+    style_percent = 5.5
+    topic_percent = 100 - style_percent - spelling_percent
+
+    top_posts_authors = ['michael', 'mary', 'lala']
+    top_posts_titles = ['How', 'What', 'Why']
+    top_posts_rewards = [9.999, 6.6, 3.333]
+    top_posts_permalinks = ['how', 'what', 'why']
+
+    top_tags = ['ketchup', 'crypto']
+    top_ta
