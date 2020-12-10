@@ -88,4 +88,16 @@ def test_weekly_update():
     top_posts_permalinks = ['how', 'what', 'why']
 
     top_tags = ['ketchup', 'crypto']
-    top_ta
+    top_tag_counts = [10009, 4445]
+    top_tag_rewards = [3213323, 413213213]
+
+    top_words = ['a', 'the']
+    top_words_counts = [6666, 2222]
+
+    top_tags_earnings=['hi']
+    top_tags_earnings_counts=[10]
+    top_tags_earnings_reward=[22]
+    top_tfidf=['hi']
+    top_tfidf_scores=[0.8]
+
+    delegator_list = ['henry', 'mike', 'ju
