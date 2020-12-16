@@ -100,4 +100,8 @@ def test_weekly_update():
     top_tfidf=['hi']
     top_tfidf_scores=[0.8]
 
-    delegator_list = ['henry', 'mike', 'ju
+    delegator_list = ['henry', 'mike', 'julia']
+
+    topics = """Topic 0: global: 0.25, report: 0.18, sales: 0.18, research: 0.15, product: 0.13, industry: 0.13, 20132018: 0.12
+Topic 1: global: -0.26, sales: -0.22, report: -0.16, 20132018: -0.16, revenue: -0.13, product: -0.13, market share: -0.12
+Topic 2: blockchain: -0.23, game: 0.19, data: -0.17, c
