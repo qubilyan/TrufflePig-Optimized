@@ -110,4 +110,7 @@ Topic 4: report: -0.22, volume: 0.20, sales: 0.20, research: -0.15, global: -0.1
 Topic 5: report: -0.28, blockchain: 0.28, sales: 0.20, research: -0.14, global: -0.12, network: 0.11, the report: -0.11
 Topic 6: fruit: 0.27, water: 0.21, dragon: 0.18, dragon fruit: 0.17, steem: -0.15, food: 0.14, health: 0.13
 Topic 7: states: -0.30, united: -0.29, united states: -0.28, 20132018: 0.22, global: 0.21, 20122017: -0.16, product: -0.15
-Topic 8: steem: -0.60, content: -0.18, p
+Topic 8: steem: -0.60, content: -0.18, posts: -0.16, sbd: -0.11, god: 0.10, government: 0.09, steem power: -0.09
+Topic 9: blockchain: -0.44, data: -0.24, god: -0.17, crypto: 0.16, trading: 0.15, network: -0.14, exchanges: 0.13
+Topic 10: fruit: -0.42, dragon: -0.33, dragon fruit: -0.31, blockchain: -0.16, water: 0.12, energy: 0.11, fruit is: -0.10
+Topic 11: productio
