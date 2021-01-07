@@ -116,4 +116,7 @@ Topic 10: fruit: -0.42, dragon: -0.33, dragon fruit: -0.31, blockchain: -0.16, w
 Topic 11: production: 0.18, 20132025: 0.17, analysis: -0.16, the market: -0.15, states: 0.14, status: 0.14, status and: 0.14
 Topic 12: god: -0.47, steem: -0.25, water: 0.18, man: -0.15, nature: -0.15, of god: -0.13, blockchain: 0.10
 Topic 13: steem: 0.40, water: 0.36, blockchain: 0.20, fruit: -0.12, heat: 0.12, dragon fruit: -0.10, dragon: -0.10
-Topic 14: god: 0
+Topic 14: god: 0.37, government: -0.19, water: 0.16, steem: -0.13, coin: 0.11, coins: 0.11, mining: 0.11
+Topic 15: cancer: -0.31, fruit: 0.23, dragon: 0.20, dragon fruit: 0.19, energy: 0.16, breast: -0.16, risk: -0.14
+Topic 16: equipment: -0.39, sterilization: -0.37, heat: -0.37, moist: -0.36, devices: 0.29, station: 0.27, base: 0.27
+Topic 17: blockchain: 0.30, data: -0.25, mining:
