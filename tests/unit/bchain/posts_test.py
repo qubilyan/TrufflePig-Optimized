@@ -113,4 +113,7 @@ Topic 7: states: -0.30, united: -0.29, united states: -0.28, 20132018: 0.22, glo
 Topic 8: steem: -0.60, content: -0.18, posts: -0.16, sbd: -0.11, god: 0.10, government: 0.09, steem power: -0.09
 Topic 9: blockchain: -0.44, data: -0.24, god: -0.17, crypto: 0.16, trading: 0.15, network: -0.14, exchanges: 0.13
 Topic 10: fruit: -0.42, dragon: -0.33, dragon fruit: -0.31, blockchain: -0.16, water: 0.12, energy: 0.11, fruit is: -0.10
-Topic 11: productio
+Topic 11: production: 0.18, 20132025: 0.17, analysis: -0.16, the market: -0.15, states: 0.14, status: 0.14, status and: 0.14
+Topic 12: god: -0.47, steem: -0.25, water: 0.18, man: -0.15, nature: -0.15, of god: -0.13, blockchain: 0.10
+Topic 13: steem: 0.40, water: 0.36, blockchain: 0.20, fruit: -0.12, heat: 0.12, dragon fruit: -0.10, dragon: -0.10
+Topic 14: god: 0
