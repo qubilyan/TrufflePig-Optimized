@@ -119,4 +119,8 @@ Topic 13: steem: 0.40, water: 0.36, blockchain: 0.20, fruit: -0.12, heat: 0.12, 
 Topic 14: god: 0.37, government: -0.19, water: 0.16, steem: -0.13, coin: 0.11, coins: 0.11, mining: 0.11
 Topic 15: cancer: -0.31, fruit: 0.23, dragon: 0.20, dragon fruit: 0.19, energy: 0.16, breast: -0.16, risk: -0.14
 Topic 16: equipment: -0.39, sterilization: -0.37, heat: -0.37, moist: -0.36, devices: 0.29, station: 0.27, base: 0.27
-Topic 17: blockchain: 0.30, data: -0.25, mining:
+Topic 17: blockchain: 0.30, data: -0.25, mining: -0.21, network: -0.18, token: 0.18, transaction: -0.17, users: -0.16
+Topic 18: mining: -0.27, energy: -0.22, devices: 0.16, users: 0.15, base: 0.15, lte: 0.15, station: 0.15
+Topic 19: devices: -0.32, station: -0.30, lte: -0.29, base: -0.29, equipment: -0.22, sterilization: -0.20, heat: -0.20"""
+
+    title, body = tbpo.weekly_update(current_d
