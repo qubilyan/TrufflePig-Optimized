@@ -123,4 +123,12 @@ Topic 17: blockchain: 0.30, data: -0.25, mining: -0.21, network: -0.18, token: 0
 Topic 18: mining: -0.27, energy: -0.22, devices: 0.16, users: 0.15, base: 0.15, lte: 0.15, station: 0.15
 Topic 19: devices: -0.32, station: -0.30, lte: -0.29, base: -0.29, equipment: -0.22, sterilization: -0.20, heat: -0.20"""
 
-    title, body = tbpo.weekly_update(current_d
+    title, body = tbpo.weekly_update(current_datetime=current_datetime,
+                  steem_per_mvests=steem_per_mvests,
+                  start_datetime=start_datetime,
+                  end_datetime=end_datetime,
+                  total_posts=total_posts,
+                  total_votes=total_votes,
+                  total_reward=total_reward,
+                  bid_bots_sbd=bid_bots_sbd,
+ 
