@@ -137,4 +137,11 @@ Topic 19: devices: -0.32, station: -0.30, lte: -0.29, base: -0.29, equipment: -0
                   mean_reward=mean_reward,
                   dollar_percent=dollar_percent,
                   top_posts_authors=top_posts_authors,
-                  top_posts_titles=top
+                  top_posts_titles=top_posts_titles,
+                  top_posts_rewards=top_posts_rewards,
+                  top_posts_permalinks=top_posts_permalinks,
+                  top_tags=top_tags,
+                  top_tag_counts=top_tag_counts,
+                  top_tag_rewards=top_tag_rewards,
+                  top_tags_earnings=top_tags_earnings,
+         
