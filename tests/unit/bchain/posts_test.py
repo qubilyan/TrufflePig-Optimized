@@ -144,4 +144,10 @@ Topic 19: devices: -0.32, station: -0.30, lte: -0.29, base: -0.29, equipment: -0
                   top_tag_counts=top_tag_counts,
                   top_tag_rewards=top_tag_rewards,
                   top_tags_earnings=top_tags_earnings,
-         
+                  top_tags_earnings_counts=top_tags_earnings_counts,
+                  top_tags_earnings_reward=top_tags_earnings_reward,
+                  top_words=top_words,
+                  top_words_counts=top_words_counts,
+                  top_tfidf=top_tfidf,
+                  top_tfidf_scores=top_tfidf_scores,
+                  spelling_perce
