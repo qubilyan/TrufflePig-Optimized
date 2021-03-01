@@ -150,4 +150,16 @@ Topic 19: devices: -0.32, station: -0.30, lte: -0.29, base: -0.29, equipment: -0
                   top_words_counts=top_words_counts,
                   top_tfidf=top_tfidf,
                   top_tfidf_scores=top_tfidf_scores,
-                  spelling_perce
+                  spelling_percent=spelling_percent,
+                  style_percent=style_percent,
+                  topic_percent=topic_percent,
+                  delegator_list=delegator_list,
+                  topics=topics)
+
+    assert body
+    assert title
+
+
+def test_top_trending_post():
+    posts = random_data.create_n_random_posts(10)
+   
