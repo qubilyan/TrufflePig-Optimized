@@ -170,4 +170,10 @@ def test_top_trending_post():
 
     title, post = tbpo.top_trending_post(topN_authors=df.author,
                                  topN_permalinks=df.permalink,
-                            
+                                 topN_titles=df.title,
+                                 topN_filtered_bodies=df.filtered_body,
+                                 topN_image_urls=df.image_urls,
+                                 topN_rewards=df.reward, sbd_amount=10,
+                                 steem_amount=10,
+                                 title_date=date, trufflepicks_link='de.de.de',
+  
