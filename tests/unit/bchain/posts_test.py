@@ -176,4 +176,7 @@ def test_top_trending_post():
                                  topN_rewards=df.reward, sbd_amount=10,
                                  steem_amount=10,
                                  title_date=date, trufflepicks_link='de.de.de',
-  
+                                 truffle_link='www.de')
+
+    assert post
+    assert title
