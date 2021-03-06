@@ -60,4 +60,28 @@ def test_voted_by():
 
 
 def test_filter_headdings():
-    te
+    text= """# heading nheadings
+heyho
+
+#### heading123213213232
+
+#################### dksajds
+    
+jdd
+<h4> lkjsdsak!"§$$ </h5>
+
+<H5> jjjjjj </H5>
+"""
+    new_text = tptf.filter_headings(text)
+    expected = """heyho
+
+#################### dksajds
+    
+jdd"""
+    assert new_text == expected
+
+
+def test_filter_quotes():
+    text= """I like this
+    
+      > lksajdlksa
