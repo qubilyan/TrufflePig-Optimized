@@ -84,4 +84,8 @@ jdd"""
 def test_filter_quotes():
     text= """I like this
     
-      > lksajdlksa
+      > lksajdlksajdls743289473()/)(   /((/dads"!§"!§  432     )(/)(
+      4 > 3
+      
+      Heyho!
+      >When the total post value reaches $75 the winner will be chosen by random draw on @topkpop's Friday evening radio show. We will announce the winner and I will make contact through DM to find out where to sen
