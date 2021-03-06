@@ -15,4 +15,11 @@ def test_filter_images_and_links():
 def test_get_image_urls():
     result = tptf.get_image_urls('Lookat ![j kjds](wehwjrkjewrk.de), yes [iii](jlkajddjsla), and '
                         '<img   src="hellokitty.com/hello">'
-                        '![images (17).jpg](https:
+                        '![images (17).jpg](https://steemitimages.com/DQmQF5BxHtPdPu1yKipV67GpnRdzemPpEFCqB59kVXC6Ahy/images%20(17).jpg)')
+    assert result == ['wehwjrkjewrk.de', 'hellokitty.com/hello',
+                      'https://steemitimages.com/DQmQF5BxHtPdPu1yKipV67GpnRdzemPpEFCqB59kVXC6Ahy/images%20(17).jpg']
+
+
+def test_filter_urls():
+    result = tptf.filter_urls('I like www.pipes.com')
+    ass
