@@ -32,4 +32,18 @@ def test_filter_special_characters():
 
 def test_filter_formatting():
     result = tptf.filter_formatting('Hi&nbsphey aligncenter nbsp Styletextalign kkhspace10')
-    assert result == 'Hihey    
+    assert result == 'Hihey    kk'
+
+
+def test_replace_newlines():
+    result = tptf.replace_newlines('Hi \n\n\tee')
+    assert result == 'Hi ee'
+
+
+def test_filter_punctuation():
+    result = tptf.filter_punctuation('hi. my. name. is yolo!;;k;')
+    assert result == 'hi my name is yolok'
+
+
+def test_is_in_tags():
+    result = tptf.is_in
