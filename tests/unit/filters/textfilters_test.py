@@ -46,4 +46,18 @@ def test_filter_punctuation():
 
 
 def test_is_in_tags():
-    result = tptf.is_in
+    result = tptf.is_in_filter_tags(['hi', 'ho'], {'ha', 'hi'})
+    assert result
+
+
+def test_is_in_tags_typerror():
+    result = tptf.is_in_filter_tags(['hi', ['ho']], {'ha', 'hi'})
+    assert result
+
+
+def test_voted_by():
+    assert tptf.voted_by([{'voter': 'cheetah'}], {'cheetah'})
+
+
+def test_filter_headdings():
+    te
