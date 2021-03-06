@@ -22,4 +22,14 @@ def test_get_image_urls():
 
 def test_filter_urls():
     result = tptf.filter_urls('I like www.pipes.com')
-    ass
+    assert result == 'I like '
+
+
+def test_filter_special_characters():
+    result = tptf.filter_special_characters('Hi//)(&(/%( \n\n\t)))""""""!!!.')
+    assert result == 'Hi \n\n\t!!!.'
+
+
+def test_filter_formatting():
+    result = tptf.filter_formatting('Hi&nbsphey aligncenter nbsp Styletextalign kkhspace10')
+    assert result == 'Hihey    
