@@ -11,4 +11,12 @@ def test_preprocessing():
                                max_errors_per_word=0.5,
                                min_max_num_words=(10, 99999))
 
-    assert len(fi
+    assert len(filtered)
+
+
+def test_preprocessing_parallel():
+    post_frame = pd.DataFrame([POSTS[0] for _ in range(100)])
+    post_frame['permalink'] = ['kkk'+str(irun % 50) for irun in range(100)]
+    filtered = tppp.preprocess(post_frame, ncores=5, chunksize=20,
+                               min_en_prob=0.5, max_errors_per_word=0.5,
+                       
