@@ -22,4 +22,12 @@ def test_tag_measure():
 
 def test_create_ngrams():
     expected = ['hello world', 'world peace', 'peace corps']
-    result = list(tpmo.create_ngram
+    result = list(tpmo.create_ngrams(['hello', 'world', 'peace', 'corps'], n=2))
+    assert expected == result
+
+    expected = ['hello world peace corps']
+    result = list(tpmo.create_ngrams(['hello', 'world', 'peace', 'corps'], n=4))
+    assert expected == result
+
+    expected = []
+    result = list(tpmo.create_ngrams(['hello', 'world', 'pea
