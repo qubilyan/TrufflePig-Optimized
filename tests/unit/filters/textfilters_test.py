@@ -98,4 +98,11 @@ def test_filter_quotes():
 
     expected = """I like this
     
-      4
+      4 > 3
+      
+      Heyho!
+
+
+      """
+
+    assert new_text == expected
