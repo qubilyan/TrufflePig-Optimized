@@ -30,4 +30,14 @@ def test_create_ngrams():
     assert expected == result
 
     expected = []
-    result = list(tpmo.create_ngrams(['hello', 'world', 'pea
+    result = list(tpmo.create_ngrams(['hello', 'world', 'peace', 'corps'], n=5))
+    assert expected == result
+
+    expected = ['hello', 'world', 'peace', 'corps']
+    result = tpmo.create_ngrams(['hello', 'world', 'peace', 'corps'], n=1)
+    assert expected == result
+
+
+def test_create_skip_bigrams():
+    expected = ['hello world', 'world peace', 'peace corps']
+    result = list(tpmo.create_skip_bigrams(['hello
