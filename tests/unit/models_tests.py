@@ -48,4 +48,9 @@ def test_create_skip_bigrams():
     assert expected == result
 
     expected = ['hello corps', 'world mama']
-    result = list(tpmo.create_skip_bigrams(['hello',
+    result = list(tpmo.create_skip_bigrams(['hello', 'world', 'peace', 'corps', 'mama'], s=2))
+    assert expected == result
+
+    expected = ['hello', 'world', 'peace', 'corps']
+    result = tpmo.create_skip_bigrams(['hello', 'world', 'peace', 'corps'], s=-1)
+    assert expected == result
