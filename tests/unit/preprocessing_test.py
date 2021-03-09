@@ -41,4 +41,11 @@ def test_bid_bot_correction():
     bought = {}
     bought[('hello', 'kitty')] = ['19 STEEM']
     sample_frame = post_frame[['author', 'permalink']].sample(10)
- 
+    for _, (author, permalink) in sample_frame.iterrows():
+        bought[(author, permalink)] = {'aaa':{'amount': '3 STEEM'},
+                                       'bbb': {'amount': '4 SBD'}}
+
+    post_frame = tppp.compute_bidbot_correction(post_frame,
+                                                bought)
+
+    assert post_frame.adjus
