@@ -28,4 +28,17 @@ def test_preprocessing_random_parallel():
     posts = create_n_random_posts(50)
     post_frame = pd.DataFrame(posts)
     filtered = tppp.preprocess(post_frame, ncores=5, chunksize=10,
-                               min_en_prob=0.5, max_errors_per_w
+                               min_en_prob=0.5, max_errors_per_word=0.5,
+                               min_max_num_words=(10, 99999))
+
+    assert len(filtered) > 20
+
+
+def test_bid_bot_correction():
+    posts = create_n_random_posts(30)
+    post_frame = pd.DataFrame(posts)
+
+    bought = {}
+    bought[('hello', 'kitty')] = ['19 STEEM']
+    sample_frame = post_frame[['author', 'permalink']].sample(10)
+ 
