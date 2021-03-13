@@ -245,3 +245,164 @@ def get_upvote_payments(account, steem, min_datetime, max_datetime,
                          '{}, restarting steem'.format(account))
         transfers = []
         steem.reconnect()
+
+    for transfer in transfers:
+        try:
+            memo = transfer['memo']
+            timestamp = pd.to_datetime(transfer['timestamp'])
+
+            if memo.startswith(MEMO_START):
+                author, permalink = memo.split('/')[-2:]
+                if author.startswith('@'):
+                    author = author[1:]
+                    if (author, permalink) not in upvote_payments:
+                        upvote_payments[(author, permalink)] = {}
+                    trx_id = transfer['trx_id']
+                    amount = transfer['amount']
+
+                    transaction_dict = dict(
+                            timestamp=timestamp,
+                            amount=amount,
+                            payer=transfer['from'],
+                            payee=transfer['to']
+                        )
+                    upvote_payments[(author, permalink)][trx_id] = transaction_dict
+
+            if timestamp < min_datetime:
+                break
+
+            now = time.time()
+            if now - start > max_time:
+                logger.error('Reached max time of {} seconds '
+                             ' will stop! Account {} from {} until {} '
+                             'last timestamp {}'.format(max_time,
+                                                        account,
+                                                        min_datetime,
+                                                        max_datetime,
+                                                        timestamp))
+                break
+
+        except Exception as e:
+            logger.exception('Could not parse {}. Reconnecting...'.format(transfer))
+            steem.reconnect()
+
+    return upvote_payments
+
+
+def history_reverse(account, steem, start_index, filter_by=None,
+                    batch_size=1000, raw_output=False):
+        """ Stream account history in reverse chronological order."""
+        acc = none_error_retry(Account,
+                               errors=(Exception,))(account, steem)
+        i = start_index
+        if batch_size > start_index:
+            batch_size = start_index
+        while i > 0:
+            if i - batch_size < 0:
+                batch_size = i
+            yield from none_error_retry(acc.get_account_history,
+                                   errors=(Exception,))(
+                index=i,
+                limit=batch_size,
+                order=-1,
+                filter_by=filter_by,
+                raw_output=raw_output,
+            )
+            i -= (batch_size + 1)
+
+
+def extend_upvotes_and_payments(upvote_payments, new_payments):
+    for author_permalink, new_upvotes in new_payments.items():
+            if author_permalink not in upvote_payments:
+                upvote_payments[author_permalink] = {}
+            upvote_payments[author_permalink].update(new_upvotes)
+    return upvote_payments
+
+
+def _get_upvote_payments_parrallel(accounts, steem, min_datetime,
+                                   max_datetime):
+    results = {}
+    for account in accounts:
+        result = none_error_retry(get_upvote_payments,
+                                  errors=(Exception,),
+                                  retries=5,
+                                  sleep_time=2)(account, steem,
+                                                min_datetime, max_datetime)
+        results = extend_upvotes_and_payments(results, result)
+
+    return result
+
+
+def get_upvote_payments_for_accounts(accounts, steem, min_datetime, max_datetime,
+                                     chunksize=10, ncores=20, timeout=3600):
+    logger.info('Querying upvote purchases between {} and '
+                '{} for {} accounts'.format(min_datetime,
+                                            max_datetime,
+                                            len(accounts)))
+
+    # do queries by day!
+    start_datetimes = pd.date_range(min_datetime, max_datetime).tolist()
+    end_datetimes = [x for x in start_datetimes[1:]] + [max_datetime]
+
+    if ncores > 1:
+        chunks = [accounts[irun: irun + chunksize]
+                  for irun in range(0, len(accounts), chunksize)]
+
+        ctx = mp.get_context('spawn')
+        pool = ctx.Pool(ncores, initializer=tpbg.config_mp_logging)
+
+        async_results = []
+        for start_datetime, end_datetime in zip(start_datetimes, end_datetimes):
+            for idx, chunk in enumerate(chunks):
+                result = pool.apply_async(_get_upvote_payments_parrallel,
+                                          args=(chunk, steem,
+                                                start_datetime, end_datetime))
+                async_results.append(result)
+
+        pool.close()
+
+        upvote_payments = {}
+        terminate = False
+        for kdx, async in enumerate(async_results):
+            try:
+                payments = async.get(timeout=timeout)
+                upvote_payments = extend_upvotes_and_payments(upvote_payments,
+                                                              payments)
+                if progressbar(kdx, len(async_results), percentage_step=5, logger=logger):
+                    logger.info('Finished chunk {} '
+                                'out of {} found so far {} '
+                                'upvote buyers...'.format(kdx + 1, len(async_results), len(upvote_payments)))
+            except Exception as e:
+                logger.exception('Something went totally wrong dude!')
+                terminate = True
+
+        if terminate:
+            logger.error('Terminating pool due to timeout or errors')
+            pool.terminate()
+        pool.join()
+    else:
+        return _get_upvote_payments_parrallel(accounts, steem, min_datetime,
+                                              max_datetime)
+
+    logger.info('Found {} upvote bought articles'.format(len(upvote_payments)))
+    return upvote_payments
+
+
+def get_upvote_payments_to_bots(steem, min_datetime, max_datetime,
+                                bots='default', ncores=30):
+    if bots == 'default':
+        try:
+            bot_frame = pd.read_json('https://steembottracker.net/bid_bots')
+            names = bot_frame.name.tolist()
+            bots = list(set(BITBOTS + names))
+            logger.info('Succesfully called the bottracker API!')
+        except Exception:
+            logger.exception('Could not reach bottracker')
+            bots = BITBOTS
+    logger.info('Getting payments to following bots {}'.format(bots))
+    return get_upvote_payments_for_accounts(accounts=bots,
+                                            steem=steem,
+                                            min_datetime=min_datetime,
+                                            max_datetime=max_datetime,
+                                            ncores=ncores,
+                                            chunksize=1), bots
