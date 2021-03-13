@@ -48,4 +48,7 @@ def test_bid_bot_correction():
     post_frame = tppp.compute_bidbot_correction(post_frame,
                                                 bought)
 
-    assert post_frame.adjus
+    assert post_frame.adjusted_reward.mean() < post_frame.reward.mean()
+    assert all(post_frame.adjusted_reward >= 0)
+    assert post_frame.adjusted_votes.mean() < post_frame.votes.mean()
+    assert all(post_frame.adjusted_votes >= 0)
