@@ -47,4 +47,12 @@ def get_block_headers_between_offset_start(start_datetime, end_datetime,
     """
     start_datetime = pd.to_datetime(start_datetime)
     end_datetime = pd.to_datetime(end_datetime)
-    current_block_num = end_
+    current_block_num = end_offset_num
+    headers = OrderedDict()
+    logger.info('Collecting header infos')
+    while True:
+        try:
+            header = none_error_retry(steem.get_block_header)(current_block_num)
+            current_datetime = pd.to_datetime(header['timestamp'])
+            if start_datetime <= current_datetime and current_datetime <= end_datetime:
+                header['ti
