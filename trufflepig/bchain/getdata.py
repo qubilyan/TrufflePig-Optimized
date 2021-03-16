@@ -34,4 +34,17 @@ def get_block_headers_between_offset_start(start_datetime, end_datetime,
     NOT used in production!
 
     Parameters
-    ---------
+    ----------
+    start_datetime: datetime
+    end_datetime: datetime
+    end_offset_num: offset from wich to seach backwards
+    steem: Steem object
+
+    Returns
+    -------
+    Ordereddict: block_num -> header
+
+    """
+    start_datetime = pd.to_datetime(start_datetime)
+    end_datetime = pd.to_datetime(end_datetime)
+    current_block_num = end_
