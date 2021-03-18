@@ -120,4 +120,10 @@ def find_nearest_block_num(target_datetime, steem,
                 else:
                     best_largest_block_num = current_block_num
 
-   
+                increase = (best_largest_block_num - best_smallest_block_num) // 2
+                current_block_num = best_smallest_block_num + increase
+
+                if current_block_num < 0 or current_block_num > latest_block_num:
+                    raise RuntimeError('Seriously?')
+        except Exception:
+          
