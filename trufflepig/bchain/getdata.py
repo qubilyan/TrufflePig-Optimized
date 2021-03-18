@@ -63,4 +63,13 @@ def get_block_headers_between_offset_start(start_datetime, end_datetime,
             logger.exception('Error for block num {}. Reconnecting...'.format(current_block_num))
             steem.reconnect()
         current_block_num -= 1
-        if cu
+        if current_block_num % 100 == 99:
+            logger.debug('Bin alread {} headers'.format(len(headers)))
+    return headers
+
+
+def find_nearest_block_num(target_datetime, steem,
+                           latest_block_num=None,
+                           max_tries=5000,
+                           block_num_tolerance=0):
+    """ Finds nearest block number to
