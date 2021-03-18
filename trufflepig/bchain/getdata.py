@@ -104,4 +104,11 @@ def find_nearest_block_num(target_datetime, steem,
         logger.warning('Target beyond largest block num')
         return latest_block_num, best_largest_datetime
 
-    best_smalles
+    best_smallest_block_num = 1
+    increase = block_num_tolerance + 1
+    current_datetime = None
+    for _ in range(max_tries):
+        try:
+            header = none_error_retry(steem.get_block_header)(current_block_num)
+            current_datetime = pd.to_datetime(header['timestamp'])
+            if increase <= b
