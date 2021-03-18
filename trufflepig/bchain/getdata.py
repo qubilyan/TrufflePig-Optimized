@@ -72,4 +72,16 @@ def find_nearest_block_num(target_datetime, steem,
                            latest_block_num=None,
                            max_tries=5000,
                            block_num_tolerance=0):
-    """ Finds nearest block number to
+    """ Finds nearest block number to `target_datetime`
+
+    Parameters
+    ----------
+    target_datetime: datetime
+    steem: Steem object
+    latest_block_num: int
+        latest block number in bchain
+        leave None to get from steem directly
+    max_tries: int
+        number of maximum tries
+    block_num_tolerance: int
+        tolera
