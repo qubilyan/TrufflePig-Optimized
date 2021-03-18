@@ -126,4 +126,10 @@ def find_nearest_block_num(target_datetime, steem,
                 if current_block_num < 0 or current_block_num > latest_block_num:
                     raise RuntimeError('Seriously?')
         except Exception:
-          
+            logger.exception('Problems for block num {}. Reconnecting...'
+                             ''.format(current_block_num))
+            current_block_num -= 1
+            best_smallest_block_num -= 1
+            steem.reconnect()
+            if current_block_num <= 1:
+                logger.error('Could not find block num returning 
