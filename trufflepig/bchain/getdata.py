@@ -55,4 +55,12 @@ def get_block_headers_between_offset_start(start_datetime, end_datetime,
             header = none_error_retry(steem.get_block_header)(current_block_num)
             current_datetime = pd.to_datetime(header['timestamp'])
             if start_datetime <= current_datetime and current_datetime <= end_datetime:
-                header['ti
+                header['timestamp'] = current_datetime
+                headers[current_block_num] = header
+            if current_datetime < start_datetime:
+                break
+        except Exception:
+            logger.exception('Error for block num {}. Reconnecting...'.format(current_block_num))
+            steem.reconnect()
+        current_block_num -= 1
+        if cu
