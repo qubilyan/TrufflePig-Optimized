@@ -84,4 +84,16 @@ def find_nearest_block_num(target_datetime, steem,
     max_tries: int
         number of maximum tries
     block_num_tolerance: int
-        tolera
+        tolerance too closest in block
+
+    Returns
+    -------
+    int: best matching block number
+    datetime: datetime of matching block
+
+    """
+    if latest_block_num is None:
+        latest_block_num = none_error_retry(Blockchain(steem).get_current_block_num)()
+
+    current_block_num = latest_block_num
+    best_largest_b
