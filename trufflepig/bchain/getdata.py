@@ -111,4 +111,13 @@ def find_nearest_block_num(target_datetime, steem,
         try:
             header = none_error_retry(steem.get_block_header)(current_block_num)
             current_datetime = pd.to_datetime(header['timestamp'])
-            if increase <= b
+            if increase <= block_num_tolerance:
+                return current_block_num, current_datetime
+            else:
+
+                if current_datetime < target_datetime:
+                    best_smallest_block_num = current_block_num
+                else:
+                    best_largest_block_num = current_block_num
+
+   
