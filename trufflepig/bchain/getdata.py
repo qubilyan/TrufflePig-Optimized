@@ -132,4 +132,12 @@ def find_nearest_block_num(target_datetime, steem,
             best_smallest_block_num -= 1
             steem.reconnect()
             if current_block_num <= 1:
-                logger.error('Could not find block num returning 
+                logger.error('Could not find block num returning 1')
+                return 1, current_datetime
+
+
+def get_block_headers_between(start_datetime, end_datetime, steem):
+    """ Returns block headers between two dates"""
+    latest_block_num = Blockchain(steem).get_current_block_num()
+    end_offset_num, _ = find_nearest_block_num(end_datetime, steem, latest_block_num)
+    return get_block_
