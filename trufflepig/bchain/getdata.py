@@ -140,4 +140,13 @@ def get_block_headers_between(start_datetime, end_datetime, steem):
     """ Returns block headers between two dates"""
     latest_block_num = Blockchain(steem).get_current_block_num()
     end_offset_num, _ = find_nearest_block_num(end_datetime, steem, latest_block_num)
-    return get_block_
+    return get_block_headers_between_offset_start(start_datetime, end_datetime,
+                                                  steem=steem,
+                                                  end_offset_num=end_offset_num)
+
+
+################################### Post Data #################################
+
+
+def extract_authors_and_permalinks(operations):
+    """Takes a list o
