@@ -156,4 +156,12 @@ def extract_authors_and_permalinks(operations):
         if op[0] == 'comment':
             title = op[1]['title']
             body = op[1]['body']
-            if title != '' and op[1]['json_metadata'] != '' and l
+            if title != '' and op[1]['json_metadata'] != '' and len(body) >= MIN_CHARACTERS:
+                try:
+                    metadata = json.loads(op[1]['json_metadata'])
+                except JSONDecodeError:
+                    logger.debug('Could not decode metadata for {}'.format(op))
+                    continue
+                try:
+                    tags = metadata['tags']
+                exc
