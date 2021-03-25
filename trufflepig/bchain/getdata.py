@@ -149,4 +149,11 @@ def get_block_headers_between(start_datetime, end_datetime, steem):
 
 
 def extract_authors_and_permalinks(operations):
-    """Takes a list o
+    """Takes a list of ops and returns a set of author and permalink tuples"""
+    authors_and_permalinks = set()
+    for operation in operations:
+        op = operation['op']
+        if op[0] == 'comment':
+            title = op[1]['title']
+            body = op[1]['body']
+            if title != '' and op[1]['json_metadata'] != '' and l
