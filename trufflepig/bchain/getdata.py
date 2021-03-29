@@ -164,4 +164,13 @@ def extract_authors_and_permalinks(operations):
                     continue
                 try:
                     tags = metadata['tags']
-                exc
+                except KeyError as e:
+                    logger.debug('No tags for for {}'.format(op))
+                    continue
+                except TypeError as e:
+                    logger.debug('Type Error for for {}'.format(op))
+                    continue
+                try:
+                    _ = tags[0]
+                except IndexError as e:
+        
