@@ -173,4 +173,13 @@ def extract_authors_and_permalinks(operations):
                 try:
                     _ = tags[0]
                 except IndexError as e:
-        
+                    logger.debug('Tags empty for {}'.format(op))
+                    continue
+                author = op[1]['author']
+                permalink = op[1]['permlink']
+                authors_and_permalinks.add((author, permalink))
+    return authors_and_permalinks
+
+
+def get_post_data(authors_and_permalinks, steem):
+    """ 
