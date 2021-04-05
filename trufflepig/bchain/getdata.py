@@ -197,4 +197,16 @@ def get_post_data(authors_and_permalinks, steem):
             * permalink
             * title
             * body
-            * rewar
+            * reward
+            * votes
+            * created
+            * tags
+
+    """
+    posts = []
+    for kdx, (author, permalink) in enumerate(authors_and_permalinks):
+        try:
+            p = error_retry(Post,
+                            errors=Exception,
+                            sleep_time=0.5,
+                            retries=3)('@{}/
