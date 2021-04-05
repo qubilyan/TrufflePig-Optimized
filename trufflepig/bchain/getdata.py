@@ -182,4 +182,19 @@ def extract_authors_and_permalinks(operations):
 
 
 def get_post_data(authors_and_permalinks, steem):
-    """ 
+    """ Queries posts from `steem`
+
+    Parameters
+    ----------
+    authors_and_permalinks: set of tuples of authors and permalink strings
+    steem: Steem object
+
+    Returns
+    -------
+    List of dict
+        posts are kept as dicts with
+            * author
+            * permalink
+            * title
+            * body
+            * rewar
