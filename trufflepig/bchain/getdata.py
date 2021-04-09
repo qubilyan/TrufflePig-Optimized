@@ -224,4 +224,14 @@ def get_post_data(authors_and_permalinks, steem):
         # Add positive votes and subtract negative
         votes = sum(1 if x['percent'] > 0 else -1 for x in p.active_votes)
 
-        post 
+        post = {
+            'title': p.title,
+            'reward': p.reward.amount,
+            'votes':votes,
+            'active_votes': p.active_votes,
+            'created': p.created,
+            'tags': p.tags,
+            'body': p.body,
+            'author': author,
+            'permalink': permalink,
+            'author_reputation': i
