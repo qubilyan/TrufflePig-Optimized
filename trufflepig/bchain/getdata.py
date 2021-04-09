@@ -216,4 +216,12 @@ def get_post_data(authors_and_permalinks, steem):
                                                                 author))
             continue
         except Exception:
-            logg
+            logger.exception('Error in loading post {} by {}. '
+                             'Reconnecting...'.format(permalink, author))
+            steem.reconnect()
+            continue
+
+        # Add positive votes and subtract negative
+        votes = sum(1 if x['percent'] > 0 else -1 for x in p.active_votes)
+
+        post 
