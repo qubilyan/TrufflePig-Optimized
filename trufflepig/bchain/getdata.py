@@ -234,4 +234,18 @@ def get_post_data(authors_and_permalinks, steem):
             'body': p.body,
             'author': author,
             'permalink': permalink,
-            'author_reputation': i
+            'author_reputation': int(p.author_reputation)
+        }
+        posts.append(post)
+    return posts
+
+
+def get_all_posts_from_block(block_num, steem,
+                             exclude_authors_and_permalinks=None):
+    """ Gets all posts from one block
+
+    Parameters
+    ----------
+    block_num: int
+    steem: MPSteem
+    exclude
