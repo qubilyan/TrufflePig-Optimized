@@ -248,4 +248,15 @@ def get_all_posts_from_block(block_num, steem,
     ----------
     block_num: int
     steem: MPSteem
-    exclude
+    exclude_authors_and_permalinks: set of tuples of strings
+        Exclude these authors and permalinks to get less duplicates
+
+    Returns
+    -------
+    List of post dicts and set of authors and permalinks
+
+    """
+    try:
+        operations = none_error_retry(steem.get_ops_in_block)(block_num, False)
+        if operations:
+          
