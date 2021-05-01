@@ -265,4 +265,10 @@ def get_all_posts_from_block(block_num, steem,
             if authors_and_permalinks:
                 return get_post_data(authors_and_permalinks, steem), authors_and_permalinks
             else:
-      
+                logger.debug('Could not find any posts for block {}'.format(block_num))
+        else:
+            logger.warning('Could not find any operations for block {}'.format(block_num))
+    except Exception as e:
+        logger.exception('Error for block {}. Reconnecting...'.format(block_num))
+        steem.reconnect()
+    ret
