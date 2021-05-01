@@ -259,4 +259,10 @@ def get_all_posts_from_block(block_num, steem,
     try:
         operations = none_error_retry(steem.get_ops_in_block)(block_num, False)
         if operations:
-          
+            authors_and_permalinks = extract_authors_and_permalinks(operations)
+            if exclude_authors_and_permalinks:
+                authors_and_permalinks -= exclude_authors_and_permalinks
+            if authors_and_permalinks:
+                return get_post_data(authors_and_permalinks, steem), authors_and_permalinks
+            else:
+      
