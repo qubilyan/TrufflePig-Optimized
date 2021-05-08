@@ -284,4 +284,16 @@ def get_all_posts_between(start_datetime, end_datetime, steem,
     end_datetime: datetime
     steem: Steem
     stop_after: int or None
-        For debugging and shorter tests, stop 
+        For debugging and shorter tests, stop after only a few iterations
+
+    Returns
+    -------
+    List of dicts of posts
+
+    """
+    start_num, block_start_datetime = find_nearest_block_num(start_datetime, steem)
+    end_num, block_end_datetime = find_nearest_block_num(end_datetime, steem)
+
+    total = end_num - start_num
+    posts = []
+    logger.info('Querying all posts betw
