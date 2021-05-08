@@ -271,4 +271,17 @@ def get_all_posts_from_block(block_num, steem,
     except Exception as e:
         logger.exception('Error for block {}. Reconnecting...'.format(block_num))
         steem.reconnect()
-    ret
+    return [], set()
+
+
+def get_all_posts_between(start_datetime, end_datetime, steem,
+                          stop_after=None):
+    """ Queries all posts found in blocks between start and end
+
+    Parameters
+    ----------
+    start_datetime: datetime
+    end_datetime: datetime
+    steem: Steem
+    stop_after: int or None
+        For debugging and shorter tests, stop 
