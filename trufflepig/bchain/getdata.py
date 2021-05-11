@@ -296,4 +296,9 @@ def get_all_posts_between(start_datetime, end_datetime, steem,
 
     total = end_num - start_num
     posts = []
-    logger.info('Querying all posts betw
+    logger.info('Querying all posts between '
+                '{} (block {}) and {} (block {})'.format(block_start_datetime,
+                                                         start_num,
+                                                         block_end_datetime,
+                                                         end_num))
+    exclude_autho
