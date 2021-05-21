@@ -306,4 +306,10 @@ def get_all_posts_between(start_datetime, end_datetime, steem,
         posts_in_block, authors_and_permalinks = get_all_posts_from_block(block_num,
                                                                           steem,
                                                                           exclude_authors_and_permalinks)
-        excl
+        exclude_authors_and_permalinks |= authors_and_permalinks
+        posts.extend(posts_in_block)
+        if progressbar(idx, total, percentage_step=1, logger=logger):
+            logger.info('Finished block {} '
+                    '(last is {}) found so far {} '
+                    'posts...'.format(block_num, end_num, len(posts)))
+        if sto
