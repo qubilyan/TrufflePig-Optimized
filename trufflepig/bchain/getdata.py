@@ -301,4 +301,9 @@ def get_all_posts_between(start_datetime, end_datetime, steem,
                                                          start_num,
                                                          block_end_datetime,
                                                          end_num))
-    exclude_autho
+    exclude_authors_and_permalinks = set()
+    for idx, block_num in enumerate(range(start_num, end_num+1)):
+        posts_in_block, authors_and_permalinks = get_all_posts_from_block(block_num,
+                                                                          steem,
+                                                                          exclude_authors_and_permalinks)
+        excl
