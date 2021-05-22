@@ -312,4 +312,17 @@ def get_all_posts_between(start_datetime, end_datetime, steem,
             logger.info('Finished block {} '
                     '(last is {}) found so far {} '
                     'posts...'.format(block_num, end_num, len(posts)))
-        if sto
+        if stop_after is not None and len(posts) >= stop_after:
+            break
+
+    logger.info('Scraped {} posts'.format(len(posts)))
+    return posts
+
+
+def config_mp_logging(level=logging.INFO):
+    """Helper function to log in multiproc environment"""
+    logging.basicConfig(level=level)
+
+
+def _get_all_posts_for_blocks_parallel(block_nums, steem,
+                       
