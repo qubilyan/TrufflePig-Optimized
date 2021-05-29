@@ -336,4 +336,13 @@ def _get_all_posts_for_blocks_parallel(block_nums, steem,
         exclude_authors_and_permalinks |= authors_and_permalinks
         posts.extend(posts_in_block)
         if stop_after is not None and len(posts) >= stop_after:
-            br
+            break
+    return posts
+
+
+def get_all_posts_between_parallel(start_datetime, end_datetime, steem,
+                                   stop_after=None, ncores=8,
+                                   chunksize=20, timeout=1200):
+    """As above but in parallel with `ncores` jobs of `chunksize`.
+
+    Waits for posts unitl `t
