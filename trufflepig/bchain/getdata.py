@@ -331,4 +331,9 @@ def _get_all_posts_for_blocks_parallel(block_nums, steem,
     exclude_authors_and_permalinks = set()
     for block_num in block_nums:
         posts_in_block, authors_and_permalinks = get_all_posts_from_block(block_num,
-                                                           
+                                                                          steem,
+                                                                          exclude_authors_and_permalinks)
+        exclude_authors_and_permalinks |= authors_and_permalinks
+        posts.extend(posts_in_block)
+        if stop_after is not None and len(posts) >= stop_after:
+            br
