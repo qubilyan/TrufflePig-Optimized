@@ -345,4 +345,11 @@ def get_all_posts_between_parallel(start_datetime, end_datetime, steem,
                                    chunksize=20, timeout=1200):
     """As above but in parallel with `ncores` jobs of `chunksize`.
 
-    Waits for posts unitl `t
+    Waits for posts unitl `timeout`.
+    """
+    start_num, block_start_datetime = find_nearest_block_num(start_datetime, steem)
+    end_num, block_end_datetime = find_nearest_block_num(end_datetime, steem)
+
+    logger.info('Querying IN PARALLEL with {} cores all posts between '
+                '{} (block {}) and {} (block {})'.format(ncores,
+                     
