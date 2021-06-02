@@ -352,4 +352,10 @@ def get_all_posts_between_parallel(start_datetime, end_datetime, steem,
 
     logger.info('Querying IN PARALLEL with {} cores all posts between '
                 '{} (block {}) and {} (block {})'.format(ncores,
-                     
+                                                         block_start_datetime,
+                                                         start_num,
+                                                         block_end_datetime,
+                                                         end_num))
+    block_nums = list(range(start_num, end_num + 1))
+    chunks = [block_nums[irun: irun + chunksize]
+    
