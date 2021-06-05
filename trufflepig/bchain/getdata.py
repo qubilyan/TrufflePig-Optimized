@@ -358,4 +358,12 @@ def get_all_posts_between_parallel(start_datetime, end_datetime, steem,
                                                          end_num))
     block_nums = list(range(start_num, end_num + 1))
     chunks = [block_nums[irun: irun + chunksize]
-    
+                for irun in range(0, len(block_nums), chunksize)]
+
+    ctx = mp.get_context('spawn')
+    pool = ctx.Pool(ncores, initializer=config_mp_logging)
+
+    async_results = []
+    for idx, chunk in enumerate(chunks):
+        result = pool.apply_async(_get_all_posts_for_blocks_parallel,
+                                  ar
