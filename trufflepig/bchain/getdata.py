@@ -366,4 +366,16 @@ def get_all_posts_between_parallel(start_datetime, end_datetime, steem,
     async_results = []
     for idx, chunk in enumerate(chunks):
         result = pool.apply_async(_get_all_posts_for_blocks_parallel,
-                                  ar
+                                  args=(chunk, steem,
+                                        stop_after))
+        async_results.append(result)
+        if stop_after is not None and idx >= stop_after:
+            break
+
+    pool.close()
+
+    posts = []
+    terminate = False
+    for kdx, async in enumerate(async_results):
+        try:
+      
