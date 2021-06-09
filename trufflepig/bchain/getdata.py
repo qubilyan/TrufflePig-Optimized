@@ -378,4 +378,9 @@ def get_all_posts_between_parallel(start_datetime, end_datetime, steem,
     terminate = False
     for kdx, async in enumerate(async_results):
         try:
-      
+            new_posts = async.get(timeout=timeout)
+            posts.extend(new_posts)
+            if progressbar(kdx, len(chunks), percentage_step=5, logger=logger):
+                logger.info('Finished chunk {} '
+                            'out of {} found so far {} '
+                            'posts...'.format(kdx + 1, len(chunks), le
