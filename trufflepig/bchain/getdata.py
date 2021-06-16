@@ -406,4 +406,16 @@ def load_or_scrape_full_day(date, steem, directory,
         The date to load or scrape in UTC
     steem:  Steem object
     directory: str
-        Directory to l
+        Directory to load posts from
+    overwrite: bool
+        If stored posts should be replaced
+    store: bool
+        If posts should be stored after scraping
+    stop_after: int or None
+        For debugging purposes to stop early
+    ncores: int
+        Number of jobs to parallelize scraping
+
+    Returns
+    -------
+    
