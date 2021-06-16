@@ -383,4 +383,17 @@ def get_all_posts_between_parallel(start_datetime, end_datetime, steem,
             if progressbar(kdx, len(chunks), percentage_step=5, logger=logger):
                 logger.info('Finished chunk {} '
                             'out of {} found so far {} '
-                            'posts...'.format(kdx + 1, len(chunks), le
+                            'posts...'.format(kdx + 1, len(chunks), len(posts)))
+        except Exception as e:
+            logger.exception('Something went totally wrong dude!')
+            terminate = True
+
+    if terminate:
+        logger.error('Terminating pool due to timeout or errors')
+        pool.terminate()
+    pool.join()
+    return posts
+
+
+def load_or_scrape_full_day(date, steem, directory,
+                  
