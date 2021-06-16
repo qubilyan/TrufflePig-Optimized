@@ -396,4 +396,14 @@ def get_all_posts_between_parallel(start_datetime, end_datetime, steem,
 
 
 def load_or_scrape_full_day(date, steem, directory,
-                  
+                            overwrite=False,
+                            store=True, stop_after=None, ncores=1):
+    """ Loads posts of a full day or queries them from steem blockchain
+
+    Parameters
+    ----------
+    date: datetime.date
+        The date to load or scrape in UTC
+    steem:  Steem object
+    directory: str
+        Directory to l
