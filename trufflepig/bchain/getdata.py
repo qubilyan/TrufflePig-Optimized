@@ -427,4 +427,11 @@ def load_or_scrape_full_day(date, steem, directory,
         os.makedirs(directory)
     filename = FILENAME_TEMPLATE.format(time=start_datetime.strftime('%Y-%m-%d'))
     filename = os.path.join(directory,filename)
-  
+    if os.path.isfile(filename) and not overwrite:
+        logger.info('Found file {} will load it'.format(filename))
+        post_frame = tppe.from_sqlite(filename=filename,
+                                      tablename=TABLENAME)
+    else:
+        logger.info('File {} not found, will start scraping'.format(filename))
+
+        if ncores == 1:
