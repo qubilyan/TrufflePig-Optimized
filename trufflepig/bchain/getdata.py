@@ -440,4 +440,12 @@ def load_or_scrape_full_day(date, steem, directory,
         else:
             posts = get_all_posts_between_parallel(start_datetime, end_datetime,
                                                    steem,
-                                          
+                                                   stop_after=stop_after,
+                                                   ncores=ncores)
+
+        post_frame = pd.DataFrame(data=posts, columns=sorted(posts[0].keys()))
+        if store:
+            logger.info('Storing file {} to disk'.format(filename))
+            tppe.to_sqlite(post_frame,
+                           filename=filename,
+          
