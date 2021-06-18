@@ -456,4 +456,17 @@ def load_or_scrape_training_data(steem, directory,
                                  days=20, offset_days=8,
                                  ncores=8,
                                  current_datetime=None,
-                                 stop_after
+                                 stop_after=None,
+                                 store=True):
+    """ Loads full set of days from file or blockchain
+
+    Parameters
+    ----------
+    steem:  Steem object
+    directory: str
+    days: int
+        Number of consecutive days to load or scrape
+    offset_days: int
+        offset between current_datetime and days to load
+    ncores: int
+    current_da
