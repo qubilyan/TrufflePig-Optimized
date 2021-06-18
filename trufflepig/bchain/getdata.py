@@ -448,4 +448,12 @@ def load_or_scrape_full_day(date, steem, directory,
             logger.info('Storing file {} to disk'.format(filename))
             tppe.to_sqlite(post_frame,
                            filename=filename,
-          
+                           tablename=TABLENAME)
+    return post_frame
+
+
+def load_or_scrape_training_data(steem, directory,
+                                 days=20, offset_days=8,
+                                 ncores=8,
+                                 current_datetime=None,
+                                 stop_after
