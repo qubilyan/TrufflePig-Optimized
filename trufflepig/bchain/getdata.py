@@ -435,3 +435,9 @@ def load_or_scrape_full_day(date, steem, directory,
         logger.info('File {} not found, will start scraping'.format(filename))
 
         if ncores == 1:
+            posts = get_all_posts_between(start_datetime, end_datetime, steem,
+                                          stop_after=stop_after)
+        else:
+            posts = get_all_posts_between_parallel(start_datetime, end_datetime,
+                                                   steem,
+                                          
