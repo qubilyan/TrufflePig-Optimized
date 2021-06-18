@@ -418,4 +418,13 @@ def load_or_scrape_full_day(date, steem, directory,
 
     Returns
     -------
-    
+    DataFrame
+
+    """
+    start_datetime = pd.to_datetime(date)
+    end_datetime = start_datetime + pd.Timedelta(days=1)
+    if not os.path.isdir(directory):
+        os.makedirs(directory)
+    filename = FILENAME_TEMPLATE.format(time=start_datetime.strftime('%Y-%m-%d'))
+    filename = os.path.join(directory,filename)
+  
