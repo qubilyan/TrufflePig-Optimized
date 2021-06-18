@@ -469,4 +469,19 @@ def load_or_scrape_training_data(steem, directory,
     offset_days: int
         offset between current_datetime and days to load
     ncores: int
-    current_da
+    current_datetime: datetime
+        If None now is taken
+    stop_after: int or None
+        For debugging and testing to stop early
+    store bool:
+        If data should be stored
+
+    Returns
+    -------
+    DataFrame
+
+    """
+    if current_datetime is None:
+        current_datetime = pd.datetime.utcnow()
+    else:
+        current_datetime = pd.to_dateti
