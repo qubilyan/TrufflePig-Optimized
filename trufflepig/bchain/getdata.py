@@ -484,4 +484,12 @@ def load_or_scrape_training_data(steem, directory,
     if current_datetime is None:
         current_datetime = pd.datetime.utcnow()
     else:
-        current_datetime = pd.to_dateti
+        current_datetime = pd.to_datetime(current_datetime)
+
+    start_datetime = current_datetime - pd.Timedelta(days=days + offset_days)
+    end_datetime = current_datetime - pd.Timedelta(days=offset_days)
+
+    frames = []
+    for day in range(days):
+        next_date = (start_datetime + pd.Timedelta(days=day)).date()
+        frame = load_or_scrape_full_day(next_date, steem
