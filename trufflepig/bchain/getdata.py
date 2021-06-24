@@ -507,4 +507,15 @@ def load_or_scrape_training_data(steem, directory,
 
     to_drop = frame.loc[frame.created < filter_date, :]
     logger.info('Dropping {} posts not created in time '
-                'window, but before {}'.format(len(to_dr
+                'window, but before {}'.format(len(to_drop), filter_date))
+    frame.drop(to_drop.index, inplace=True)
+
+    to_drop = frame.loc[frame.created > end_datetime, :]
+    logger.info('Dropping {} posts not created in time '
+                'window, but after {}'.format(len(to_drop), end_datetime))
+    frame.drop(to_drop.index, inplace=True)
+
+    return frame
+
+
+def scrap
