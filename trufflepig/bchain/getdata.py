@@ -492,4 +492,12 @@ def load_or_scrape_training_data(steem, directory,
     frames = []
     for day in range(days):
         next_date = (start_datetime + pd.Timedelta(days=day)).date()
-        frame = load_or_scrape_full_day(next_date, steem
+        frame = load_or_scrape_full_day(next_date, steem,
+                                        directory,
+                                        overwrite=False,
+                                        store=store,
+                                        stop_after=stop_after,
+                                        ncores=ncores)
+        frames.append(frame)
+    frame = pd.concat(frames, axis=0)
+   
