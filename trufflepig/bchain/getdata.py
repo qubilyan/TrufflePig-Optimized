@@ -500,4 +500,11 @@ def load_or_scrape_training_data(steem, directory,
                                         ncores=ncores)
         frames.append(frame)
     frame = pd.concat(frames, axis=0)
-   
+    # We need to reset the index because due to concatenation
+    # the default indices are duplicates!
+    frame.reset_index(inplace=True, drop=True)
+    filter_date = start_datetime.date()
+
+    to_drop = frame.loc[frame.created < filter_date, :]
+    logger.info('Dropping {} posts not created in time '
+                'window, but before {}'.format(len(to_dr
