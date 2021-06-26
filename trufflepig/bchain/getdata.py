@@ -518,4 +518,15 @@ def load_or_scrape_training_data(steem, directory,
     return frame
 
 
-def scrap
+def scrape_hour_data(steem,
+                     hours=24,
+                     offset_hours=24,
+                     current_datetime=None,
+                     ncores=8, stop_after=None):
+    """ Scrapes data for consecutive hours
+
+    Parameters
+    ----------
+    steem: Steem or kwargs
+    hours: int
+        Number of consecutive hours 
