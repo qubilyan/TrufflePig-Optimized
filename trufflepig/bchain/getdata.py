@@ -529,4 +529,20 @@ def scrape_hour_data(steem,
     ----------
     steem: Steem or kwargs
     hours: int
-        Number of consecutive hours 
+        Number of consecutive hours to scrape
+    offset_hours: int
+        offset from current_datetime
+    current_datetime: datetime or None
+    ncores: int
+    stop_after: int or None
+        For debugging
+
+    Returns
+    -------
+    DataFrame
+
+    """
+    if current_datetime is None:
+        current_datetime = pd.datetime.utcnow()
+    else:
+      
