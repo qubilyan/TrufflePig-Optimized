@@ -545,4 +545,11 @@ def scrape_hour_data(steem,
     if current_datetime is None:
         current_datetime = pd.datetime.utcnow()
     else:
-      
+        current_datetime = pd.to_datetime(current_datetime)
+
+    end_datetime = current_datetime - pd.Timedelta(hours=offset_hours)
+    start_datetime = end_datetime - pd.Timedelta(hours=hours)
+
+    if ncores == 1:
+        posts = get_all_posts_between(start_datetime,
+                                      end_d
