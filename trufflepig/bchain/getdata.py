@@ -552,4 +552,11 @@ def scrape_hour_data(steem,
 
     if ncores == 1:
         posts = get_all_posts_between(start_datetime,
-                                      end_d
+                                      end_datetime,
+                                      steem,
+                                      stop_after=stop_after)
+    else:
+        posts = get_all_posts_between_parallel(start_datetime,
+                                               end_datetime,
+                                               steem,
+                                               stop_after=stop_a
