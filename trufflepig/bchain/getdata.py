@@ -559,4 +559,11 @@ def scrape_hour_data(steem,
         posts = get_all_posts_between_parallel(start_datetime,
                                                end_datetime,
                                                steem,
-                                               stop_after=stop_a
+                                               stop_after=stop_after,
+                                               ncores=ncores)
+
+    post_frame = pd.DataFrame(data=posts, columns=sorted(posts[0].keys()))
+    to_drop = post_frame.loc[post_frame.created < start_datetime, :]
+    logger.info('Dropping {} posts not created in time '
+                'window, but before {}'.format(len(to_drop), start_datetime))
+    po
