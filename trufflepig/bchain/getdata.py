@@ -566,4 +566,5 @@ def scrape_hour_data(steem,
     to_drop = post_frame.loc[post_frame.created < start_datetime, :]
     logger.info('Dropping {} posts not created in time '
                 'window, but before {}'.format(len(to_drop), start_datetime))
-    po
+    post_frame.drop(to_drop.index, inplace=True)
+    return post_frame
