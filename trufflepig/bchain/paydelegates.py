@@ -5,4 +5,19 @@ import trufflepig.bchain.getdata as tpdg
 from trufflepig.utils import error_retry
 
 from steem import Steem
-from steembase import
+from steembase import operations
+from steem.account import Account
+from steem.amount import Amount
+from steembase.exceptions import RPCError
+
+
+logger = logging.getLogger(__name__)
+
+
+INVESTOR_SHARE = 0.5
+
+MEMO = 'Thank you for your trust in TrufflePig the Artificial Intelligence bot to help content curators and minnows.'
+
+
+def pay_delegates(account, steem,
+             
