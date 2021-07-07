@@ -32,4 +32,16 @@ def pay_delegates(account, steem,
     steem: Steem or kwargs
     current_datetime: dateime
     min_days: int
-    investor_share
+    investor_share: float
+    memo: str
+
+    """
+    logger.info('Computing payouts for delegates!')
+    sbd_payouts, steem_payouts = error_retry(tpga.get_delegate_payouts)(
+        account, steem,
+        current_datetime=current_datetime,
+        min_days=min_days,
+        investor_share=investor_share
+    )
+
+    claim_all_reward_balance(st
