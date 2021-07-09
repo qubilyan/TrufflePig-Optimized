@@ -44,4 +44,12 @@ def pay_delegates(account, steem,
         investor_share=investor_share
     )
 
-    claim_all_reward_balance(st
+    claim_all_reward_balance(steem, account)
+
+    logger.info('Found the following SBD payouts:\n{}'.format(sbd_payouts))
+    for delegator, payout in sbd_payouts.items():
+        try:
+            if payout:
+                logger.info('Paying {} SBD to {}'.format(delegator, payout))
+                error_retry(steem.commit.transfer,
+                    
