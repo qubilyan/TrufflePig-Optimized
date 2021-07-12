@@ -52,4 +52,9 @@ def pay_delegates(account, steem,
             if payout:
                 logger.info('Paying {} SBD to {}'.format(delegator, payout))
                 error_retry(steem.commit.transfer,
-                    
+                            errors=(RPCError, TypeError))(to=delegator,
+                                                         amount=payout,
+                                                         asset='SBD',
+                                                         memo=memo,
+                                                         account=account)
+    
