@@ -66,4 +66,9 @@ def pay_delegates(account, steem,
     for delegator, payout in steem_payouts.items():
         try:
             if payout:
- 
+                logger.info('Paying {} STEEM to {}'.format(delegator, payout))
+                error_retry(steem.commit.transfer,
+                            errors=(RPCError, TypeError))(to=delegator,
+                                                         amount=payout,
+                                                         asset='STEEM',
+        
