@@ -57,4 +57,13 @@ def pay_delegates(account, steem,
                                                          asset='SBD',
                                                          memo=memo,
                                                          account=account)
-    
+        except Exception as e:
+            logger.exception('Could not pay {} SBD to {}! '
+                             'Reconnecting...'.format(payout, delegator))
+            steem.reconnect()
+
+    logger.info('Found the following STEEM payouts:\n{}'.format(steem_payouts))
+    for delegator, payout in steem_payouts.items():
+        try:
+            if payout:
+ 
