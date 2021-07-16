@@ -71,4 +71,12 @@ def pay_delegates(account, steem,
                             errors=(RPCError, TypeError))(to=delegator,
                                                          amount=payout,
                                                          asset='STEEM',
-        
+                                                         memo=memo,
+                                                         account=account)
+        except Exception as e:
+            logger.exception('Could not pay {} STEEM to {}! '
+                             'Reconnecting...'.format(payout, delegator))
+            steem.reconnect()
+
+
+def claim_all_reward_balance
