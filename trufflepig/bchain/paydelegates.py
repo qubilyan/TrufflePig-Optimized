@@ -79,4 +79,11 @@ def pay_delegates(account, steem,
             steem.reconnect()
 
 
-def claim_all_reward_balance
+def claim_all_reward_balance(steem, account):
+    """Helper funtion to claim rewards because of bug in Steem"""
+    acc = Account(account, steem)
+    reward_steem = acc['reward_steem_balance']
+    reward_sbd = acc['reward_sbd_balance']
+    reward_vests = acc['reward_vesting_balance']
+    logger.info('Claiming {}, {}, and {} for {}'.format(reward_sbd,
+          
