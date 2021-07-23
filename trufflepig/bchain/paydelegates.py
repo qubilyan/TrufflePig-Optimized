@@ -86,4 +86,9 @@ def claim_all_reward_balance(steem, account):
     reward_sbd = acc['reward_sbd_balance']
     reward_vests = acc['reward_vesting_balance']
     logger.info('Claiming {}, {}, and {} for {}'.format(reward_sbd,
-          
+                                                        reward_vests,
+                                                        reward_steem,
+                                                        account))
+    op = operations.ClaimRewardBalance(account=account,
+                                       reward_steem=reward_steem,
+                             
