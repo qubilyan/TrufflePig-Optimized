@@ -40,4 +40,11 @@ def post_topN_list(sorted_post_frame, poster,
     df = sorted_post_frame.iloc[:N, :]
 
     logger.info('Creating top {} post'.format(N))
-    first_image_urls = df.body.apply(lambda x: tftf.get_image_ur
+    first_image_urls = df.body.apply(lambda x: tftf.get_image_urls(x))
+
+    steem_per_mvests = Converter(poster.steem).steem_per_mvests()
+    truffle_link = 'https://steemit.com/steemit/@{}/{}'.format(poster.account,
+                                                               overview_permalink)
+
+    title, body = tfbp.topN_post(topN_authors=df.author,
+                                 topN_permalinks=df
