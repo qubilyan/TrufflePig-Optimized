@@ -47,4 +47,9 @@ def post_topN_list(sorted_post_frame, poster,
                                                                overview_permalink)
 
     title, body = tfbp.topN_post(topN_authors=df.author,
-                                 topN_permalinks=df
+                                 topN_permalinks=df.permalink,
+                                 topN_titles=df.title,
+                                 topN_filtered_bodies=df.filtered_body,
+                                 topN_image_urls=first_image_urls,
+                                 topN_rewards=df.predicted_reward,
+               
