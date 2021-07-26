@@ -105,4 +105,4 @@ def claim_all_reward_balance(steem, account):
                                                       reward_steem)))
             steem.reconnect()
     else:
-        logger.info('Nothing to
+        logger.info('Nothing to claim!')
