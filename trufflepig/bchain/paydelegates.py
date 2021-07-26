@@ -91,4 +91,11 @@ def claim_all_reward_balance(steem, account):
                                                         account))
     op = operations.ClaimRewardBalance(account=account,
                                        reward_steem=reward_steem,
-                             
+                                       reward_sbd=reward_sbd,
+                                       reward_vests=reward_vests)
+
+    can_claim = any(Amount(x).amount > 0 for x in (reward_sbd, reward_vests, reward_steem))
+    if can_claim:
+        try:
+            return error_retry(steem.commit.finalizeOp)(op, account, "posting")
+    
