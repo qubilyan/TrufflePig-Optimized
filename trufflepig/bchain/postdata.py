@@ -52,4 +52,10 @@ def post_topN_list(sorted_post_frame, poster,
                                  topN_filtered_bodies=df.filtered_body,
                                  topN_image_urls=first_image_urls,
                                  topN_rewards=df.predicted_reward,
-               
+                                 topN_votes=df.predicted_votes,
+                                 title_date=current_datetime,
+                                 truffle_link=truffle_link,
+                                 steem_per_mvests=steem_per_mvests)
+
+    permalink = PERMALINK_TEMPLATE.format(date=current_datetime.strftime('%Y-%m-%d'))
+    logger.info('Posting top
