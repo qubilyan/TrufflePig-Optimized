@@ -58,4 +58,15 @@ def post_topN_list(sorted_post_frame, poster,
                                  steem_per_mvests=steem_per_mvests)
 
     permalink = PERMALINK_TEMPLATE.format(date=current_datetime.strftime('%Y-%m-%d'))
-    logger.info('Posting top
+    logger.info('Posting top post with permalink: {}'.format(permalink))
+    poster.post(body=body,
+                permalink=permalink,
+                title=title,
+                tags=tfbp.TAGS,
+                self_vote=True)
+
+    return permalink
+
+
+def comment_on_own_top_list(sorted_post_frame, poster,
+                            topN_permalink, Kstart=10, Kend=25)
