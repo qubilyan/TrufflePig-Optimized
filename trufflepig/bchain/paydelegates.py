@@ -98,4 +98,11 @@ def claim_all_reward_balance(steem, account):
     if can_claim:
         try:
             return error_retry(steem.commit.finalizeOp)(op, account, "posting")
-    
+        except Exception:
+            logger.exception('Could not claim rewards {}. '
+                             'Reconnecting...'.format((reward_sbd,
+                                                      reward_vests,
+                                                      reward_steem)))
+            steem.reconnect()
+    else:
+        logger.info('Nothing to
