@@ -69,4 +69,19 @@ def post_topN_list(sorted_post_frame, poster,
 
 
 def comment_on_own_top_list(sorted_post_frame, poster,
-                            topN_permalink, Kstart=10, Kend=25)
+                            topN_permalink, Kstart=10, Kend=25):
+    """ Adds the more ranks as a comment
+
+    Parameters
+    ----------
+    sorted_post_frame: DataFrame
+    poster: Poster
+    topN_permalink: str
+    Kstart: int
+    Kend: int
+
+    """
+    df = sorted_post_frame.iloc[Kstart: Kend, :]
+
+    comment = tfbp.topN_comment(topN_authors=df.author,
+                                topN_permalinks=df.pe
