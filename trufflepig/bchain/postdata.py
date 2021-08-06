@@ -128,4 +128,11 @@ def vote_and_comment_on_topK(sorted_post_frame, poster,
             logger.info('Voting and commenting on https://steemit.com/@{author}/{permalink}'
                         ''.format(author=row.author, permalink=row.permalink))
             reply = tfbp.truffle_comment(reward=row.predicted_reward,
-                                     
+                                         votes=row.predicted_votes,
+                                         rank=kdx + 1,
+                                         topN_link=topN_link,
+                                         truffle_link=truffle_link)
+
+            poster.reply(body=reply,
+                         parent_author=row.author,
+                         parent_permalink=
