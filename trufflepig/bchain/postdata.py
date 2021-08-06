@@ -92,4 +92,14 @@ def comment_on_own_top_list(sorted_post_frame, poster,
 
 
     logger.info('Commenting on top {} post with \n '
-                '{}'.format(topN_permalink, 
+                '{}'.format(topN_permalink, comment))
+    try:
+        poster.reply(body=comment,
+                     parent_author=poster.account,
+                     parent_permalink=topN_permalink)
+    except PostDoesNotExist:
+        logger.exception('No broadcast, heh?')
+
+
+def vote_and_comment_on_topK(sorted_post_frame, poster,
+                             topN_permalink, overview_permalink, K=25
