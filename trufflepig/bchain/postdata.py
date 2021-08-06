@@ -116,4 +116,9 @@ def vote_and_comment_on_topK(sorted_post_frame, poster,
     """
     logger.info('Voting and commenting on {} top truffles'.format(K))
     weight = min(850.0 / K, 100)
-    topN_link =
+    topN_link = 'https://steemit.com/@{author}/{permalink}'.format(author=poster.account,
+                                                    permalink=topN_permalink)
+    truffle_link = 'https://steemit.com/steemit/@{}/{}'.format(poster.account,
+                                                               overview_permalink)
+
+    for kdx, (_, row) in enumerate(sorted_post_frame.iterro
