@@ -84,4 +84,12 @@ def comment_on_own_top_list(sorted_post_frame, poster,
     df = sorted_post_frame.iloc[Kstart: Kend, :]
 
     comment = tfbp.topN_comment(topN_authors=df.author,
-                                topN_permalinks=df.pe
+                                topN_permalinks=df.permalink,
+                                topN_titles=df.title,
+                                topN_rewards=df.predicted_reward,
+                                topN_votes=df.predicted_votes,
+                                nstart=Kstart + 1)
+
+
+    logger.info('Commenting on top {} post with \n '
+                '{}'.format(topN_permalink, 
