@@ -102,4 +102,18 @@ def comment_on_own_top_list(sorted_post_frame, poster,
 
 
 def vote_and_comment_on_topK(sorted_post_frame, poster,
-                             topN_permalink, overview_permalink, K=25
+                             topN_permalink, overview_permalink, K=25):
+    """
+
+    Parameters
+    ----------
+    sorted_post_frame: DataFrame
+    poster: Poster,
+    topN_permalink: str
+    K: int
+        number of truffles to comment and upvote
+
+    """
+    logger.info('Voting and commenting on {} top truffles'.format(K))
+    weight = min(850.0 / K, 100)
+    topN_link =
