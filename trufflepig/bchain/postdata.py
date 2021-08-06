@@ -135,4 +135,11 @@ def vote_and_comment_on_topK(sorted_post_frame, poster,
 
             poster.reply(body=reply,
                          parent_author=row.author,
-                         parent_permalink=
+                         parent_permalink=row.permalink,
+                         parent_vote_weight=weight)
+        except PostDoesNotExist:
+            logger.exception('Post not found of row {}'.format(row))
+        except VotingInvalidOnArchivedPost:
+            logger.exception('Post archived of row {}'.format(row))
+        except RPCError:
+            logger.exception('Could not post row
