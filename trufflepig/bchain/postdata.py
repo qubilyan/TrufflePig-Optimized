@@ -150,4 +150,11 @@ def vote_and_comment_on_topK(sorted_post_frame, poster,
 
 
 def post_top_trending_list(sorted_post_frame, poster,
-                            current_datetime, trufflepicks_p
+                            current_datetime, trufflepicks_permalink,
+                           overview_permalink, sbd_amount,
+                           steem_amount, N=10):
+    """ Post the no bot trending toplist to the blockchain"""
+    df = sorted_post_frame.iloc[:N, :]
+
+    logger.info('Creating top {} post'.format(N))
+    first_image_urls = df.body.apply(lambda x: tftf.get_im
