@@ -142,4 +142,12 @@ def vote_and_comment_on_topK(sorted_post_frame, poster,
         except VotingInvalidOnArchivedPost:
             logger.exception('Post archived of row {}'.format(row))
         except RPCError:
-            logger.exception('Could not post row
+            logger.exception('Could not post row {}. Reconnecting...'.format(row))
+            poster.steem.reconnect()
+        except Exception:
+            logger.exception('W00t? row: {}. Reconnecting...'.format(row))
+            poster.steem.reconnect()
+
+
+def post_top_trending_list(sorted_post_frame, poster,
+                            current_datetime, trufflepicks_p
