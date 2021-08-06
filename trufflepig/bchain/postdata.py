@@ -121,4 +121,11 @@ def vote_and_comment_on_topK(sorted_post_frame, poster,
     truffle_link = 'https://steemit.com/steemit/@{}/{}'.format(poster.account,
                                                                overview_permalink)
 
-    for kdx, (_, row) in enumerate(sorted_post_frame.iterro
+    for kdx, (_, row) in enumerate(sorted_post_frame.iterrows()):
+        if kdx >= K:
+            break
+        try:
+            logger.info('Voting and commenting on https://steemit.com/@{author}/{permalink}'
+                        ''.format(author=row.author, permalink=row.permalink))
+            reply = tfbp.truffle_comment(reward=row.predicted_reward,
+                                     
