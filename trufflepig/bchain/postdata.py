@@ -157,4 +157,10 @@ def post_top_trending_list(sorted_post_frame, poster,
     df = sorted_post_frame.iloc[:N, :]
 
     logger.info('Creating top {} post'.format(N))
-    first_image_urls = df.body.apply(lambda x: tftf.get_im
+    first_image_urls = df.body.apply(lambda x: tftf.get_image_urls(x))
+
+    steem_per_mvests = Converter(poster.steem).steem_per_mvests()
+    truffle_link = 'https://steemit.com/steemit/@{}/{}'.format(poster.account,
+                                                               overview_permalink)
+    trufflepicks_link = 'https://steemit.com/steemit/@{}/{}'.format(poster.account,
+                        
