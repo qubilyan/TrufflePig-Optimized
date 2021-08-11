@@ -163,4 +163,10 @@ def post_top_trending_list(sorted_post_frame, poster,
     truffle_link = 'https://steemit.com/steemit/@{}/{}'.format(poster.account,
                                                                overview_permalink)
     trufflepicks_link = 'https://steemit.com/steemit/@{}/{}'.format(poster.account,
-                        
+                                                               trufflepicks_permalink)
+
+    title, body = tfbp.top_trending_post(topN_authors=df.author,
+                                 topN_permalinks=df.permalink,
+                                 topN_titles=df.title,
+                                 topN_filtered_bodies=df.filtered_body,
+              
