@@ -169,4 +169,9 @@ def post_top_trending_list(sorted_post_frame, poster,
                                  topN_permalinks=df.permalink,
                                  topN_titles=df.title,
                                  topN_filtered_bodies=df.filtered_body,
-              
+                                 topN_image_urls=first_image_urls,
+                                 topN_rewards=df.reward,
+                                 title_date=current_datetime,
+                                 truffle_link=truffle_link,
+                                 steem_per_mvests=steem_per_mvests,
+                                 truff
