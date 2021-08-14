@@ -174,4 +174,9 @@ def post_top_trending_list(sorted_post_frame, poster,
                                  title_date=current_datetime,
                                  truffle_link=truffle_link,
                                  steem_per_mvests=steem_per_mvests,
-                                 truff
+                                 trufflepicks_link=trufflepicks_link,
+                                 sbd_amount=sbd_amount,
+                                 steem_amount=steem_amount)
+
+    permalink = TRENDING_PERMALINK_TEMPLATE.format(date=current_datetime.strftime('%Y-%m-%d'))
+    logger.info('Posting top trending post with permalink: {}'.format(perma
