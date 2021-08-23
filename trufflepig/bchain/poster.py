@@ -43,4 +43,11 @@ class Poster(object):
         else:
             return error_retry(self.steem.commit.post, retries=10,
                         sleep_time=4, errors=Exception)(author=self.account,
+                                               title=title,
+                                               body=body,
+                                               permlink=permalink,
+                                               self_vote=self_vote,
+                                               tags=tags)
+
+    def time2last_post(self):
         
