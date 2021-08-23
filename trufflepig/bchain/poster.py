@@ -27,4 +27,14 @@ class Poster(object):
 
     def check_if_self_vote(self):
         voting_power = self.get_voting_power()
-        return voting_power
+        return voting_power >= self.self_vote_limit
+
+    def get_voting_power(self):
+        acc = Account(self.account, self.steem)
+        return acc.voting_power()
+
+    def post(self, body, title, permalink, tags, self_vote=False):
+        if self_vote == THRESHOLD:
+            self_vote = self.check_if_self_vote()
+        self.time2last_post()
+        logger.info(
