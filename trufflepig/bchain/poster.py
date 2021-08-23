@@ -20,4 +20,11 @@ class Poster(object):
         self.waiting_time = waiting_time
         self.last_post_time = time.time() - self.waiting_time
         self.steem = steem
-        self.accoun
+        self.account = account
+        self.self_vote_limit=self_vote_limit
+        logger.info('Poster ready for account {}, waiting time {} '
+                    'and limit {}.'.format(account, waiting_time, self_vote_limit))
+
+    def check_if_self_vote(self):
+        voting_power = self.get_voting_power()
+        return voting_power
