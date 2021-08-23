@@ -220,4 +220,10 @@ def create_wallet(steem, password, posting_key,
         logger.info('Adding ACTIVE Key')
         try:
             wallet.addPrivateKey(active_key)
-        exce
+        except ValueError:
+            logger.info('Key already present')
+
+    logger.info('Wallet is ready')
+
+
+
