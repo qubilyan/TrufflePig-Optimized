@@ -193,4 +193,18 @@ def create_wallet(steem, password, posting_key,
                   active_key=None):
     """ Creates a new wallet
 
-  
+    Does nothing if wallet database entry already exists
+
+    Parameters
+    ----------
+    steem:  Steem object
+    password: str
+    posting_key: str
+    active_key: str
+
+    """
+    if posting_key is None or password is None:
+        raise RuntimeError('Key or password are None!')
+
+    logger.info('Unlocking or creating wallet')
+    wallet
