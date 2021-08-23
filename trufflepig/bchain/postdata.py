@@ -207,4 +207,17 @@ def create_wallet(steem, password, posting_key,
         raise RuntimeError('Key or password are None!')
 
     logger.info('Unlocking or creating wallet')
-    wallet
+    wallet = steem.wallet
+    wallet.unlock(password)
+
+    logger.info('Adding POSTING Key')
+    try:
+        wallet.addPrivateKey(posting_key)
+    except ValueError:
+        logger.info('Key already present')
+
+    if active_key:
+        logger.info('Adding ACTIVE Key')
+        try:
+            wallet.addPrivateKey(active_key)
+        exce
