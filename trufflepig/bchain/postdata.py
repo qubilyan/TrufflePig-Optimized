@@ -179,4 +179,18 @@ def post_top_trending_list(sorted_post_frame, poster,
                                  steem_amount=steem_amount)
 
     permalink = TRENDING_PERMALINK_TEMPLATE.format(date=current_datetime.strftime('%Y-%m-%d'))
-    logger.info('Posting top trending post with permalink: {}'.format(perma
+    logger.info('Posting top trending post with permalink: {}'.format(permalink))
+    poster.post(body=body,
+                permalink=permalink,
+                title=title,
+                tags=tfbp.TRENDING_TAGS,
+                self_vote=False)
+
+    return permalink
+
+
+def create_wallet(steem, password, posting_key,
+                  active_key=None):
+    """ Creates a new wallet
+
+  
