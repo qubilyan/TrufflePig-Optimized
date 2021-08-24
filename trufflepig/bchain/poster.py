@@ -50,4 +50,12 @@ class Poster(object):
                                                tags=tags)
 
     def time2last_post(self):
-        
+        now = time.time()
+        diff = now - self.last_post_time
+        if  diff < self.waiting_time:
+            time.sleep(self.waiting_time - diff)
+        self.last_post_time = time.time()
+
+    def vote(self, author, permalink, weight):
+        identifier = '@{author}/{permalink}'.format(author=author,
+                                               
