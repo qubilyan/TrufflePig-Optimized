@@ -58,4 +58,10 @@ class Poster(object):
 
     def vote(self, author, permalink, weight):
         identifier = '@{author}/{permalink}'.format(author=author,
-                                               
+                                                    permalink=permalink)
+        logger.info('Voting on {} with weight {}.'.format(identifier,weight))
+        if self.no_posting_key_mode:
+            logger.warning('Test mode NOT TRYING TO VOTE!')
+        else:
+            error_retry(self.steem.commit.vote, retries=5,
+                        sleep_ti
