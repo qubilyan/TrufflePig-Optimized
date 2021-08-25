@@ -64,4 +64,10 @@ class Poster(object):
             logger.warning('Test mode NOT TRYING TO VOTE!')
         else:
             error_retry(self.steem.commit.vote, retries=5,
-                        sleep_ti
+                        sleep_time=4)(identifier=identifier,
+                                                weight=weight,
+                                                account=self.account)
+
+    def reply(self, body, parent_author, parent_permalink, self_vote=False,
+              parent_vote_weight=0):
+        identifier = '@{author}/{perma
