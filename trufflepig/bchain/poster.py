@@ -70,4 +70,13 @@ class Poster(object):
 
     def reply(self, body, parent_author, parent_permalink, self_vote=False,
               parent_vote_weight=0):
-        identifier = '@{author}/{perma
+        identifier = '@{author}/{permalink}'.format(author=parent_author,
+                                                    permalink=parent_permalink)
+
+        if parent_vote_weight:
+            self.vote(parent_author, parent_permalink, parent_vote_weight)
+
+        if self_vote == THRESHOLD:
+            self_vote = self.check_if_self_vote()
+
+      
