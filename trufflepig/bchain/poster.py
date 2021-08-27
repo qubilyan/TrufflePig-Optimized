@@ -79,4 +79,11 @@ class Poster(object):
         if self_vote == THRESHOLD:
             self_vote = self.check_if_self_vote()
 
-      
+        self.time2last_post()
+        logger.info('Replying to {} with\n{}'.format(identifier, body))
+        if self.no_posting_key_mode:
+            logger.warning('Test mode NOT TRYING TO REPLY')
+        else:
+            return error_retry(self.steem.commit.post, retries=10,
+                        sleep_time=4, errors=Exception)("",
+                
