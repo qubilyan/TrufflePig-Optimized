@@ -86,4 +86,8 @@ class Poster(object):
         else:
             return error_retry(self.steem.commit.post, retries=10,
                         sleep_time=4, errors=Exception)("",
-                
+                                              body,
+                                              json_metadata=None,
+                                              author=self.account,
+                                              reply_identifier=identifier,
+                                              self_vote=self_vote)
