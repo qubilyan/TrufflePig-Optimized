@@ -17,4 +17,12 @@ def truffle_comment(reward, votes, rank, topN_link, truffle_link, truffle_image_
     """Creates a comment made under an upvoted toplist post"""
     post = """**Congratulations!** Your post has been selected as a daily Steemit truffle! It is listed on **rank {rank}** of all contributions awarded today. You can find the [TOP DAILY TRUFFLE PICKS HERE.]({topN_link}) 
     
-I upvoted your contribution because to my mind your post is at least **{reward} SBD** worth and should receive **{votes} votes**. It's now up to the lovely Steemit community to make this come
+I upvoted your contribution because to my mind your post is at least **{reward} SBD** worth and should receive **{votes} votes**. It's now up to the lovely Steemit community to make this come true.
+
+I am `TrufflePig`, an Artificial Intelligence Bot that helps minnows and content curators using Machine Learning. If you are curious how I select content, [you can find an explanation here!]({truffle_link})
+    
+Have a nice day and sincerely yours,
+{truffle_image_small}
+*`TrufflePig`*
+    """
+    post = BODY_PREF
