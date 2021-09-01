@@ -25,4 +25,12 @@ Have a nice day and sincerely yours,
 {truffle_image_small}
 *`TrufflePig`*
     """
-    post = BODY_PREF
+    post = BODY_PREFIX + post
+
+    return post.format(reward=int(reward), votes=int(votes), topN_link=topN_link,
+                       truffle_link=truffle_link, rank=rank,
+                       truffle_image_small=truffle_image_small)
+
+
+def topN_list(topN_authors, topN_permalinks, topN_titles,
+              topN_filtered_bodies, topN_image_
