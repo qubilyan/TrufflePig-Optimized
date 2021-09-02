@@ -33,4 +33,9 @@ Have a nice day and sincerely yours,
 
 
 def topN_list(topN_authors, topN_permalinks, topN_titles,
-              topN_filtered_bodies, topN_image_
+              topN_filtered_bodies, topN_image_urls,
+              topN_rewards, topN_votes, quote_max_length, nstart=1):
+    """Creates a toplist string"""
+    topN_entry="""**#{rank}** [{title}](https://steemit.com/@{author}/{permalink})  --  **by @{author} with an estimated worth of {reward:d} SBD and {votes:d} votes**
+    
+{image}{quot
