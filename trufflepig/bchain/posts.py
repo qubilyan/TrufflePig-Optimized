@@ -50,4 +50,8 @@ def topN_list(topN_authors, topN_permalinks, topN_titles,
 
     for idx, (author, permalink, title, filtered_body, img_urls, reward, votes) in enumerate(iterable):
         rank = idx + nstart
-        quote = '>' + fi
+        quote = '>' + filtered_body[:quote_max_length].replace('\n', ' ').replace('  ', ' ').replace('  ', ' ').replace('  ', ' ') + '...'
+        title = tftf.replace_newlines(title)
+        title = tftf.filter_special_characters(title)
+        if len(img_urls) >= 1:
+            imgstr = """ <div class="pull-right"><img src=
