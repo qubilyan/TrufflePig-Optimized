@@ -38,4 +38,16 @@ def topN_list(topN_authors, topN_permalinks, topN_titles,
     """Creates a toplist string"""
     topN_entry="""**#{rank}** [{title}](https://steemit.com/@{author}/{permalink})  --  **by @{author} with an estimated worth of {reward:d} SBD and {votes:d} votes**
     
-{image}{quot
+{image}{quote}
+
+"""
+
+    result_string = ""
+
+    iterable = zip(topN_authors, topN_permalinks, topN_titles,
+                   topN_filtered_bodies, topN_image_urls,
+                   topN_rewards, topN_votes)
+
+    for idx, (author, permalink, title, filtered_body, img_urls, reward, votes) in enumerate(iterable):
+        rank = idx + nstart
+        quote = '>' + fi
