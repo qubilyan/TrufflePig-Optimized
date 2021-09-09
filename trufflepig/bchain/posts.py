@@ -60,4 +60,11 @@ def topN_list(topN_authors, topN_permalinks, topN_titles,
         entry = topN_entry.format(rank=rank, author=author, permalink=permalink,
                                    title=title, quote=quote, votes=int(votes),
                                    reward=int(reward), image=imgstr)
-        resul
+        result_string += entry
+    return result_string
+
+
+def simple_topN_list(topN_authors, topN_permalinks, topN_titles,
+                     topN_rewards, topN_votes, nstart):
+    """Creates a toplist for lower ranks"""
+    topN_entry="""\n {rank}: [{title}](https://steemit.com/@{author}/{permalink}) (by @{author}, {reward:d} SBD, {vo
