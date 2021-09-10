@@ -67,4 +67,14 @@ def topN_list(topN_authors, topN_permalinks, topN_titles,
 def simple_topN_list(topN_authors, topN_permalinks, topN_titles,
                      topN_rewards, topN_votes, nstart):
     """Creates a toplist for lower ranks"""
-    topN_entry="""\n {rank}: [{title}](https://steemit.com/@{author}/{permalink}) (by @{author}, {reward:d} SBD, {vo
+    topN_entry="""\n {rank}: [{title}](https://steemit.com/@{author}/{permalink}) (by @{author}, {reward:d} SBD, {votes:d} votes)\n"""
+
+    result_string = ""
+
+    iterable = zip(topN_authors, topN_permalinks, topN_titles,
+                   topN_rewards, topN_votes)
+
+    for idx, (author, permalink, title, reward, votes) in enumerate(iterable):
+        rank = idx + nstart
+        title = tftf.replace_newlines(title)
+        title = tftf.filter_special_
