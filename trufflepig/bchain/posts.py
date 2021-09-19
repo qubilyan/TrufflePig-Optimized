@@ -85,4 +85,10 @@ def simple_topN_list(topN_authors, topN_permalinks, topN_titles,
     return result_string
 
 
-def get_delegation_link(steem_per_mvests, s
+def get_delegation_link(steem_per_mvests, steem_powers=(2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000)):
+    """Returns a dictionary of links to delegate SP"""
+    link_dict = {}
+    for steem_power in steem_powers:
+        shares = np.round(steem_power / steem_per_mvests * 1e6, 3)
+        link_dict['sp'+str(steem_power)] = DELEGATION_LINK.format(shares=shares)
+    return link
