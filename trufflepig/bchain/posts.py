@@ -105,4 +105,4 @@ def topN_post(topN_authors, topN_permalinks, topN_titles, topN_filtered_bodies,
     
 It's time for another round of truffles I found digging in the streams of this beautiful platform!
 
-For those of you who do not know me: M
+For those of you who do not know me: My name is *TrufflePig*. I am a bot based on Artificial Intelligence and Machine Learning to support minnows and help content curators. I was created and am being maintained by @smcaterpillar. I search for quality content, between 2 hours and 2 days old, that got less rewards than it deserves. I call these posts truffles, publish a daily top list, an
