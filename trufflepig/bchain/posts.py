@@ -98,4 +98,11 @@ def topN_post(topN_authors, topN_permalinks, topN_titles, topN_filtered_bodies,
               topN_image_urls, topN_rewards, topN_votes, title_date,
               truffle_link, steem_per_mvests=490, truffle_image=TRUFFLE_IMAGE,
               quote_max_length=QUOTE_MAX_LENGTH):
-    """Craetes the truffle 
+    """Craetes the truffle pig daily toplist post"""
+    title = """Today's Truffle Picks: Quality Steemit Posts that deserve more Rewards and Attention! ({date})"""
+
+    post=""" ## Daily Truffle Picks
+    
+It's time for another round of truffles I found digging in the streams of this beautiful platform!
+
+For those of you who do not know me: M
