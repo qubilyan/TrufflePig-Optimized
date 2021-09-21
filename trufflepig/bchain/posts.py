@@ -91,4 +91,11 @@ def get_delegation_link(steem_per_mvests, steem_powers=(2, 5, 10, 20, 50, 100, 2
     for steem_power in steem_powers:
         shares = np.round(steem_power / steem_per_mvests * 1e6, 3)
         link_dict['sp'+str(steem_power)] = DELEGATION_LINK.format(shares=shares)
-    return link
+    return link_dict
+
+
+def topN_post(topN_authors, topN_permalinks, topN_titles, topN_filtered_bodies,
+              topN_image_urls, topN_rewards, topN_votes, title_date,
+              truffle_link, steem_per_mvests=490, truffle_image=TRUFFLE_IMAGE,
+              quote_max_length=QUOTE_MAX_LENGTH):
+    """Craetes the truffle 
