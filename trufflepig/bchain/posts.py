@@ -118,4 +118,8 @@ Here are the top 10 posts that - according to my algorithm - deserve more reward
 
 ### You didn't make it into the top list this time?
 
-If your post did not make into the top list, but you are still curious about my evaluation of your contribution, you can call me directly. Just reply
+If your post did not make into the top list, but you are still curious about my evaluation of your contribution, you can call me directly. Just reply to your own post with @trufflepig. I will answer the call within the next 24 hours.
+
+## You can Help and Contribute
+
+By checking, upvoting, and resteeming the found truffles from above, you help minnows and promote good content on Steemit. By upvoting and resteeming this top list, you help covering the server costs and finance further d
