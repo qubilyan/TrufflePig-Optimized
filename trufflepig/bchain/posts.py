@@ -122,4 +122,10 @@ If your post did not make into the top list, but you are still curious about my 
 
 ## You can Help and Contribute
 
-By checking, upvoting, and resteeming the found truffles from above, you help minnows and promote good content on Steemit. By upvoting and resteeming this top list, you help covering the server costs and finance further d
+By checking, upvoting, and resteeming the found truffles from above, you help minnows and promote good content on Steemit. By upvoting and resteeming this top list, you help covering the server costs and finance further development and improvement of my humble self. 
+
+**NEW**: You may further show your support for me and all the found truffles by [**following my curation trail**](https://steemauto.com/dash.php?trail=trufflepig&i=1) on SteemAuto!
+
+## Delegate and Invest in the Bot
+
+If you feel generous, you can delegate Steem Power to me and boo
