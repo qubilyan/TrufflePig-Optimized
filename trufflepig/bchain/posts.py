@@ -145,4 +145,10 @@ Cheers,
                               topN_titles=topN_titles,
                               topN_filtered_bodies=topN_filtered_bodies,
                               topN_image_urls=topN_image_urls,
-                              t
+                              topN_rewards=topN_rewards,
+                              topN_votes=topN_votes,
+                              quote_max_length=quote_max_length)
+
+    title = title.format(date=title_date.strftime('%d.%m.%Y'))
+    post = post.format(topN_truffles=topN_truffles,
+                          truffle_image=truff
