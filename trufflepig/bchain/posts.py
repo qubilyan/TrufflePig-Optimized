@@ -138,4 +138,11 @@ Cheers,
 
 *`TrufflePig`*
     """
-    link_dict = get_delegation_link(steem_per_mvests=ste
+    link_dict = get_delegation_link(steem_per_mvests=steem_per_mvests)
+
+    topN_truffles = topN_list(topN_authors=topN_authors,
+                              topN_permalinks=topN_permalinks,
+                              topN_titles=topN_titles,
+                              topN_filtered_bodies=topN_filtered_bodies,
+                              topN_image_urls=topN_image_urls,
+                              t
