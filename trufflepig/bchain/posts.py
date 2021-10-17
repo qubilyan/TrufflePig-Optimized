@@ -151,4 +151,13 @@ Cheers,
 
     title = title.format(date=title_date.strftime('%d.%m.%Y'))
     post = post.format(topN_truffles=topN_truffles,
-                          truffle_image=truff
+                          truffle_image=truffle_image,
+                          truffle_link=truffle_link,
+                          **link_dict)
+    post = BODY_PREFIX + post
+    return title, post
+
+
+def topN_comment(topN_authors, topN_permalinks, topN_titles,
+                 topN_rewards, topN_votes, nstart=11):
+    """Creates the toplist comment for lower ran
