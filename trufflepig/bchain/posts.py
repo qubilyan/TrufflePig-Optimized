@@ -176,4 +176,12 @@ def topN_comment(topN_authors, topN_permalinks, topN_titles,
     return post
 
 
-def on_call_comment(author, reward, votes, topN_link, truffle_link, truffle_image_small=TRUFFLE_IMA
+def on_call_comment(author, reward, votes, topN_link, truffle_link, truffle_image_small=TRUFFLE_IMAGE_SMALL):
+    """Creates a comment made under an upvoted toplist post"""
+    post = """Thanks for calling @{author}! Here is a small upvote for this post and my opinion about it.
+    
+To my mind this post is at least **{reward} SBD** worth and should receive **{votes} votes**.
+
+By the way, you can find [TODAY'S TRUFFLE PICKS HERE.]({topN_link}) 
+
+I am `Tr
