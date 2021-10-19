@@ -169,4 +169,11 @@ def topN_comment(topN_authors, topN_permalinks, topN_titles,
     topN_truffles = simple_topN_list(topN_authors=topN_authors,
                                      topN_permalinks=topN_permalinks,
                                      topN_titles=topN_titles,
-                         
+                                     topN_votes=topN_votes,
+                                     topN_rewards=topN_rewards,
+                                     nstart=nstart)
+    post = post.format(topN_truffles=topN_truffles)
+    return post
+
+
+def on_call_comment(author, reward, votes, topN_link, truffle_link, truffle_image_small=TRUFFLE_IMA
