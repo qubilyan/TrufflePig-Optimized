@@ -160,4 +160,13 @@ Cheers,
 
 def topN_comment(topN_authors, topN_permalinks, topN_titles,
                  topN_rewards, topN_votes, nstart=11):
-    """Creates the toplist comment for lower ran
+    """Creates the toplist comment for lower ranks"""
+    post = """If you cannot get enough truffles, here are ranks 11 till 25:
+    
+{topN_truffles}
+    """
+
+    topN_truffles = simple_topN_list(topN_authors=topN_authors,
+                                     topN_permalinks=topN_permalinks,
+                                     topN_titles=topN_titles,
+                         
