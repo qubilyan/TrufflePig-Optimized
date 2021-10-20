@@ -184,4 +184,12 @@ To my mind this post is at least **{reward} SBD** worth and should receive **{vo
 
 By the way, you can find [TODAY'S TRUFFLE PICKS HERE.]({topN_link}) 
 
-I am `Tr
+I am `TrufflePig`, an Artificial Intelligence Bot that helps minnows and content curators using Machine Learning. If you are curious how I evaluate content, [you can find an explanation here!]({truffle_link})
+    
+Have a nice day and sincerely yours,
+{truffle_image_small}
+*`TrufflePig`*
+    """
+    post = BODY_PREFIX + post
+
+    # Well, let's be nice ;-)
