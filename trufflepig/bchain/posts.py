@@ -202,4 +202,13 @@ Have a nice day and sincerely yours,
 def topN_words(words, counts):
     result = '\n'
     for irun, (word, count) in enumerate(zip(words, counts)):
-        result += '{ra
+        result += '{rank}. {word}: {count}\n'.format(rank=irun + 1,
+                                                     word=word,
+                                                     count=count)
+    return result
+
+
+def topN_tfidf(words, tfidfs):
+    result = '\n'
+    for irun, (word, tfidf) in enumerate(zip(words, tfidfs)):
+        result += '{rank}. {word}:
