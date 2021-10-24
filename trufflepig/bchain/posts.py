@@ -219,4 +219,8 @@ def topN_tfidf(words, tfidfs):
 
 def topN_tags(tags, counts, rewards):
     result = '\n'
-    for irun, (tag, co
+    for irun, (tag, count, reward) in enumerate(zip(tags, counts, rewards)):
+        result += '{rank}. {tag}: {count} with {reward} SBD\n'.format(rank=irun + 1,
+                                                                      tag=tag,
+                                                                      count=count,
+                                         
