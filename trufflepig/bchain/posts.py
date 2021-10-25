@@ -239,4 +239,7 @@ def topN_tags_earnings(tags, counts, rewards_per_post):
 
 def topN_posters(authors, titles, permalinks, rewards):
     result = '\n'
-    for i
+    for irun, (author, title, permalink, reward) in enumerate(zip(authors, titles, permalinks, rewards)):
+        result += ("{rank}. ['{title}'](https://steemit.com/@{author}/{permalink}) by @{author} worth **{reward} "
+                  "SBD**\n").format(rank=irun + 1, author=author, title=title,
+                                    permal
