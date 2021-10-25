@@ -231,4 +231,12 @@ def topN_tags_earnings(tags, counts, rewards_per_post):
     result = '\n'
     for irun, (tag, count, reward) in enumerate(zip(tags, counts, rewards_per_post)):
         result += '{rank}. {tag}: {count} with {reward:.3f} SBD per post\n'.format(rank=irun + 1,
-                              
+                                                                      tag=tag,
+                                                                      count=count,
+                                                                      reward=reward)
+    return result
+
+
+def topN_posters(authors, titles, permalinks, rewards):
+    result = '\n'
+    for i
