@@ -242,4 +242,17 @@ def topN_posters(authors, titles, permalinks, rewards):
     for irun, (author, title, permalink, reward) in enumerate(zip(authors, titles, permalinks, rewards)):
         result += ("{rank}. ['{title}'](https://steemit.com/@{author}/{permalink}) by @{author} worth **{reward} "
                   "SBD**\n").format(rank=irun + 1, author=author, title=title,
-                                    permal
+                                    permalink=permalink, reward=int(reward))
+    return result
+
+
+def weekly_update(current_datetime,
+                  steem_per_mvests,
+                  start_datetime,
+                  end_datetime,
+                  total_posts,
+                  total_votes,
+                  total_reward,
+                  bid_bots_sbd,
+                  bid_bots_steem,
+ 
