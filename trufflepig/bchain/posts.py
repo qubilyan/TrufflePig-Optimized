@@ -274,4 +274,11 @@ def weekly_update(current_datetime,
                   top_tfidf,
                   top_tfidf_scores,
                   spelling_percent,
-       
+                  style_percent,
+                  topic_percent,
+                  topics,
+                  delegator_list,
+                  truffle_image=TRUFFLE_IMAGE):
+    post = """### TrufflePig at Your Service
+
+Steemit can be a tough place for minnows. Due to the sheer amount of new posts that are published by the minute, it is incredi
