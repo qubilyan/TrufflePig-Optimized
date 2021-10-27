@@ -281,4 +281,4 @@ def weekly_update(current_datetime,
                   truffle_image=TRUFFLE_IMAGE):
     post = """### TrufflePig at Your Service
 
-Steemit can be a tough place for minnows. Due to the sheer amount of new posts that are published by the minute, it is incredi
+Steemit can be a tough place for minnows. Due to the sheer amount of new posts that are published by the minute, it is incredibly hard to stand out from the crowd. Often even nice, well-researched, and well-crafted posts of minnows get buried in the noise because they do not benefit from a lot of influential followers that could upvote their quality posts. Hence, their contributions are getting lost long before one or the other whale could notice them an
