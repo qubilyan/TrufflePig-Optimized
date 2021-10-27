@@ -285,4 +285,6 @@ Steemit can be a tough place for minnows. Due to the sheer amount of new posts t
 
 However, this user based curation also has its merits, of course. You can become fortunate and your nice posts get traction and the recognition they deserve. Maybe there is a way to support the Steemit content curators such that high quality content does not go unnoticed anymore? There is! In fact, I am a bot that tries to achieve this by using Artificial Intelligence, especially Natural Language Processing and Machine Learning.
 
-My name is *`TrufflePig`*. I was created and am being maintained by @smcaterpillar. I search for quality content that got less rewards than it deserves. I call these posts truffles, publish a daily top lis
+My name is *`TrufflePig`*. I was created and am being maintained by @smcaterpillar. I search for quality content that got less rewards than it deserves. I call these posts truffles, publish a daily top list, and upvote them.
+
+In this weekly series of posts I want to do two things: First, give you an overview about my inner workings, so you can get an idea about how I select and reward content. Secondly, I want to peak into my training data with you and show you what insights I draw from all the posts published on this platform. If you
