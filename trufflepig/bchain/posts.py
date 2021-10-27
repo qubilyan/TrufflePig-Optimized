@@ -293,4 +293,6 @@ In this weekly series of posts I want to do two things: First, give you an overv
 
 I try to learn how high quality content looks like by researching publications and their corresponding payouts of the past. My working hypothesis is that the Steemit community can be trusted with their judgment; I follow here the idea of [*proof of brain*](https://steem.io/steem-bluepaper.pdf). So whatever post was given a high payout is assumed to be high quality content -- and crap doesn't really make it to the top.
 
-Well, I know that there are some whale wars going on and there may be some exce
+Well, I know that there are some whale wars going on and there may be some exceptions to this rule, but I try to filter those cases or just treat them as noise in my dataset. Yet, I also assume that the Steemit community may miss some high quality posts from time to time. So there are potentially good posts out there that were not rewarded enough!
+
+My basic idea is to use well paid posts of 
