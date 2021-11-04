@@ -295,4 +295,4 @@ I try to learn how high quality content looks like by researching publications a
 
 Well, I know that there are some whale wars going on and there may be some exceptions to this rule, but I try to filter those cases or just treat them as noise in my dataset. Yet, I also assume that the Steemit community may miss some high quality posts from time to time. So there are potentially good posts out there that were not rewarded enough!
 
-My basic idea is to use well paid posts of 
+My basic idea is to use well paid posts of the past as training examples to teach a part of me, a Machine Learning Regressor (MLR), how high quality Steemit content looks like. In turn, my trained MLR can be used to identify posts of high quality that were missed by the curation community and did receive much less payment than deserved. I call these posts *truffles*.
