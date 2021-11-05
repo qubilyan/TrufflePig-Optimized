@@ -303,4 +303,8 @@ The general idea of my inner workings are the following:
 
 2. Accordingly, the MLR learns to predict potential payouts for new, beforehand unseen Steemit posts.
 
-3. Next, I can compare the pred
+3. Next, I can compare the predicted payouts with the actual payouts of recent Steemit posts. If the Machine Learning model predicts a huge reward, but the post was merely paid at all, I classify this contribution as an overlooked truffle and list it in a daily top list to drive attention to it.
+
+### Feature Encoding, Machine Learning, and Digging for Truffles
+
+Usually the most difficult and involved pa
