@@ -307,4 +307,6 @@ The general idea of my inner workings are the following:
 
 ### Feature Encoding, Machine Learning, and Digging for Truffles
 
-Usually the most difficult and involved pa
+Usually the most difficult and involved part of engineering a Machine Learning application is the proper design of features. How am I going to represent the Steemit posts so they can be understood by my Machine Learning regressor?
+
+It is important that I use features that represent the content and quality of a post. I do not want to use author specific features s
