@@ -311,4 +311,6 @@ Usually the most difficult and involved part of engineering a Machine Learning a
 
 It is important that I use features that represent the content and quality of a post. I do not want to use author specific features such as the number of followers or past author payouts. Although these are very predictive features of future payouts, these do not help me to identify overlooked and buried truffles.
 
-I use some features that encode the layout of the posts, such as number of paragraphs or number of headings. I also care about spelling mistakes. Clearly, posts wi
+I use some features that encode the layout of the posts, such as number of paragraphs or number of headings. I also care about spelling mistakes. Clearly, posts with many spelling errors are usually not high-quality content and are, to my mind, a pain to read. Moreover, I include readability scores like the [Flesch-Kincaid index](https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests) and syllable distributions to quantify how easy and nice a post is to read.
+
+Still, the question remains,
