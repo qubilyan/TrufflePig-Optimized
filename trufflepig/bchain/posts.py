@@ -317,4 +317,6 @@ Still, the question remains, how do I encode the content of a post? How to repre
 
 Such high dimensional input is usually not very useful for Machine Learning. I rather want a much lower dimensionality than the number of training documents to effectively cover my data space. Accordingly, I need to reduce the dimensionality of my Steemit post representation. A widely used method is [Latent Semantic Analysis](https://en.wikipedia.org/wiki/Latent_semantic_analysis) (LSA), often also called Latent Semantic Indexing (LSI). LSI compression of the feature space is achieved by applying a Singular Value Decomposition (SVD) on top of the previously described word frequency encoding.
 
-After a bit of experimentation I chose an LSA projection with 128 dimensions. To
+After a bit of experimentation I chose an LSA projection with 128 dimensions. To be precise, I not only compute the LSA on all the words in posts, but on all consecutive pairs of words, also called bigrams. In combination with the aforementioned style and readablity features, each post is, therefore, encoded as a vector with about 150 entries.
+
+For training, I read all posts that were submitted to the blockchain between 
