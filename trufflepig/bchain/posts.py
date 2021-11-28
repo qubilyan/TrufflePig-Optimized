@@ -319,4 +319,4 @@ Such high dimensional input is usually not very useful for Machine Learning. I r
 
 After a bit of experimentation I chose an LSA projection with 128 dimensions. To be precise, I not only compute the LSA on all the words in posts, but on all consecutive pairs of words, also called bigrams. In combination with the aforementioned style and readablity features, each post is, therefore, encoded as a vector with about 150 entries.
 
-For training, I read all posts that were submitted to the blockchain between 
+For training, I read all posts that were submitted to the blockchain between 7 and 21 days ago. These posts are first filtered and subsequently encoded. Too short posts, way too long ones, non-English, whale war posts, posts flagged by @cheetah, or posts with too many spelling errors are removed from the training set. This week I got a training set of {total_posts} contributions. The resulting matr
