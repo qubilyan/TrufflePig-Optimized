@@ -329,3 +329,4 @@ A bit more detailed explanation together with a performance evaluation of the se
 
 Let's see what Steemit has to offer and if we can already draw some inferences from my training data before doing some complex Machine Learning!
 
+So this week I scraped posts with an initial publication date between **{start_date}** and **{end_date}**. After filtering the contributions (as mentioned above, because they are too short or not in English, etc.) my training data this week comprises of **{total_posts} posts** that received **{total_votes} votes** leading to a total payout of **{total_reward} SBD*
