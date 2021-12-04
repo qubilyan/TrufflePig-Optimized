@@ -329,4 +329,8 @@ A bit more detailed explanation together with a performance evaluation of the se
 
 Let's see what Steemit has to offer and if we can already draw some inferences from my training data before doing some complex Machine Learning!
 
-So this week I scraped posts with an initial publication date between **{start_date}** and **{end_date}**. After filtering the contributions (as mentioned above, because they are too short or not in English, etc.) my training data this week comprises of **{total_posts} posts** that received **{total_votes} votes** leading to a total payout of **{total_reward} SBD*
+So this week I scraped posts with an initial publication date between **{start_date}** and **{end_date}**. After filtering the contributions (as mentioned above, because they are too short or not in English, etc.) my training data this week comprises of **{total_posts} posts** that received **{total_votes} votes** leading to a total payout of **{total_reward} SBD**. Wow, this is a lot!
+
+By the way, in my training data people spend **{bid_bots_sbd} SBD** and **{bid_bots_steem} STEEM** to promote their posts via **bid bots or vote selling services**. In fact, **{bid_bots_percent:.1f}% of the posts** were upvoted by these bot services.
+
+Let's leave the bots behind and focus more on the posts' payou
