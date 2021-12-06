@@ -337,4 +337,10 @@ Let's leave the bots behind and focus more on the posts' payouts. How are the pa
 
 ![earnings](https://raw.githubusercontent.com/SmokinCaterpillar/TrufflePig/feature/weekly_status/img/distribution.png)
 
-Next time you envy other peoples' payouts of several hundred bucks and your post only got a few, remembe
+Next time you envy other peoples' payouts of several hundred bucks and your post only got a few, remember that you are already lucky if making more than 1 Dollar! Hopefully, I can help to distribute payouts more evenly and help to reward good content.
+
+While we are speaking of the rich kids of Steemit. Who has earned the most money with their posts? Below is a top ten list of the high rollers in my dataset.
+
+{top10_earners}
+
+Let's 
