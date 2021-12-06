@@ -359,4 +359,4 @@ To be fair, I actually do not care about these words. They occur so frequently t
 
 ### Feature Importances
 
-Fortunately, my random forest regress
+Fortunately, my random forest regressor allows us to inspect the importance of the features I use to evaluate posts. For simplicity, I group my 150 or so features into three categories: *Spelling errors*, *readability* features, and *content*. *Spelling errors* are rather self explanatory and *readability* features comprise of things like rat
