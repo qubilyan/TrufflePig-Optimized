@@ -343,4 +343,16 @@ While we are speaking of the rich kids of Steemit. Who has earned the most money
 
 {top10_earners}
 
-Let's 
+Let's continue with top lists. What are the most favorite tags and how much did they earn in total?
+
+{top10_tags}
+
+Ok what if we order them by the payout per post?
+
+{top10_tags_earnings}
+
+Ever wondered which words are used the most?
+
+{top10_words}
+
+To be fair, I actually do not care about these words. They occur so frequently that 
