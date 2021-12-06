@@ -359,4 +359,6 @@ To be fair, I actually do not care about these words. They occur so frequently t
 
 ### Feature Importances
 
-Fortunately, my random forest regressor allows us to inspect the importance of the features I use to evaluate posts. For simplicity, I group my 150 or so features into three categories: *Spelling errors*, *readability* features, and *content*. *Spelling errors* are rather self explanatory and *readability* features comprise of things like rat
+Fortunately, my random forest regressor allows us to inspect the importance of the features I use to evaluate posts. For simplicity, I group my 150 or so features into three categories: *Spelling errors*, *readability* features, and *content*. *Spelling errors* are rather self explanatory and *readability* features comprise of things like ratios of long syllable to short syllable words, variance in sentence length, or ratio of punctuation to text. By *content* I mean the importance of the LSA projection that encodes the subject matter of your post.
+
+The importance is shown in percent, the higher the importance, the more likely the feature is able to distinguish bet
