@@ -363,4 +363,6 @@ Fortunately, my random forest regressor allows us to inspect the importance of t
 
 The importance is shown in percent, the higher the importance, the more likely the feature is able to distinguish between low and high payout. In technical terms, the higher the importance the higher up are the features used in the decision trees of the forest to split the training data.
 
-So this time the *spelling errors* have an importance of **{spelling_percent:.1f}%** in comparison to *readability* with **{style_percent:.1f}%**. Yet, the bigges
+So this time the *spelling errors* have an importance of **{spelling_percent:.1f}%** in comparison to *readability* with **{style_percent:.1f}%**. Yet, the biggest and most important part is the actual *content* your post is about, with all LSA topics together accumulating to **{topic_percent:.1f}%**.
+
+You are wondering what these 128 topics of mine are? I give you some examples below. Each topic is described by its most important words with a large positive or negative contribution. You may think of it this way: A post 
