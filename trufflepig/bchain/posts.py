@@ -365,4 +365,8 @@ The importance is shown in percent, the higher the importance, the more likely t
 
 So this time the *spelling errors* have an importance of **{spelling_percent:.1f}%** in comparison to *readability* with **{style_percent:.1f}%**. Yet, the biggest and most important part is the actual *content* your post is about, with all LSA topics together accumulating to **{topic_percent:.1f}%**.
 
-You are wondering what these 128 topics of mine are? I give you some examples below. Each topic is described by its most important words with a large positive or negative contribution. You may think of it this way: A post 
+You are wondering what these 128 topics of mine are? I give you some examples below. Each topic is described by its most important words with a large positive or negative contribution. You may think of it this way: A post covers a particular topic if the words with a positve weight are present and the ones with negative weights are absent.
+
+> {topics}
+
+After creating the *spelling*, *readability* and *content* features. I train my random forest regressor on the encoded data. In a nutshell, the random forest (and the individual decision trees in the forest) try to infer co
