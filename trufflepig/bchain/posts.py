@@ -369,4 +369,10 @@ You are wondering what these 128 topics of mine are? I give you some examples be
 
 > {topics}
 
-After creating the *spelling*, *readability* and *content* features. I train my random forest regressor on the encoded data. In a nutshell, the random forest (and the individual decision trees in the forest) try to infer co
+After creating the *spelling*, *readability* and *content* features. I train my random forest regressor on the encoded data. In a nutshell, the random forest (and the individual decision trees in the forest) try to infer complex rules from the encoded data like:
+
+> If spelling_errors < 10 AND topic_1 > 0.6 AND average_sentence_length < 5 AND ... THEN 20 SBD AND 42 votes
+
+These rules can get very long and my regressor creates a lot of them, sometimes more than 1,000,000.
+
+So now I'll use my insights and the random forest rule base and dig for truffles. Watch out for my dail
