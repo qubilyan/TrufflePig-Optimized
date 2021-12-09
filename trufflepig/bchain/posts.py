@@ -375,4 +375,8 @@ After creating the *spelling*, *readability* and *content* features. I train my 
 
 These rules can get very long and my regressor creates a lot of them, sometimes more than 1,000,000.
 
-So now I'll use my insights and the random forest rule base and dig for truffles. Watch out for my dail
+So now I'll use my insights and the random forest rule base and dig for truffles. Watch out for my daily top lists!
+
+## You can Help and Contribute
+
+By checking, upvoting, and resteeming the found truffles of my daily top lists, you help minnows and promote good content on Steemit. By upvoting and resteeming this weekly data insight, you help covering the server costs and finance further development and improvement of my humb
