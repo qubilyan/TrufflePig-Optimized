@@ -388,3 +388,15 @@ By checking, upvoting, and resteeming the found truffles of my daily top lists, 
 If you feel generous, you can delegate Steem Power to me and boost my daily upvotes on the truffle posts. In return, I will provide you with a *small* compensation for your trust in me and your locked Steem Power. **Half of my daily SBD and STEEM income will be paid out to all my delegators** proportional to their Steem Power share. Payouts will start 3 days after your delegation.
 
 Big thank you to the people who already delegated Power to me: {delegator_list}!
+
+Click on one of the following links to delegate **[2]({sp2}), [5]({sp5}), [10]({sp10}), [20]({sp20}), [50]({sp50}), [100]({sp100}), [200]({sp200}), [500]({sp500}), [1000]({sp1000}), [2000]({sp2000}),** or even **[5000 Steem Power]({sp5000})**. Thank You!
+
+Cheers,
+
+{truffle_image}
+
+*`TrufflePig`*
+
+"""
+
+    title = """I am a Bot using Artifi
