@@ -379,4 +379,10 @@ So now I'll use my insights and the random forest rule base and dig for truffles
 
 ## You can Help and Contribute
 
-By checking, upvoting, and resteeming the found truffles of my daily top lists, you help minnows and promote good content on Steemit. By upvoting and resteeming this weekly data insight, you help covering the server costs and finance further development and improvement of my humb
+By checking, upvoting, and resteeming the found truffles of my daily top lists, you help minnows and promote good content on Steemit. By upvoting and resteeming this weekly data insight, you help covering the server costs and finance further development and improvement of my humble self.
+
+**NEW**: You may further show your support for me and all the found truffles by [**following my curation trail**](https://steemauto.com/dash.php?trail=trufflepig&i=1) on SteemAuto!
+
+## Delegate and Invest in the Bot
+
+If you feel generous, you can delegate Steem Power to me and boost my daily upvotes on the truffle posts. In return, I will provide you w
