@@ -405,4 +405,12 @@ Cheers,
 
     top10_earners = topN_posters(authors=top_posts_authors,
                                 titles=top_posts_titles,
-                               
+                                permalinks=top_posts_permalinks,
+                                rewards=top_posts_rewards)
+
+    top10_tags = topN_tags(tags=top_tags,
+                           rewards=top_tag_rewards,
+                           counts=top_tag_counts)
+
+    top10_tags_earnings = topN_tags_earnings(tags=top_tags_earnings,
+                                             counts=top_
