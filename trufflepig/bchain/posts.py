@@ -413,4 +413,13 @@ Cheers,
                            counts=top_tag_counts)
 
     top10_tags_earnings = topN_tags_earnings(tags=top_tags_earnings,
-                                             counts=top_
+                                             counts=top_tags_earnings_counts,
+                                             rewards_per_post=top_tags_earnings_reward)
+
+    top10_words = topN_words(words=top_words,
+                             counts=top_words_counts)
+
+    top10_tfidf = topN_tfidf(words=top_tfidf,
+                             tfidfs=top_tfidf_scores)
+
+    d
