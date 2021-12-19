@@ -422,4 +422,9 @@ Cheers,
     top10_tfidf = topN_tfidf(words=top_tfidf,
                              tfidfs=top_tfidf_scores)
 
-    d
+    delegator_list = ', '.join('@{}'.format(x) for x in sorted(delegator_list))
+
+    title = title.format(week_date=current_datetime.strftime('%Y-%V'))
+    post = post.format(start_date=start_datetime.strftime('%d.%m.%Y'),
+                      end_date=end_datetime.strftime('%d.%m.%Y'),
+                      t
