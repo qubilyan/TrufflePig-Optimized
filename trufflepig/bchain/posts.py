@@ -427,4 +427,10 @@ Cheers,
     title = title.format(week_date=current_datetime.strftime('%Y-%V'))
     post = post.format(start_date=start_datetime.strftime('%d.%m.%Y'),
                       end_date=end_datetime.strftime('%d.%m.%Y'),
-                      t
+                      total_posts=total_posts,
+                      total_votes=total_votes,
+                      total_reward=int(total_reward),
+                      bid_bots_sbd=int(bid_bots_sbd),
+                      bid_bots_steem=int(bid_bots_steem),
+                      bid_bots_percent=bid_bots_percent,
+                      median_reward=median_reward
