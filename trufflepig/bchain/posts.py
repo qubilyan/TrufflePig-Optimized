@@ -457,4 +457,15 @@ Cheers,
 def top_trending_list(topN_authors, topN_permalinks, topN_titles,
               topN_filtered_bodies, topN_image_urls,
               topN_rewards, quote_max_length, nstart=1):
- 
+    """Creates a toplist string"""
+    topN_entry="""**#{rank}** [{title}](https://steemit.com/@{author}/{permalink})  --  **by @{author} with a current reward of {reward:d} SBD**
+    
+{image}{quote}
+
+"""
+
+    result_string = ""
+
+    iterable = zip(topN_authors, topN_permalinks, topN_titles,
+                   topN_filtered_bodies, topN_image_urls,
+   
