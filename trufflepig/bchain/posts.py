@@ -479,4 +479,12 @@ def top_trending_list(topN_authors, topN_permalinks, topN_titles,
             imgstr = """ <div class="pull-right"><img src="{img}" /></div>\n\n""".format(img=img_urls[0])
         else:
             imgstr=''
-        entry = topN_entry.format(rank=rank, auth
+        entry = topN_entry.format(rank=rank, author=author, permalink=permalink,
+                                   title=title, quote=quote,
+                                   reward=int(reward), image=imgstr)
+        result_string += entry
+    return result_string
+
+
+def top_trending_post(topN_authors, topN_permalinks, topN_titles, topN_filtered_bodies,
+              topN_image_urls, topN_rewar
