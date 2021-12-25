@@ -468,4 +468,9 @@ def top_trending_list(topN_authors, topN_permalinks, topN_titles,
 
     iterable = zip(topN_authors, topN_permalinks, topN_titles,
                    topN_filtered_bodies, topN_image_urls,
-   
+                   topN_rewards)
+
+    for idx, (author, permalink, title, filtered_body, img_urls, reward) in enumerate(iterable):
+        rank = idx + nstart
+        quote = '>' + filtered_body[:quote_max_length].replace('\n', ' ').replace('  ', ' ').replace('  ', ' ').replace('  ', ' ') + '...'
+        title = tftf.rep
