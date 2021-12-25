@@ -440,4 +440,10 @@ Cheers,
                       top10_tags=top10_tags,
                       top10_tags_earnings=top10_tags_earnings,
                       top10_words=top10_words,
-                      #t
+                      #top10_tfidf=top10_tfidf,
+                      spelling_percent=spelling_percent,
+                      style_percent=style_percent,
+                      topic_percent=topic_percent,
+                      topics=topics.replace('\n', '\n>'),
+                      truffle_image=truffle_image,
+                      delegator_list=del
