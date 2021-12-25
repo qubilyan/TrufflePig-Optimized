@@ -433,4 +433,11 @@ Cheers,
                       bid_bots_sbd=int(bid_bots_sbd),
                       bid_bots_steem=int(bid_bots_steem),
                       bid_bots_percent=bid_bots_percent,
-                      median_reward=median_reward
+                      median_reward=median_reward,
+                      mean_reward=mean_reward,
+                      dollar_percent=int(dollar_percent),
+                      top10_earners=top10_earners,
+                      top10_tags=top10_tags,
+                      top10_tags_earnings=top10_tags_earnings,
+                      top10_words=top10_words,
+                      #t
