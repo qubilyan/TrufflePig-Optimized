@@ -487,4 +487,9 @@ def top_trending_list(topN_authors, topN_permalinks, topN_titles,
 
 
 def top_trending_post(topN_authors, topN_permalinks, topN_titles, topN_filtered_bodies,
-              topN_image_urls, topN_rewar
+              topN_image_urls, topN_rewards, title_date,
+              trufflepicks_link, truffle_link, sbd_amount, steem_amount,
+              steem_per_mvests=490, truffle_image=TRUFFLE_IMAGE,
+              quote_max_length=QUOTE_MAX_LENGTH):
+    """Craetes the truffle pig daily toplist post"""
+    title = """Here is how the Steemit Trending Page would look li
