@@ -492,4 +492,8 @@ def top_trending_post(topN_authors, topN_permalinks, topN_titles, topN_filtered_
               steem_per_mvests=490, truffle_image=TRUFFLE_IMAGE,
               quote_max_length=QUOTE_MAX_LENGTH):
     """Craetes the truffle pig daily toplist post"""
-    title = """Here is how the Steemit Trending Page would look li
+    title = """Here is how the Steemit Trending Page would look like without Bid Bots and Self Votes! ({date})"""
+
+    post="""## Trending Posts Without Bid Bots and Self Votes
+    
+In the last 24 hours alone people spent at least **{amount}** on post promotions **using bid bots or vote selling services**. I know bid bots are a controversial topic and it is not up to me to decide if these bots are good o
