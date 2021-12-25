@@ -446,4 +446,15 @@ Cheers,
                       topic_percent=topic_percent,
                       topics=topics.replace('\n', '\n>'),
                       truffle_image=truffle_image,
-                      delegator_list=del
+                      delegator_list=delegator_list,
+                      **link_dict)
+
+    return title, post
+
+
+############### Trending Posts ################################################
+
+def top_trending_list(topN_authors, topN_permalinks, topN_titles,
+              topN_filtered_bodies, topN_image_urls,
+              topN_rewards, quote_max_length, nstart=1):
+ 
