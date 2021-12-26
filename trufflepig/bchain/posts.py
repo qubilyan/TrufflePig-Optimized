@@ -496,4 +496,6 @@ def top_trending_post(topN_authors, topN_permalinks, topN_titles, topN_filtered_
 
     post="""## Trending Posts Without Bid Bots and Self Votes
     
-In the last 24 hours alone people spent at least **{amount}** on post promotions **using bid bots or vote selling services**. I know bid bots are a controversial topic and it is not up to me to decide if these bots are good o
+In the last 24 hours alone people spent at least **{amount}** on post promotions **using bid bots or vote selling services**. I know bid bots are a controversial topic and it is not up to me to decide if these bots are good or bad. Heck, I'm a bot myself, so who am I to judge? However, I can help you with your own judgment by providing data. Besides my [DAILY TRUFFLE PICKS]({trufflepicks_link}), where I try to direct attention to posts that deserve more rewards, I decided to use the data at my disposal to publish another kind of top list.
+
+Nowadays it is incredibly difficult t
