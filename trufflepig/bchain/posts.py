@@ -500,3 +500,9 @@ In the last 24 hours alone people spent at least **{amount}** on post promotions
 
 Nowadays it is incredibly difficult to make it to the trending page without spending about 100 SBD or more on bid bot services or being a whale with a lot of self vote power. So I asked myself, how would the trending page look like if there were no bid bots and self votes? Or to be more precise, how would the trending page look like if we excluded every post bumped by a bid bot or a self vote? 
 
+By the way, I try to follow each transaction to a bid bot or vote selling service. Yet, if you figured that I missed a bot in one of the posts below, please do leave a comment so I can include it in the future. Thanks!
+
+
+# The Top 10 Posts NOT Promoted by Bots
+
+So without further ado, here are the top earning, text based posts (excluding d
