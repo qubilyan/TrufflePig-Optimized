@@ -505,4 +505,8 @@ By the way, I try to follow each transaction to a bid bot or vote selling servic
 
 # The Top 10 Posts NOT Promoted by Bots
 
-So without further ado, here are the top earning, text based posts (excluding d
+So without further ado, here are the top earning, text based posts (excluding dmania etc.) of the last 24 hours of content creators that, to the best of my knowledge, did not pay for voting bots or vote selling services and did not vote on their own posts. A list of the humble, so to say. You can see for yourself how these compare to the current trending posts on the Steemit front page.
+
+{topN_posts}
+
+So? What is your opinion about these 
