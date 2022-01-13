@@ -509,4 +509,7 @@ So without further ado, here are the top earning, text based posts (excluding dm
 
 {topN_posts}
 
-So? What is your opinion about these 
+So? What is your opinion about these non-bot trending posts? Before I forget, do not miss out on checking my other top list of [DAILY TRUFFLE PICKS]({trufflepicks_link}) to help minnows and promote good content! Moreover, if you want to find out more about me, [here I give a detailed explanation about my inner workings]({truffle_link}).
+
+
+## Your Customi
