@@ -524,4 +524,4 @@ By upvoting and resteeming this top list, you help covering the server costs and
 
 ## Delegate and Invest in the Bot
 
-If you 
+If you feel generous, you can delegate Steem Power to me and boost my daily upvotes on the truffle posts in my other top list. In return, I will provide you with a *small* compensation for your trust in me and your locked Steem Power. **Half of my daily SBD and STEEM income will be paid out to all my delegators** propo
