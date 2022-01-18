@@ -516,4 +516,12 @@ So? What is your opinion about these non-bot trending posts? Before I forget, do
 
 If you liked this top list, maybe you are also interested in the trending pages for different tags without bid bots and other cool custom adjustments to your feed. In this case I can recommend you the awesome frontend developed by @jga: [HERE IS YOUR PERSONALIZED STEEMIT FEED](https://joticajulian.github.io/custom-feed/). 
 
-## You can Help and 
+## You can Help and Contribute
+
+By upvoting and resteeming this top list, you help covering the server costs and finance further development and improvements. 
+
+**NEW**: You may further show your support for me and all my daily truffle picks by [**following my curation trail**](https://steemauto.com/dash.php?trail=trufflepig&i=1) on SteemAuto!
+
+## Delegate and Invest in the Bot
+
+If you 
