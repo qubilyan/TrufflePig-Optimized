@@ -549,4 +549,11 @@ Cheers,
     topN_posts = top_trending_list(topN_authors=topN_authors,
                               topN_permalinks=topN_permalinks,
                               topN_titles=topN_titles,
-                              topN_filtered_bodies=topN
+                              topN_filtered_bodies=topN_filtered_bodies,
+                              topN_image_urls=topN_image_urls,
+                              topN_rewards=topN_rewards,
+                              quote_max_length=quote_max_length)
+
+    title = title.format(date=title_date.strftime('%d.%m.%Y'))
+    post = post.format(topN_posts=topN_posts,
+            
