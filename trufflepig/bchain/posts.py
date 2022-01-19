@@ -542,4 +542,11 @@ Cheers,
     elif steem_amount > 0:
         amount = '{} STEEM'.format(int(steem_amount))
     else:
-       
+        raise RuntimeError('Should not happen!')
+
+    link_dict = get_delegation_link(steem_per_mvests=steem_per_mvests)
+
+    topN_posts = top_trending_list(topN_authors=topN_authors,
+                              topN_permalinks=topN_permalinks,
+                              topN_titles=topN_titles,
+                              topN_filtered_bodies=topN
