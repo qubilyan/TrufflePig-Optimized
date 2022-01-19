@@ -528,4 +528,18 @@ If you feel generous, you can delegate Steem Power to me and boost my daily upvo
 
 Click on one of the following links to delegate **[2]({sp2}), [5]({sp5}), [10]({sp10}), [20]({sp20}), [50]({sp50}), [100]({sp100}), [200]({sp200}), [500]({sp500}), [1000]({sp1000}), [2000]({sp2000}),** or even **[5000 Steem Power]({sp5000})**. Thank You!
 
-Ch
+Cheers,
+
+{truffle_image}
+
+*`TrufflePig`*
+    """
+
+    if sbd_amount > 0 and steem_amount > 0:
+        amount = '{} SBD and {} STEEM'.format(int(sbd_amount), int(steem_amount))
+    elif sbd_amount > 0:
+        amount = '{} SBD'.format(int(sbd_amount))
+    elif steem_amount > 0:
+        amount = '{} STEEM'.format(int(steem_amount))
+    else:
+       
