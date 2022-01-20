@@ -556,4 +556,10 @@ Cheers,
 
     title = title.format(date=title_date.strftime('%d.%m.%Y'))
     post = post.format(topN_posts=topN_posts,
-            
+                          truffle_image=truffle_image,
+                          trufflepicks_link=trufflepicks_link,
+                          truffle_link=truffle_link,
+                          amount=amount,
+                          **link_dict)
+    post = BODY_PREFIX + post
+    return title, post
