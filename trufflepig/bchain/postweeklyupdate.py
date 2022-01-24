@@ -24,4 +24,12 @@ STYLE_CATEGORY = [x for x in tpmo.FEATURES if x not in SPELLING_CATEGORY]
 TAGS = ['steemit', 'steemstem', 'minnowsupport', 'technology', 'utopian-io']
 
 
-def compute_weekly_statistics(post_frame, pipeline, N=10, topics_s
+def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
+    logger.info('Computing statistics...')
+    total_reward = post_frame.reward.sum()
+    total_posts = len(post_frame)
+    total_votes = post_frame.votes.sum()
+    start_datetime = post_frame.created.min()
+    end_datetime = post_frame.created.max()
+    mean_reward = post_frame.reward.mean()
+    median_reward = post_frame.reward.medi
