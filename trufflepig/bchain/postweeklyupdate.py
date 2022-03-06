@@ -57,4 +57,11 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
     top_tags_earnings['per_post'] = top_tags_earnings.reward / top_tags_earnings['count']
     min_count = 500
     top_tags_earnings = top_tags_earnings[top_tags_earnings['count']
-                                  
+                                          >= min_count].sort_values('per_post', ascending=False)
+    top_tags_earnings = top_tags_earnings.iloc[:N, :]
+
+    logger.info('Computing bid bot stats...')
+    num_articles = (post_frame.bought_votes > 0).sum()
+    bid_bots_percent = num_articles / len(post_frame) * 100
+    bid_bots_steem = post_frame.steem_bought_reward.sum()
+    bid_bots_sbd
