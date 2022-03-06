@@ -42,4 +42,12 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
     for tags, reward in zip(post_frame.tags, post_frame.reward):
         for tag in tags:
             if tag not in tag_count_dict:
-                tag_count_dict[tag]
+                tag_count_dict[tag] = 0
+                tag_payout[tag] = 0
+            tag_count_dict[tag] += 1
+            tag_payout[tag] += reward
+    counts = pd.Series(tag_count_dict, name='count')
+    rewards = pd.Series(tag_payout, name='reward')
+    top_tags = counts.to_frame().join(rewards).sort_values('count',
+                                                          ascending=False)
+    top_tags_ea
