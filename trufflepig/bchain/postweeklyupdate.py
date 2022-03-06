@@ -50,4 +50,11 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
     rewards = pd.Series(tag_payout, name='reward')
     top_tags = counts.to_frame().join(rewards).sort_values('count',
                                                           ascending=False)
-    top_tags_ea
+    top_tags_earnings = top_tags.copy()
+    top_tags = top_tags.iloc[:N, :]
+
+    logger.info('Computing top tags earnings...')
+    top_tags_earnings['per_post'] = top_tags_earnings.reward / top_tags_earnings['count']
+    min_count = 500
+    top_tags_earnings = top_tags_earnings[top_tags_earnings['count']
+                                  
