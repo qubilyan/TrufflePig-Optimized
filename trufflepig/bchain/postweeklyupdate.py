@@ -64,4 +64,14 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
     num_articles = (post_frame.bought_votes > 0).sum()
     bid_bots_percent = num_articles / len(post_frame) * 100
     bid_bots_steem = post_frame.steem_bought_reward.sum()
-    bid_bots_sbd
+    bid_bots_sbd = post_frame.sbd_bought_reward.sum()
+
+    # get top tokens
+    logger.info('Computing top words...')
+    token_count_dict = {}
+    for tokens in post_frame.tokens:
+        for token in tokens:
+            if token not in token_count_dict:
+                token_count_dict[token] = 0
+            token_count_dict[token] += 1
+    top_word
