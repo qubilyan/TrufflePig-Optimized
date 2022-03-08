@@ -74,4 +74,10 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
             if token not in token_count_dict:
                 token_count_dict[token] = 0
             token_count_dict[token] += 1
-    top_word
+    top_words = pd.Series(token_count_dict, name='count')
+    top_words = top_words.sort_values(ascending=False).iloc[:N]
+
+    logger.info('Computing top tfidf...')
+    topic_model = pipeline.named_steps['feature_generation'].transformer_list[1][1]
+    tfidf = topic_model.tfidf
+    dictionary = topic_model
