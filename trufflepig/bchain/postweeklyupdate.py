@@ -99,4 +99,11 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
     top_tfidf = top_tfidf.sort_values(ascending=False).iloc[:N]
 
     # get top authors
-    logger.info('Computing t
+    logger.info('Computing top posts...')
+    top_posts = post_frame.loc[:, ['title', 'author', 'permalink', 'reward', 'votes']].sort_values('reward',
+                                                                                 ascending=False).iloc[:N, :]
+
+    # get topics
+    logger.info('Computing topics...')
+    num_topics = topic_model.num_topics
+   
