@@ -80,4 +80,14 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
     logger.info('Computing top tfidf...')
     topic_model = pipeline.named_steps['feature_generation'].transformer_list[1][1]
     tfidf = topic_model.tfidf
-    dictionary = topic_model
+    dictionary = topic_model.dictionary
+    sample_size = 2000
+    if sample_size > len(post_frame):
+        sample_frame = post_frame
+    else:
+        sample_frame = post_frame.sample(n=sample_size)
+    corpus_tfidf = tfidf[topic_model.to_corpus(sample_frame.tokens)]
+    top_tfidf = {}
+    for doc in corpus_tfidf:
+        for iWord, tf_idf in doc:
+            iWor
