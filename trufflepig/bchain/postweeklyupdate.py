@@ -90,4 +90,13 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
     top_tfidf = {}
     for doc in corpus_tfidf:
         for iWord, tf_idf in doc:
-            iWor
+            iWord = dictionary.get(iWord)
+            if iWord not in top_tfidf:
+                top_tfidf[iWord] = 0
+            if tf_idf > top_tfidf[iWord]:
+                top_tfidf[iWord] = tf_idf
+    top_tfidf = pd.Series(top_tfidf, name='score')
+    top_tfidf = top_tfidf.sort_values(ascending=False).iloc[:N]
+
+    # get top authors
+    logger.info('Computing t
