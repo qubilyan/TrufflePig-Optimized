@@ -106,4 +106,10 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
     # get topics
     logger.info('Computing topics...')
     num_topics = topic_model.num_topics
-   
+    topics = topic_model.print_topics(n_best=num_topics, n_words=4,
+                                      topics_step=topics_step)
+
+    # get feature importances
+    logger.info('Computing feature importances...')
+    feature_selector = pipeline.named_steps['feature_generation'].transformer_list[0][1]
+    features = 
