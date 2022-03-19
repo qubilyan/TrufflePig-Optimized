@@ -112,4 +112,12 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
     # get feature importances
     logger.info('Computing feature importances...')
     feature_selector = pipeline.named_steps['feature_generation'].transformer_list[0][1]
-    features = 
+    features = feature_selector.features
+    feature_names = features + ['topic_{:03d}'.format(x)
+                                for x in range(num_topics)]
+    spelling_percent = 0
+    style_percent = 0
+    topic_percent = 0
+    for kdx, importance in enumerate(pipeline.named_steps['regressor'].feature_importances_):
+        name = feature_names[kdx]
+        import
