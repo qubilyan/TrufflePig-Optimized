@@ -120,4 +120,15 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
     topic_percent = 0
     for kdx, importance in enumerate(pipeline.named_steps['regressor'].feature_importances_):
         name = feature_names[kdx]
-        import
+        importance *= 100
+        if name in SPELLING_CATEGORY:
+            spelling_percent += importance
+        elif name in STYLE_CATEGORY:
+            style_percent += importance
+        else:
+            topic_percent += importance
+
+    result = dict(
+          start_datetime=start_datetime,
+          end_datetime=end_datetime,
+          total_post
