@@ -131,4 +131,12 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
     result = dict(
           start_datetime=start_datetime,
           end_datetime=end_datetime,
-          total_post
+          total_posts=total_posts,
+          total_votes=total_votes,
+          total_reward=total_reward,
+          bid_bots_sbd=bid_bots_sbd,
+          bid_bots_steem=bid_bots_steem,
+          bid_bots_percent=bid_bots_percent,
+          median_reward=median_reward,
+          mean_reward=mean_reward,
+          dollar_percent=dollar_p
