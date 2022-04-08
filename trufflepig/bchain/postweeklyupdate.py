@@ -139,4 +139,12 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
           bid_bots_percent=bid_bots_percent,
           median_reward=median_reward,
           mean_reward=mean_reward,
-          dollar_percent=dollar_p
+          dollar_percent=dollar_percent,
+          top_posts_authors=top_posts.author,
+          top_posts_titles=top_posts.title,
+          top_posts_rewards=top_posts.reward,
+          top_posts_permalinks=top_posts.permalink,
+          top_tags=top_tags.index,
+          top_tag_counts=top_tags['count'],
+          top_tag_rewards=top_tags.reward,
+          top_
