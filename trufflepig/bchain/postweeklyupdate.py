@@ -147,4 +147,11 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
           top_tags=top_tags.index,
           top_tag_counts=top_tags['count'],
           top_tag_rewards=top_tags.reward,
-          top_
+          top_tags_earnings=top_tags_earnings.index,
+          top_tags_earnings_counts=top_tags_earnings['count'],
+          top_tags_earnings_reward=top_tags_earnings.per_post,
+          top_words=top_words.index,
+          top_words_counts=top_words,
+          top_tfidf=top_tfidf.index,
+          top_tfidf_scores=top_tfidf,
+          spelling_percent=spell
