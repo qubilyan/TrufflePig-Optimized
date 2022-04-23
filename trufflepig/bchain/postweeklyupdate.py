@@ -154,4 +154,14 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
           top_words_counts=top_words,
           top_tfidf=top_tfidf.index,
           top_tfidf_scores=top_tfidf,
-          spelling_percent=spell
+          spelling_percent=spelling_percent,
+          style_percent=style_percent,
+          topic_percent=topic_percent,
+          topics=topics
+    )
+    logger.info('Done final dict:\n{}'.format(result))
+    return result
+
+
+def return_overview_permalink_if_exists(account, steem, current_datetime):
+    permalink = PERMALINK_TEMPLATE.format(date=current_datetime.strftime('%Y-%U
