@@ -174,4 +174,11 @@ def return_overview_permalink_if_exists(account, steem, current_datetime):
 
 
 def post_weakly_update(pipeline, post_frame, poster, current_datetime):
-    steem_per_mvests = Converter(poster.steem).steem_per_mvest
+    steem_per_mvests = Converter(poster.steem).steem_per_mvests()
+    stats = compute_weekly_statistics(post_frame, pipeline)
+
+    delegator_list = tpaa.get_delegates_and_shares(poster.account, poster.steem).keys()
+
+    title, body = tpbp.weekly_update(steem_per_mvests=steem_per_mvests,
+                                     current_datetime=current_datetime,
+                                     delegator_l
