@@ -164,4 +164,14 @@ def compute_weekly_statistics(post_frame, pipeline, N=10, topics_step=4):
 
 
 def return_overview_permalink_if_exists(account, steem, current_datetime):
-    permalink = PERMALINK_TEMPLATE.format(date=current_datetime.strftime('%Y-%U
+    permalink = PERMALINK_TEMPLATE.format(date=current_datetime.strftime('%Y-%U'))
+    try:
+        error_retry(Post, retries=10,
+                    sleep_time=4)('@{}/{}'.format(account, permalink), steem)
+        return permalink
+    except PostDoesNotExist:
+        return ''
+
+
+def post_weakly_update(pipeline, post_frame, poster, current_datetime):
+    steem_per_mvests = Converter(poster.steem).steem_per_mvest
