@@ -181,4 +181,14 @@ def post_weakly_update(pipeline, post_frame, poster, current_datetime):
 
     title, body = tpbp.weekly_update(steem_per_mvests=steem_per_mvests,
                                      current_datetime=current_datetime,
-                                     delegator_l
+                                     delegator_list=delegator_list,
+                                     **stats)
+    permalink = PERMALINK_TEMPLATE.format(date=current_datetime.strftime('%Y-%V'))
+
+    poster.post(body=body,
+                title=title,
+                permalink=permalink,
+                self_vote=True,
+                tags=TAGS)
+
+    retu
