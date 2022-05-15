@@ -191,4 +191,4 @@ def post_weakly_update(pipeline, post_frame, poster, current_datetime):
                 self_vote=True,
                 tags=TAGS)
 
-    retu
+    return permalink
