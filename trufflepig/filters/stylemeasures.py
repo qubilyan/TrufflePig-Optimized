@@ -141,3 +141,106 @@ def count_connectors(tokens):
 
 def count_pronouns(tokens):
     return sum(1 for x in tokens if x in PRONOUNS)
+
+
+def count_letters(text):
+    return len(re.findall('[a-zA-Z]', text))
+
+
+def gunning_fog_index(num_words, num_complex_words, num_sentences):
+    """https://en.wikipedia.org/wiki/Gunning_fog_index"""
+    return 0.4*((num_words / num_sentences) + 100 * (num_complex_words / num_words))
+
+
+def flesch_kincaid_index(num_syllables, num_words, num_sentences):
+    """https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests"""
+    return 206.835 - 1.015 * (num_words / num_sentences) - 84.6 * (num_syllables / num_words)
+
+
+def smog_index(num_complex_words, num_sentences):
+    """https://en.wikipedia.org/wiki/SMOG"""
+    return 1.0430 * np.sqrt(num_complex_words * 30 / num_sentences) + 3.1291
+
+
+def automated_readability_index(num_chars, num_words, num_sentences):
+    """https://en.wikipedia.org/wiki/Automated_readability_index"""
+    return 4.71 * (num_chars / num_words) + 0.5 * (num_words / num_sentences) - 21.43
+
+
+def coleman_liau_index(num_chars, num_words, num_sentences):
+    """https://en.wikipedia.org/wiki/Coleman%E2%80%93Liau_index"""
+    return 0.0588 * 100 * num_chars / num_words - 0.296 * 100 * num_sentences / num_words - 15.8
+
+
+def adverb_estimate(tokens):
+    return sum([1 for x in tokens if x.endswith('ly')])
+
+
+class SyllableConverter(object):
+    def __init__(self, language='en'):
+        self.dic = pyphen.Pyphen(lang=language)
+
+    def tokens2syllablses(self, tokens):
+        results = []
+        for token in tokens:
+            nsyllables = len(self.dic.positions(token)) + 1
+            results.append(nsyllables)
+        return results
+
+
+class SpellErrorCounter(object):
+    def __init__(self, language='en_US', pwl=STEEMIT_WORDS):
+        self.checker = SpellChecker(language)
+        for word in pwl:
+            self.checker.add(word)
+
+    def count_mistakes(self, text):
+        self.checker.set_text(text)
+        nerrors = len([x for x in self.checker])
+        return nerrors
+
+
+class GrammarErrorCounter(object):
+    def __init__(self, language='en-US', max_length=5000):
+        self.max_length = max_length
+        self.tool = language_check.LanguageTool(language=language)
+        self.tool.disable_spellchecking()
+
+    def count_mistakes_per_character(self, text):
+        if self.max_length:
+            text = text[:self.max_length]
+        try:
+            nerrors = len(self.tool.check(text))
+        except ParseError:
+            logger.exception('Cannot count errors assuming maximum')
+            nerrors = len(text)
+        return nerrors / len(text)
+
+
+class LanguageDetector(object):
+    def __init__(self, max_length=5000, seed=42):
+        self.max_length = max_length
+        self.factory = langdetect.DetectorFactory()
+        self.factory.set_seed(seed)
+        self.factory.load_profile(langdetect.PROFILES_DIRECTORY)
+
+    def detect_language(self, text):
+        try:
+            detector = self.factory.create()
+            if self.max_length:
+                text = text[:self.max_length]
+            detector.append(text)
+            return detector.detect()
+        except Exception as e:
+            return None
+
+    def get_probabilities(self, text):
+        try:
+            detector = self.factory.create()
+            if self.max_length:
+                text = text[:self.max_length]
+            detector.append(text)
+            probs =  detector.get_probabilities()
+            return {x.lang: x.prob for x in probs}
+        except Exception as e:
+            return {}
