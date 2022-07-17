@@ -24,4 +24,13 @@ def get_image_urls(text):
         if image.startswith('<img'):
             image_url = re.sub('<img[^>]+src="([^">]+)"[^>]*>',  '\g<1>', image)
         else:
-            image_url = re.sub('!\[[-a-zA-Z0-9?@: %._\+~#=/()]*\]\(([-a-zA-Z0-9?@:%._\+~#=/()]+)\)', '\g<1>', ima
+            image_url = re.sub('!\[[-a-zA-Z0-9?@: %._\+~#=/()]*\]\(([-a-zA-Z0-9?@:%._\+~#=/()]+)\)', '\g<1>', image)
+        image_urls.append(image_url)
+    return image_urls
+
+
+def filter_urls(text):
+    return re.sub('(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]'
+                   '[a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.'
+                   '[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}'
+                   '|https?:\/\/(?:www\.|(?!www))[a-zA-
