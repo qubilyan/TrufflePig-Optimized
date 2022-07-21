@@ -33,4 +33,22 @@ def filter_urls(text):
     return re.sub('(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]'
                    '[a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.'
                    '[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}'
-                   '|https?:\/\/(?:www\.|(?!www))[a-zA-
+                   '|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]\.[^\s]'
+                   '{2,}|www\.[a-zA-Z0-9]\.[^\s]{2,})', '', text)
+
+
+def filter_special_characters(text):
+    return re.sub('[^A-Za-z0-9\s;,.?!]+', '', text)
+
+
+EXPRESSIONS = (
+    '&?nbsp',
+    'aligncenter',
+    'styletextalign',
+    'href',
+    'img',
+    'src',
+    'div',
+    """class=["']text-justify["']""",
+    'h[1-6]',
+    
