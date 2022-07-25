@@ -69,4 +69,20 @@ def filter_formatting(text):
     return text
 
 
-def fil
+def filter_quotes(text):
+    return re.sub('\n[ \t]*>[^\n]+\n', '\n', text)
+
+
+def replace_newlines(text):
+    return re.sub('\s+', ' ', text)
+
+
+def filter_punctuation(text):
+    return re.sub('[;,.?!]+', '', text)
+
+
+def filter_headings(text):
+    return re.sub('(\n|^)( *#{1,6}| *<h[1-6]>| *<H[1-6]>)[^\n#]*\n', '', text)
+
+
+def 
