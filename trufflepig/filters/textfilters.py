@@ -94,4 +94,4 @@ def is_in_filter_tags(tags, filter_tags):
         return True
 
 def voted_by(active_votes, voter_set):
-    return any(x['voter'] i
+    return any(x['voter'] in voter_set for x in active_votes)
