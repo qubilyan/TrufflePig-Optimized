@@ -372,3 +372,303 @@ class NGramTopicModel(TopicModel):
         list of generators over ngrams
 
         """
+        logger.info('Computing {} Grams'.format(self.ngrams))
+        result_tokens = []
+        for doc_tokens in tokens:
+            ngrams = []
+            for ngram in self.ngrams:
+                ngrams.append(create_ngrams(doc_tokens, ngram))
+            result_tokens.append(itertools.chain(*ngrams))
+        return result_tokens
+
+    def to_corpus(self, tokens):
+        """ Transfers a list of tokens into the Gensim corpus representation
+
+        Parameters
+        ----------
+        tokens: list of list of str
+            e.g. [['hi', 'ho'], ['my', 'name', ...], ...]
+
+        Returns
+        -------
+        list of Bag of Words representations
+
+        """
+        ngram_tokens = self.add_ngrams(tokens)
+        return super().to_corpus(ngram_tokens)
+
+    def fill_dictionary(self, tokens):
+        """ Fills a dictionary
+
+        Parameters
+        ----------
+        tokens: list of list of str
+            e.g. [['hi', 'ho'], ['my', 'name', ...], ...]
+
+        """
+        ngram_tokens = self.add_ngrams(tokens)
+        return super().fill_dictionary(ngram_tokens)
+
+
+class FeatureSelector(BaseEstimator):
+    """ Simply selects features from a pandas DataFrame """
+    def __init__(self, features):
+        self.features = features
+
+    def fit(self, data, y=None):
+        return self
+
+    def transform(self, data):
+        return data.loc[:, self.features]
+
+
+def create_pure_doc2vec_pipeline(knn_doc2vec_kwargs):
+    """Returns a pipeline containing the KNNDoc2Vec
+
+    NOT used in production
+    """
+    logger.info('Pure Doc2Vec Model')
+    pipeline = Pipeline(
+        steps=[('regressor', KNNDoc2Vec(**knn_doc2vec_kwargs))]
+    )
+    return pipeline
+
+
+def create_default_pipeline(topic_kwargs, regressor_kwargs, features=FEATURES):
+    """ The default pipeline used in production
+
+    Normal features + TopicModel
+
+    Parameters
+    ----------
+    topic_kwargs: dict
+        Passed to the TopicModel
+    regressor_kwargs: dict
+        Passed to the regressor
+    features: list of str
+        The features taken from the preprocessed post frame
+
+    Returns
+    -------
+    scikit pipeline
+
+    """
+    logger.info('Using features {}'.format(features))
+    feature_generation = FeatureUnion(
+        transformer_list=[
+            ('feature_selection', FeatureSelector(features)),
+            ('topic_model', NGramTopicModel(**topic_kwargs)),
+        ]
+    )
+
+    pipeline = Pipeline(steps=[
+            ('feature_generation', feature_generation),
+            ('regressor', RandomForestRegressor(**regressor_kwargs))
+        ]
+    )
+
+    return pipeline
+
+
+def compute_log_vote_weights(target_frame):
+    """ Creates training sample weights
+
+    Weight is based on the number of votes:
+
+        1 + np.log(1 + votes)
+
+    Parameters
+    ----------
+    target_frame: DataFrame
+        Frame containing the target values, must contain *votes*
+
+    Returns
+    -------
+    Series of weights
+
+    """
+    logger.info('Computing sample weights')
+    return 1 + np.log(1 + target_frame.iloc[:, 1])
+
+
+def train_pipeline(post_frame, pipeline=None,
+                   sample_weight_function='default', **kwargs):
+    """ Trains a scikit pipeline on preprocessed posts
+
+    Parameters
+    ----------
+    post_frame: DataFrame
+    pipeline: scikit pipeline of None
+        If None, default pipeline is created
+    sample_weight_function: Func or None or 'default'
+        A function that takes the target values and returns weights
+        If None, no function is used
+        If 'default' the log votes are used
+    kwargs: **kwargs
+        Passed onto the pipeline creation
+
+    Returns
+    -------
+    trained scikit pipeline
+
+    """
+    targets = kwargs.pop('targets', TARGETS)
+
+    logger.info('Training pipeline with targets {} and {} '
+                'samples...'.format(targets, len(post_frame)))
+    target_frame = post_frame.loc[:, targets]
+
+    if sample_weight_function == 'default':
+        sample_weight_function = compute_log_vote_weights
+
+    if sample_weight_function is not None:
+        sample_weight = sample_weight_function(target_frame)
+    else:
+        sample_weight = None
+
+    if pipeline is None:
+        logger.info('...Creating the default pipeline...')
+        pipeline = create_default_pipeline(**kwargs)
+
+    pipeline.fit(post_frame, target_frame,
+                 regressor__sample_weight=sample_weight)
+
+    score = pipeline.score(post_frame, target_frame,
+                           sample_weight=sample_weight)
+    logger.info('...Done! Training score {}'.format(score))
+
+    return pipeline
+
+
+def train_test_pipeline(post_frame, pipeline=None,
+                        train_size=0.8, sample_weight_function='default',
+                        random_state=None,
+                        **kwargs):
+    """ As above but splits into training and test set and computes test score
+
+    `train_size` is fraction of training vs test samples.
+
+    Returns pipeline AND testing frame
+
+    """
+    train_frame, test_frame = train_test_split(post_frame,
+                                               train_size=train_size,
+                                               random_state=random_state)
+    targets = kwargs.get('targets', TARGETS)
+    pipeline = train_pipeline(train_frame, pipeline=pipeline,
+                              sample_weight_function=sample_weight_function,
+                              **kwargs)
+
+    target_frame = test_frame.loc[:, targets]
+
+    logger.info('Using test data...')
+
+    if sample_weight_function == 'default':
+        sample_weight_function = compute_log_vote_weights
+
+    if sample_weight_function is not None:
+        sample_weight = sample_weight_function(target_frame)
+    else:
+        sample_weight = None
+
+    score = pipeline.score(test_frame, target_frame,
+                           sample_weight=sample_weight)
+    logger.info('...Done! Test score {}'.format(score))
+    return pipeline, test_frame
+
+
+def cross_validate(post_frame, param_grid,
+                   train_size=0.8, n_jobs=3,
+                   cv=3, verbose=1,
+                   n_iter=None, **kwargs):
+    """ Runs crossvalidation on post_frame
+
+    Parameters
+    ----------
+    post_frame: DataFrame
+    param_grid: nested dict
+        The pipeline parameters to explore
+    train_size: float
+        Ratio of training vs test samples
+    n_jobs: int
+        Number of cores for parallelization
+    cv: int
+        Number of crossvalidation folds
+    verbose: int
+        verbosity level
+    n_iter: None or int
+        If None than full grid search
+        else n iterations of randomized grid search
+    kwargs: **kwargs
+        Passed onto pipeline training
+
+    Returns
+    -------
+    Grid search object and testing frame
+
+    """
+    targets = kwargs.pop('targets', TARGETS)
+    logger.info('Crossvalidating with targets {}...'.format(targets))
+
+    train_frame, test_frame = train_test_split(post_frame,
+                                               train_size=train_size)
+
+    pipeline = create_default_pipeline(**kwargs)
+    if n_iter is None:
+        grid_search = GridSearchCV(pipeline, param_grid, n_jobs=n_jobs,
+                                   cv=cv, refit=True, verbose=verbose)
+    else:
+        grid_search = RandomizedSearchCV(pipeline, param_grid, n_jobs=n_jobs,
+                                         cv=cv, refit=True, verbose=verbose,
+                                         n_iter=n_iter)
+    logger.info('Starting Grid Search')
+    grid_search.fit(train_frame, train_frame.loc[:, targets])
+
+    logger.info("\nGrid scores on development set:\n")
+    means = grid_search.cv_results_['mean_test_score']
+    stds = grid_search.cv_results_['std_test_score']
+    for mean, std, params in zip(means, stds, grid_search.cv_results_['params']):
+        logger.info("{:0.3f} (+/-{:0.03f}) for {}".format(mean, std * 2, params))
+
+    score = grid_search.score(test_frame, test_frame.loc[:, targets])
+    best_estimator = grid_search.best_estimator_
+
+    logger.info("FINAL TEST Score {} \n of best estimator:\n\n{}".format(score,
+                                        best_estimator.get_params()))
+    return grid_search, test_frame
+
+
+def make_filename(current_datetime, directory):
+    """Creates the filename to store models from TEMPLATE"""
+    filename = FILENAME_TEMPLATE.format(time=current_datetime.strftime('%Y-%U'))
+    filename = os.path.join(directory,filename)
+    return filename
+
+
+def model_exists(current_datetime, directory):
+    """Checks if model has been stored before"""
+    filename = make_filename(current_datetime, directory)
+    return os.path.isfile(filename)
+
+
+def load_or_train_pipeline(post_frame, directory, current_datetime=None,
+                           overwrite=False, store=True, **kwargs):
+    """ Loads a model or trains a new one if not found
+
+    Parameters
+    ----------
+    post_frame: DataFrame
+    directory: str
+        Name of model directory
+    current_datetime: datetime
+    overwrite: bool
+        If stored model should be overwritten
+    store: bool
+        If trained model should be stored to file
+    kwargs
+
+    Returns
+    -------
+    trained scikit pipeline
+
+    """
