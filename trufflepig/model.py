@@ -672,3 +672,310 @@ def load_or_train_pipeline(post_frame, directory, current_datetime=None,
     trained scikit pipeline
 
     """
+    if current_datetime is None:
+        current_datetime = pd.datetime.utcnow()
+    else:
+        current_datetime = pd.to_datetime(current_datetime)
+
+    if not os.path.isdir(directory):
+        os.makedirs(directory)
+
+    filename = make_filename(current_datetime, directory)
+
+    if model_exists(current_datetime, directory) and not overwrite:
+        logger.info('Found file {} will load it'.format(filename))
+        pipeline = joblib.load(filename)
+    else:
+        logger.info('File {} not found, will start training'.format(filename))
+        pipeline = train_pipeline(post_frame, **kwargs)
+        if store:
+            logger.info('Storing file {} to disk'.format(filename))
+            joblib.dump(pipeline, filename, compress=8)
+    return pipeline
+
+
+def compute_tag_factor(tags, punish_list):
+    """ Computes adjustment factor for tags
+
+    Parameters
+    ----------
+    tags: Series
+        Contains the tags of the posts
+
+    Returns
+    -------
+    For each tag found in the `punish_list` the factor is multiplied by 0.8
+
+    """
+    tag_factor = tags.apply(lambda x: 1.0)
+    for to_punish in punish_list:
+        logger.info('...punishing {}...'.format(to_punish))
+        tag_factor *= tags.apply(lambda x: 1 if to_punish not in x else 0.8)
+    return tag_factor
+
+
+def grammar_score_step_function(x):
+    """Mapping from grammar errors per sentence to correction factor"""
+    if x <= 0.05:
+        return 1
+    elif x <= 0.1:
+        return 0.95
+    elif x <= 0.2:
+        return 0.9
+    elif x <= 0.3:
+        return 0.85
+    elif x <= 0.4:
+        return 0.8
+    elif x <= 0.5:
+        return 0.5
+    elif x <=1:
+        return 0.25
+    else:
+        return 0.1
+
+
+def spelling_error_step_function(x):
+    """Mapping of spelling error per word to correction factor"""
+    if x <= 0.01:
+        return 1.0
+    elif x <= 0.02:
+        return 0.95
+    elif x <= 0.03:
+        return 0.9
+    elif x <= 0.05:
+        return 0.85
+    elif x <= 0.075:
+        return 0.8
+    elif x <= 0.1:
+        return 0.7
+    elif x <= 0.125:
+        return 0.5
+    elif x <= 0.15:
+        return 0.3
+    else:
+        return 0.1
+
+
+def vote_score_step_function(x):
+    """Mapping of current votes to correction factor"""
+    if x >= 20:
+        return 1.0
+    elif x >= 10:
+        return 0.95
+    elif x >= 5:
+        return 0.9
+    elif x >= 3:
+        return 0.4
+    else:
+        return 0.2
+
+
+def reward_score_step_function(x):
+    """Mapping of current reward to correction factor"""
+    if x >= 10:
+        return 0.85
+    elif x >= 1.0:
+        return 1.0
+    elif x >= 0.5:
+        return 0.9
+    elif x >= 0.2:
+        return 0.4
+    else:
+        return 0.2
+
+
+def reputation_score_step_function(x):
+    """Mapping of reputation to correction factor"""
+    if x > 50:
+        return 1.0
+    elif x > 45:
+        return 0.95
+    elif x > 40:
+        return 0.9
+    elif x > 35:
+        return 0.85
+    elif x > 30:
+        return 0.75
+    elif x > 25:
+        return 0.6
+    else:
+        return 0.3
+
+
+def compute_simple_reputation(x):
+    """Maps raw author reputation to simple reputation"""
+    result = (np.log10(x) - 9) * 9 +25
+    return result
+
+
+def compute_rank_score(post_frame, punish_list=PUNISH_LIST, ncores=2, chunksize=500):
+    """ Computes the ranks score too sort the truffles for the top list
+
+    Parameters
+    ----------
+    post_frame: DataFrame
+    punish_list: List of str
+        tags that should be punished in ranking
+    ncores: int
+    chunksize: int
+
+    Returns
+    -------
+    Series of ranks score
+        The score is reward_difference * adjustment
+        and adjustment=tag_factor*vote_factor*reward_factor*spelling_errors_factor*grammar_factor*reputation_factor
+
+    """
+    logger.info('Computing tag factor...')
+    tag_factor = compute_tag_factor(post_frame.tags, punish_list)
+
+    logger.info('Computing vote factor...')
+    vote_factor = post_frame.votes.apply(lambda x: vote_score_step_function(x))
+
+    logger.info('Computing reward factor...')
+    reward_factor = post_frame.reward.apply(lambda x: reward_score_step_function(x))
+
+    logger.info('Computing spelling mistake factor...')
+    spelling_errors_factor = post_frame.errors_per_word.apply(lambda x:
+                                                              spelling_error_step_function(x))
+
+    logger.info('Computing reputation factor...')
+    simple_reputation = post_frame.author_reputation.apply(lambda x: compute_simple_reputation(x))
+    reputation_factor = simple_reputation.apply(lambda x: reputation_score_step_function(x))
+
+    logger.info('Applying grammar check...')
+    checker = tfsm.GrammarErrorCounter()
+    errors_per_character = apply_parallel(checker.count_mistakes_per_character,
+                                          post_frame.filtered_body,
+                                          ncores=ncores,
+                                          chunksize=chunksize)
+    gramma_errors_per_sentence = errors_per_character * post_frame.body_length / post_frame.num_sentences
+    post_frame['grammar_errors_per_sentence'] = gramma_errors_per_sentence
+    grammar_factor = gramma_errors_per_sentence.apply(lambda x: grammar_score_step_function(x))
+
+    logger.info('...Done combining reward difference and factors')
+    result = post_frame.rank_score
+    final_factor = (grammar_factor * reward_factor * vote_factor *
+                        tag_factor * spelling_errors_factor * reputation_factor)
+    # increase negative values for low factors:
+    final_factor.loc[result < 0] = 1.0 / final_factor.loc[result < 0]
+    result = result * final_factor
+    post_frame['rank_score'] = result
+    return post_frame
+
+
+def find_truffles(post_frame, pipeline, account='trufflepig',
+                  punish_list=PUNISH_LIST,
+                  k=25, ncores=2, chunksize=500,
+                  add_rank_score=True):
+    """ Digs for truffles, i.e. underpaid posts
+
+    Filtering happens in place
+
+    Parameters
+    ----------
+    post_frame: DataFrame
+        Prepocessed novel data
+    pipeline: trained scikit pipeline
+    account: str
+        The name of the bot account (it should not list itself)
+    punish_list: list of str
+        tags to be punished in ranking
+    k: int
+        Logs the first k truffles to console
+    ncores: int
+        For parallelization of grammar check
+        More than 2 or 3 makes no sense because grammar is checked
+        by LanguageTool Java Server process
+    chunksize: int
+        Multiprocessing chunk size
+    add_rank_score: bool
+        If rank score should be computed and frame should be sorted
+
+    Returns
+    -------
+    Sorted (from best to worst) frame of truffles with
+    predicted votes and rewards
+
+    """
+    logger.info('Looking for truffles in frame of shape {} '
+                'and filtering osts by '
+                '{}'.format(post_frame.shape, account))
+    to_drop = post_frame.loc[post_frame.author == account]
+
+    post_frame.drop(to_drop.index, inplace=True)
+    logger.info('Kept {} posts'.format(len(post_frame)))
+
+    logger.info('Predicting truffles')
+    predicted_rewards_and_votes = pipeline.predict(post_frame)
+
+    post_frame['predicted_reward'] = predicted_rewards_and_votes[:, 0]
+    post_frame['predicted_votes'] = predicted_rewards_and_votes[:, 1]
+    post_frame['rank_score'] = post_frame.predicted_reward - post_frame.reward
+
+    if add_rank_score:
+        logger.info('Computing rank score')
+        post_frame = compute_rank_score(post_frame, punish_list=punish_list,
+                                        ncores=ncores, chunksize=chunksize)
+        post_frame.sort_values('rank_score', ascending=False, inplace=True)
+        log_truffle_info(post_frame, k)
+
+    return post_frame
+
+
+def log_truffle_info(post_frame, k):
+    """ Helper function to log found truffles to console """
+    logger.info('\n\nDETAILED TRUFFLE INFO\n')
+    for irun in range(min(k, len(post_frame))):
+        row = post_frame.iloc[irun]
+        truffle_str = ('\n\n----------------------------------------------'
+                    '--------------------------------------------------'
+                    '\n----------------------------------------------'
+                    '--------------------------------------------------'
+                    '\n----------------------------------------------'
+                    '--------------------------------------------------'
+                    '\n############ RANK {}: {} ############'.format(irun + 1 ,
+                                                                     row.title))
+        truffle_str += '\nhttps://steemit.com/@{}/{}'.format(row.author,
+                                                        row.permalink)
+        truffle_str +=('\nEstimated Reward: {:.2f} vs. {:.2f}; Estimated votes {:d} vs. '
+                    '{:d} and a rank score of '
+                    '{:.2f}'.format(row.predicted_reward, row.reward,
+                                int(row.predicted_votes), int(row.votes),
+                                row.rank_score))
+        truffle_str += ('\n\n-------------------------------------------------'
+                    '---------------------------------------------------\n\n')
+        truffle_str += row.body[:1000]
+        truffle_str += ('\n\n-------------------------------------------------'
+                    '---------------------------------------------------\n')
+        logger.info(truffle_str)
+
+    logger.info('\n\nTRUFFLE SUMMARY\n')
+    for irun in range(min(k, len(post_frame))):
+        row = post_frame.iloc[irun]
+        truffle_str = '\n\n### RANK {}: {}'.format(irun + 1 , row.title)
+        truffle_str += '\nhttps://steemit.com/@{}/{}'.format(row.author,
+                                                        row.permalink)
+        truffle_str +=('\nEstimated Reward: {:.2f} vs. {:.2f}; Estimated votes {:d} vs. '
+                    '{:d} and a rank score of '
+                       '{:.2f}'.format(row.predicted_reward, row.reward,
+                                int(row.predicted_votes), int(row.votes),
+                                row.rank_score))
+        logger.info(truffle_str)
+
+
+def log_pipeline_info(pipeline):
+    """Helper function to log model information to console"""
+    topic_model = pipeline.named_steps['feature_generation'].transformer_list[1][1]
+    feature_selector = pipeline.named_steps['feature_generation'].transformer_list[0][1]
+    logging.getLogger().info(topic_model.print_topics(n_best=None))
+
+    feature_importance_string = 'Feature importances \n'
+    num_topics = topic_model.num_topics
+    features = feature_selector.features
+    feature_names = features + ['topic_{:03d}'.format(x)
+                                for x in range(num_topics)]
+    for kdx, importance in enumerate(pipeline.named_steps['regressor'].feature_importances_):
+        name = feature_names[kdx]
+        feature_importance_string += '{:03d}{:>25}: {:.3f}\n'.format(kdx, name, importance)
+    logger.info(feature_importance_string)
