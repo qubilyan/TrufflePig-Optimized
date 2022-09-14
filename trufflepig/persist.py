@@ -47,3 +47,57 @@ def to_sqlite(frame, filename, tablename, index=True):
     del store_frame
     gc.collect()
 
+
+def from_sqlite(filename, tablename=None, query=None,
+                index_col='index', indexname=None):
+    """ Loads a DataFrame from SQLite file
+
+    Parameters
+    ----------
+    filename: str
+    tablename: str
+    query: str or None
+    index_col: str
+    indexname: str
+
+    Returns
+    -------
+    DataFrame
+
+    """
+    if query is None and tablename is None:
+        raise ValueError('Need table or query')
+    elif query is not None and tablename is not None:
+        raise ValueError('Select either tablename or query')
+
+    con = sqlite3.connect(filename)
+
+    if query is None:
+        query = 'SELECT * FROM {}'.format(tablename)
+
+    load_frame = pd.read_sql(query, con, index_col=index_col)
+
+    result_frame = pd.DataFrame(index=load_frame.index)
+    result_frame.index.name = indexname
+
+    for col in list(load_frame.columns):
+        if col.startswith(JSON):
+            name = col[len(JSON):]
+            result_frame[name] = load_frame[col].apply(json.loads)
+            load_frame.drop(col, axis=1, inplace=True)
+        elif col.startswith(SETJSON):
+            name = col[len(SETJSON):]
+            result_frame[name] = load_frame[col].apply(lambda x:
+                                                       set(json.loads(x)))
+            load_frame.drop(col, axis=1, inplace=True)
+        elif col.startswith(TIMESTAMP):
+            name = col[len(TIMESTAMP):]
+            result_frame[name] = load_frame[col].apply(pd.to_datetime)
+        else:
+            result_frame[col] = load_frame[col]
+
+    logger.info('Garbage Collecting')
+    del load_frame
+    gc.collect()
+
+    return result_frame
