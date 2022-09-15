@@ -17,4 +17,9 @@ from trufflepig.filters.blacklist import BUILD_A_WHALE_BLACKLIST
 logger = logging.getLogger(__name__)
 
 
-FILTER_TAGS = ('mitnebcurationtrail', 'informationwar'
+FILTER_TAGS = ('mitnebcurationtrail', 'informationwar', 'truth', 'conspiracy',
+               'vaccines', 'contest', 'giveaway', 'deutsch', 'kr', 'kr-newbie',
+               'nsfw', 'sex', 'daily', 'photofeed', 'gambling',
+               # other weird stuff
+               'steemsilvergold', 'horoscope', 'guns', 'investing', 'tib',
+               # Somehow religio
