@@ -22,4 +22,9 @@ FILTER_TAGS = ('mitnebcurationtrail', 'informationwar', 'truth', 'conspiracy',
                'nsfw', 'sex', 'daily', 'photofeed', 'gambling',
                # other weird stuff
                'steemsilvergold', 'horoscope', 'guns', 'investing', 'tib',
-               # Somehow religio
+               # Somehow religious texts do not work in combination with others
+               # maybe I need a bot just to rate spiritual content
+               # for simplicity let's ignore them for now,
+               # sorry, no releigious truffles in the near future!
+               'bible', 'faith', 'spiritual', 'christianity', 'steemchurch',
+               # Filter translations for utoptia
