@@ -27,4 +27,17 @@ FILTER_TAGS = ('mitnebcurationtrail', 'informationwar', 'truth', 'conspiracy',
                # for simplicity let's ignore them for now,
                # sorry, no releigious truffles in the near future!
                'bible', 'faith', 'spiritual', 'christianity', 'steemchurch',
-               # Filter translations for utoptia
+               # Filter translations for utoptian
+               'translations', 'translation')
+
+
+# Stay out of the whale wars!
+FILTER_AUTHORS = ('haejin', 'ew-and-patterns', 'caladium',
+                  'cryptopassion', 'thirdeye7', 'shariarahammad')
+
+# Get out plagiarismos!
+FILTER_VOTERS = ('cheetah',)
+
+
+def filter_duplicates(frame):
+    """ Filters out duplicate entrie
