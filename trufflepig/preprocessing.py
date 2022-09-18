@@ -40,4 +40,21 @@ FILTER_VOTERS = ('cheetah',)
 
 
 def filter_duplicates(frame):
-    """ Filters out duplicate entrie
+    """ Filters out duplicate entries based on author and permalink
+
+    Filtering is inplace!
+
+    Parameters
+    ----------
+    frame: DataFrame
+
+    Returns
+    -------
+    DataFrame
+
+    """
+    old_len = len(frame)
+    frame.drop_duplicates(subset=['author', 'permalink'],
+                                     keep='last', inplace=True)
+    if len(frame) < old_len:
+      
