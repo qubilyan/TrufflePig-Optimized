@@ -57,4 +57,15 @@ def filter_duplicates(frame):
     frame.drop_duplicates(subset=['author', 'permalink'],
                                      keep='last', inplace=True)
     if len(frame) < old_len:
-      
+        logger.info('Filtered {} duplicates kept {} '
+                    'posts'.format(old_len - len(frame), len(frame)))
+    return frame
+
+
+def apply_parallel(function, iterable, ncores, chunksize=1000):
+    """ Applies a `function` in parallel on `ncores`.
+
+    Parameters
+    ----------
+    function: callable
+    iterable: list, t
