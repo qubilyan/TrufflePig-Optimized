@@ -68,4 +68,19 @@ def apply_parallel(function, iterable, ncores, chunksize=1000):
     Parameters
     ----------
     function: callable
-    iterable: list, t
+    iterable: list, tuple, etc.
+    ncores: int
+        The number of jobs started
+    chunksize: int
+        Size of chunk submitted to pool
+
+    Returns
+    -------
+    List of function outputs
+
+    """
+    if ncores == 1:
+        return [function(x) for x in iterable]
+    else:
+        ctx = mp.get_context('spawn')
+        pool = ctx.Pool(ncores)
