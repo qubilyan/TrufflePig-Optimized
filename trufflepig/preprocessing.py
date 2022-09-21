@@ -97,4 +97,12 @@ def preprocess(post_df, ncores=4, chunksize=500,
                detect_seed=42, detect_max_length=2500,
                min_en_prob=0.9,
                min_max_body_length=(500, 35000),
-               min_max_letter_ratio=(0.5, 0.
+               min_max_letter_ratio=(0.5, 0.85),
+               min_max_num_paragraphs=(2, 250),
+               min_max_num_words=(100, 12500),
+               min_max_num_sentences=(5, 1250),
+               min_max_words_per_paragraph=(10, 1250),
+               max_errors_per_word=0.2,
+               min_max_average_punctuation=(1.05, 5),
+               min_max_average_sentence_length=(10, 350),
+  
