@@ -84,3 +84,17 @@ def apply_parallel(function, iterable, ncores, chunksize=1000):
     else:
         ctx = mp.get_context('spawn')
         pool = ctx.Pool(ncores)
+
+        results = [x for x in pool.imap(function, iterable, chunksize)]
+
+        pool.close()
+        pool.join()
+
+        return results
+
+
+def preprocess(post_df, ncores=4, chunksize=500,
+               detect_seed=42, detect_max_length=2500,
+               min_en_prob=0.9,
+               min_max_body_length=(500, 35000),
+               min_max_letter_ratio=(0.5, 0.
