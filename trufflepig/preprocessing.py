@@ -116,4 +116,16 @@ def preprocess(post_df, ncores=4, chunksize=500,
     Parameters
     ----------
     post_df: DataFrame
-        Raw
+        Raw steemit posts, needs to contain
+            * author
+            * permalink
+            * body
+            * title
+            * votes
+            * reward
+    ncores: int
+        Some stuff is executed in parallel, these are the number of jobs
+    chunksize: int
+        Size of multiprocessing chunk
+    detect_seed: int
+     
