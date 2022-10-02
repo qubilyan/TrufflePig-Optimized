@@ -135,4 +135,13 @@ def preprocess(post_df, ncores=4, chunksize=500,
         0 < min_en_prob <= 1, Minimum detection probability to classify a
         post as English
     min_max_body_length: tuple of int
-        Boundaries for allowed (filtered) body 
+        Boundaries for allowed (filtered) body length
+    min_max_letter_ratio: tuple of float
+        Boundaries for letters vs punctuation ratio
+    min_max_num_paragraphs: tuple of int
+        Boundaries for number of paragraphs
+    min_max_num_words: tuple of int
+        Boundaries for number of words
+    min_max_num_sentences: tuple of int
+        Boundaries of number of sentences
+    mi
