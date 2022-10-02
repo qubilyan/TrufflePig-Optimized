@@ -128,4 +128,11 @@ def preprocess(post_df, ncores=4, chunksize=500,
     chunksize: int
         Size of multiprocessing chunk
     detect_seed: int
-     
+        Seed value for language detection
+    detect_max_length: int
+        Maximum character size for language detection
+    min_en_prob: float
+        0 < min_en_prob <= 1, Minimum detection probability to classify a
+        post as English
+    min_max_body_length: tuple of int
+        Boundaries for allowed (filtered) body 
