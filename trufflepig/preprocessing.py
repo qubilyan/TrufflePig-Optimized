@@ -144,4 +144,10 @@ def preprocess(post_df, ncores=4, chunksize=500,
         Boundaries for number of words
     min_max_num_sentences: tuple of int
         Boundaries of number of sentences
-    mi
+    min_max_words_per_paragraph:
+        Boundaries for min max average words per paragraph
+    max_errors_per_word: float
+        Threshold of maximum spelling errors per word allowed
+    min_max_average_punctuation: tuple of float
+        Boundaries for average punctuation per sentence
+    min_max_average_sentence_length: tup
