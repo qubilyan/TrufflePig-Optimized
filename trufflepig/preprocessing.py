@@ -150,4 +150,13 @@ def preprocess(post_df, ncores=4, chunksize=500,
         Threshold of maximum spelling errors per word allowed
     min_max_average_punctuation: tuple of float
         Boundaries for average punctuation per sentence
-    min_max_average_sentence_length: tup
+    min_max_average_sentence_length: tuple of float
+        Boundaries for average sentence length
+    filter_tags: tuple of string
+        Tags to be filtered like 'sex', 'nsfw' or controversial stuff like
+        'vaccines'.
+    filter_authors: tuple of string
+        Authors to be filtered...
+    filter_voters: tuple of string
+        If vored by one of them post is excluded
+   
