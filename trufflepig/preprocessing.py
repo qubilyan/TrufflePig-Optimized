@@ -159,4 +159,17 @@ def preprocess(post_df, ncores=4, chunksize=500,
         Authors to be filtered...
     filter_voters: tuple of string
         If vored by one of them post is excluded
-   
+    dropna: bool
+        If NaN rows should be dropped
+
+    Returns
+    -------
+    Filtered frame
+
+    """
+    logger.info('Filtering duplicates of {} posts'.format(len(post_df)))
+    post_df = filter_duplicates(post_df)
+
+    logger.info('Filtering authors {}'.format(filter_authors))
+    filter_authors = set(filter_authors)
+ 
