@@ -179,4 +179,11 @@ def preprocess(post_df, ncores=4, chunksize=500,
 
     logger.info('Filtering voted by {}'.format(filter_voters))
     filter_voters = set(filter_voters)
-    voted_by = post
+    voted_by = post_df.active_votes.apply(lambda x: tftf.voted_by(x, filter_voters))
+    to_drop = post_df.loc[voted_by]
+    post_df.drop(to_drop.index, inplace=True)
+    logger.info('Kept {} posts'.format(len(post_df)))
+
+    logger.info('Filtering tags {}'.format(filter_tags))
+    filter_tags = set(filter_tags)
+    tag_filter = post_df
