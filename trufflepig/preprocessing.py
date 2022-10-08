@@ -172,4 +172,11 @@ def preprocess(post_df, ncores=4, chunksize=500,
 
     logger.info('Filtering authors {}'.format(filter_authors))
     filter_authors = set(filter_authors)
- 
+    author_filter = post_df.author.apply(lambda x: x in filter_authors)
+    to_drop = post_df.loc[author_filter]
+    post_df.drop(to_drop.index, inplace=True)
+    logger.info('Kept {} posts'.format(len(post_df)))
+
+    logger.info('Filtering voted by {}'.format(filter_voters))
+    filter_voters = set(filter_voters)
+    voted_by = post
