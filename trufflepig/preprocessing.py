@@ -186,4 +186,11 @@ def preprocess(post_df, ncores=4, chunksize=500,
 
     logger.info('Filtering tags {}'.format(filter_tags))
     filter_tags = set(filter_tags)
-    tag_filter = post_df
+    tag_filter = post_df.tags.apply(lambda x: tftf.is_in_filter_tags(x, filter_tags))
+    to_drop = post_df.loc[tag_filter]
+    post_df.drop(to_drop.index, inplace=True)
+    logger.info('Kept {} posts'.format(len(post_df)))
+
+    logger.info('Filtering images and links')
+    post_df['filtered_body'] = post_df.body.apply(lambda x:
+             
