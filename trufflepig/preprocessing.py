@@ -193,4 +193,11 @@ def preprocess(post_df, ncores=4, chunksize=500,
 
     logger.info('Filtering images and links')
     post_df['filtered_body'] = post_df.body.apply(lambda x:
-             
+                                                  tftf.filter_images_and_links(x))
+
+    logger.info('Filtering quotes')
+    post_df['filtered_body'] = post_df.filtered_body.apply(lambda x: tftf.filter_quotes(x))
+
+    logger.info('Counting and filtering headings')
+    post_df['num_headings'] = post_df.filtered_body.apply(lambda x:
+                                                    
