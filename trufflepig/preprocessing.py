@@ -214,4 +214,11 @@ def preprocess(post_df, ncores=4, chunksize=500,
 
     logger.info('Filtering formatting')
     post_df['filtered_body'] = post_df.filtered_body.apply(lambda x:
-                     
+                                                           tftf.filter_formatting(x))
+
+    logger.info('Filtering special characters')
+    post_df['filtered_body'] = post_df.filtered_body.apply(lambda x:
+                                                           tftf.filter_special_characters(x))
+
+    logger.info('Counting paragraphs')
+    post_df['num_paragraphs'] = post_df.fi
