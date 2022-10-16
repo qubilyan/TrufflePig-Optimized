@@ -206,4 +206,12 @@ def preprocess(post_df, ncores=4, chunksize=500,
 
     logger.info('Filtering html')
     post_df['filtered_body'] = post_df.filtered_body.apply(lambda x: tftf.
-                                                           filter_html_ta
+                                                           filter_html_tags(x))
+
+    logger.info('Filtering urls')
+    post_df['filtered_body'] = post_df.filtered_body.apply(lambda x:
+                                                           tftf.filter_urls(x))
+
+    logger.info('Filtering formatting')
+    post_df['filtered_body'] = post_df.filtered_body.apply(lambda x:
+                     
