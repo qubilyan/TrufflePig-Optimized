@@ -221,4 +221,9 @@ def preprocess(post_df, ncores=4, chunksize=500,
                                                            tftf.filter_special_characters(x))
 
     logger.info('Counting paragraphs')
-    post_df['num_paragraphs'] = post_df.fi
+    post_df['num_paragraphs'] = post_df.filtered_body.apply(lambda x:
+                                                        tfsm.count_paragraphs(x))
+    to_drop = post_df.loc[(post_df.num_paragraphs < min_max_num_paragraphs[0]) |
+                          (post_df.num_paragraphs > min_max_num_paragraphs[1])]
+    post_df.drop(to_drop.index, inplace=True)
+    logger.info('Filtered acc
