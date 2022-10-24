@@ -232,4 +232,10 @@ def preprocess(post_df, ncores=4, chunksize=500,
     logger.info('Calculating length')
     post_df['body_length'] = post_df.filtered_body.apply(lambda x: len(x))
     to_drop = post_df.loc[(post_df.body_length < min_max_body_length[0]) |
-           
+                          (post_df.body_length > min_max_body_length[1])]
+    post_df.drop(to_drop.index, inplace=True)
+    logger.info('Filtered according to body limits {} '
+                'kept {} posts.'.format(min_max_body_length, len(post_df)))
+
+    logger.info('Counting letters')
+    post_df['letter_count'
