@@ -226,4 +226,10 @@ def preprocess(post_df, ncores=4, chunksize=500,
     to_drop = post_df.loc[(post_df.num_paragraphs < min_max_num_paragraphs[0]) |
                           (post_df.num_paragraphs > min_max_num_paragraphs[1])]
     post_df.drop(to_drop.index, inplace=True)
-    logger.info('Filtered acc
+    logger.info('Filtered according to num paragraphs limits {} '
+                'kept {} posts.'.format(min_max_num_paragraphs, len(post_df)))
+
+    logger.info('Calculating length')
+    post_df['body_length'] = post_df.filtered_body.apply(lambda x: len(x))
+    to_drop = post_df.loc[(post_df.body_length < min_max_body_length[0]) |
+           
