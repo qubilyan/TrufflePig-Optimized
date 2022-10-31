@@ -243,4 +243,9 @@ def preprocess(post_df, ncores=4, chunksize=500,
     to_drop = post_df.loc[(post_df.letter_ratio < min_max_letter_ratio[0]) |
                           (post_df.letter_ratio > min_max_letter_ratio[1])]
     post_df.drop(to_drop.index, inplace=True)
-    logger.info('Filte
+    logger.info('Filtered according to letter ratio limits {} '
+                'kept {} posts.'.format(min_max_letter_ratio, len(post_df)))
+
+    logger.info('Splitting into sentences')
+    post_df['filtered_sentences'] = post_df.filtered_body.apply(lambda x:
+                                                            tfsm.split_into_senten
