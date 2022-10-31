@@ -238,4 +238,9 @@ def preprocess(post_df, ncores=4, chunksize=500,
                 'kept {} posts.'.format(min_max_body_length, len(post_df)))
 
     logger.info('Counting letters')
-    post_df['letter_count'
+    post_df['letter_count'] = post_df.filtered_body.apply(lambda x: tfsm.count_letters(x))
+    post_df['letter_ratio'] = post_df.letter_count / post_df.body_length
+    to_drop = post_df.loc[(post_df.letter_ratio < min_max_letter_ratio[0]) |
+                          (post_df.letter_ratio > min_max_letter_ratio[1])]
+    post_df.drop(to_drop.index, inplace=True)
+    logger.info('Filte
