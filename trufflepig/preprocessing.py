@@ -248,4 +248,9 @@ def preprocess(post_df, ncores=4, chunksize=500,
 
     logger.info('Splitting into sentences')
     post_df['filtered_sentences'] = post_df.filtered_body.apply(lambda x:
-                                                            tfsm.split_into_senten
+                                                            tfsm.split_into_sentences(x))
+    post_df['num_sentences'] = post_df.filtered_sentences.apply(lambda x: len(x))
+    to_drop = post_df.loc[(post_df.num_sentences < min_max_num_sentences[0]) |
+                          (post_df.num_sentences > min_max_num_sentences[1])]
+    post_df.drop(to_drop.index, inplace=True)
+    logger.info('Filtered according to num sentences lim
