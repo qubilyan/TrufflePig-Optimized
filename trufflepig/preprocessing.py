@@ -259,4 +259,8 @@ def preprocess(post_df, ncores=4, chunksize=500,
     logger.info('Computing average sentence length')
     post_df['average_sentence_length'] =  post_df.filtered_sentences.apply(lambda x:
                                        tfsm.compute_average_sentence_length(x))
-    to_drop = post_df.loc[(post_df.average_
+    to_drop = post_df.loc[(post_df.average_sentence_length < min_max_average_sentence_length[0]) |
+                          (post_df.average_sentence_length > min_max_average_sentence_length[1])]
+    post_df.drop(to_drop.index, inplace=True)
+    logger.info('Filtered according to avg. sentences limits {} '
+                'kept {} posts.'.format(min
