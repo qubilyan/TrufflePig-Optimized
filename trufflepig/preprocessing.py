@@ -277,4 +277,12 @@ def preprocess(post_df, ncores=4, chunksize=500,
                                           tfsm.compute_sentence_length_skew(x))
 
     logger.info('Computing sentence length kurtosis')
-    post_df['sentence_length_kurtosis'] = post_df.filtered_sentences.apply(lambda 
+    post_df['sentence_length_kurtosis'] = post_df.filtered_sentences.apply(lambda x:
+                                          tfsm.compute_sentence_length_kurtosis(x))
+
+    logger.info('Combining Body and Title')
+    post_df['combined'] = (post_df.title.apply(lambda x: x.lower()) + ' '
+                         + post_df.filtered_body.apply(lambda x: x.lower()))
+
+    logger.info('Filtering special characters again')
+    post
