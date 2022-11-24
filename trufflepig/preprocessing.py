@@ -272,4 +272,9 @@ def preprocess(post_df, ncores=4, chunksize=500,
     post_df['sentence_length_variance'] = post_df.filtered_sentences.apply(lambda x:
                                           tfsm.compute_sentence_length_variance(x))
 
-   
+    logger.info('Computing sentence length skew')
+    post_df['sentence_length_skew'] = post_df.filtered_sentences.apply(lambda x:
+                                          tfsm.compute_sentence_length_skew(x))
+
+    logger.info('Computing sentence length kurtosis')
+    post_df['sentence_length_kurtosis'] = post_df.filtered_sentences.apply(lambda 
