@@ -285,4 +285,11 @@ def preprocess(post_df, ncores=4, chunksize=500,
                          + post_df.filtered_body.apply(lambda x: x.lower()))
 
     logger.info('Filtering special characters again')
-    post
+    post_df['combined'] = post_df.combined.apply(lambda x:
+                                             tftf.filter_special_characters(x))
+
+    logger.info('Filtering punctuation')
+    post_df['combined'] = post_df.combined.apply(lambda x:
+                                             tftf.filter_punctuation(x))
+
+    lo
