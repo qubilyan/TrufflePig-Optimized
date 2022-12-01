@@ -292,4 +292,9 @@ def preprocess(post_df, ncores=4, chunksize=500,
     post_df['combined'] = post_df.combined.apply(lambda x:
                                              tftf.filter_punctuation(x))
 
-    lo
+    logger.info('Replacing new lines')
+    post_df['combined'] = post_df.combined.apply(lambda x: tftf.replace_newlines(x))
+
+    logger.info('Computing average punctuation')
+    post_df['average_punctuation'] = post_df.filtered_sentences.apply(lambda x:
+                                                            tfsm.compute_average_puncitat
