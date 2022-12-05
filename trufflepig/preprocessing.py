@@ -315,4 +315,10 @@ def preprocess(post_df, ncores=4, chunksize=500,
                                                       post_df.filtered_body,
                                                       ncores=ncores,
                                                       chunksize=chunksize)
-    post_df['en_prob'] = post_df.lang
+    post_df['en_prob'] = post_df.languages.apply(lambda x: x.get('en', 0))
+    to_drop = post_df.loc[post_df.en_prob < min_en_prob]
+    post_df.drop(to_drop.index, inplace=True)
+    logger.info('Found {} English posts with threshold {}'.format(len(post_df),
+                                                                  min_en_prob))
+
+    l
