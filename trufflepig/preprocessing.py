@@ -297,4 +297,9 @@ def preprocess(post_df, ncores=4, chunksize=500,
 
     logger.info('Computing average punctuation')
     post_df['average_punctuation'] = post_df.filtered_sentences.apply(lambda x:
-                                                            tfsm.compute_average_puncitat
+                                                            tfsm.compute_average_puncitation(x))
+    to_drop = post_df.loc[(post_df.average_punctuation < min_max_average_punctuation[0]) |
+                          (post_df.average_punctuation > min_max_average_punctuation[1])]
+    post_df.drop(to_drop.index, inplace=True)
+    logger.info('Filtered according to punctuation limits {} '
+                'kept {} posts.'.format(mi
