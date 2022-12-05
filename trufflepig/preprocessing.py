@@ -321,4 +321,11 @@ def preprocess(post_df, ncores=4, chunksize=500,
     logger.info('Found {} English posts with threshold {}'.format(len(post_df),
                                                                   min_en_prob))
 
-    l
+    logger.info('Spell checking')
+    checker = tfsm.SpellErrorCounter()
+    post_df['num_spelling_errors'] = apply_parallel(checker.count_mistakes,
+                                              post_df.combined,
+                                              ncores=ncores,
+                                              chunksize=chunksize)
+
+    logger.info('Tokenization
