@@ -346,4 +346,10 @@ def preprocess(post_df, ncores=4, chunksize=500,
     post_df['words_per_paragraph'] = post_df.num_words / post_df.num_paragraphs
     to_drop = post_df.loc[(post_df.words_per_paragraph < min_max_words_per_paragraph[0]) |
                           (post_df.words_per_paragraph > min_max_words_per_paragraph[1])]
-    post_df.drop(to_drop
+    post_df.drop(to_drop.index, inplace=True)
+    logger.info('Filtered according to num words per paragraph limits {} '
+                'kept {} posts.'.format(min_max_words_per_paragraph, len(post_df)))
+
+    logger.info('Computing mistakes per word')
+    post_df['errors_per_word'] = post_df.num_spelling_errors / post_df.num_words
+    to_drop = post_df.
