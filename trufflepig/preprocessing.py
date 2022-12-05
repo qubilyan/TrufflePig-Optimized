@@ -336,4 +336,8 @@ def preprocess(post_df, ncores=4, chunksize=500,
 
     logger.info('Computing number of words')
     post_df['num_words'] = post_df.tokens.apply(lambda x: len(x))
-    to_dro
+    to_drop = post_df.loc[(post_df.num_words < min_max_num_words[0]) |
+                          (post_df.num_words > min_max_num_words[1])]
+    post_df.drop(to_drop.index, inplace=True)
+    logger.info('Filtered according to num words limits {} '
+                'kept {} posts.'.format(min_max_num_words, len(pos
