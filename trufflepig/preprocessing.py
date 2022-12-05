@@ -328,4 +328,12 @@ def preprocess(post_df, ncores=4, chunksize=500,
                                               ncores=ncores,
                                               chunksize=chunksize)
 
-    logger.info('Tokenization
+    logger.info('Tokenization')
+    post_df['tokens'] = post_df.combined.apply(lambda x: x.split(' '))
+    post_df.drop('combined', axis=1, inplace=True)
+    logger.info('Intermediate garbage collection.')
+    gc.collect()
+
+    logger.info('Computing number of words')
+    post_df['num_words'] = post_df.tokens.apply(lambda x: len(x))
+    to_dro
