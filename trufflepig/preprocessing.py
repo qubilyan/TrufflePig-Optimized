@@ -340,4 +340,10 @@ def preprocess(post_df, ncores=4, chunksize=500,
                           (post_df.num_words > min_max_num_words[1])]
     post_df.drop(to_drop.index, inplace=True)
     logger.info('Filtered according to num words limits {} '
-                'kept {} posts.'.format(min_max_num_words, len(pos
+                'kept {} posts.'.format(min_max_num_words, len(post_df)))
+
+    logger.info('Computing words per paragraph')
+    post_df['words_per_paragraph'] = post_df.num_words / post_df.num_paragraphs
+    to_drop = post_df.loc[(post_df.words_per_paragraph < min_max_words_per_paragraph[0]) |
+                          (post_df.words_per_paragraph > min_max_words_per_paragraph[1])]
+    post_df.drop(to_drop
