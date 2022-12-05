@@ -302,4 +302,13 @@ def preprocess(post_df, ncores=4, chunksize=500,
                           (post_df.average_punctuation > min_max_average_punctuation[1])]
     post_df.drop(to_drop.index, inplace=True)
     logger.info('Filtered according to punctuation limits {} '
-                'kept {} posts.'.format(mi
+                'kept {} posts.'.format(min_max_average_punctuation, len(post_df)))
+
+    post_df.drop('filtered_sentences', axis=1, inplace=True)
+    logger.info('Intermediate garbage collection.')
+    gc.collect()
+
+    logger.info('Detecting language')
+    detector = tfsm.LanguageDetector(seed=detect_seed,
+                                     max_length=detect_max_length)
+    post_df['lan
