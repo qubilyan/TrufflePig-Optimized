@@ -311,4 +311,8 @@ def preprocess(post_df, ncores=4, chunksize=500,
     logger.info('Detecting language')
     detector = tfsm.LanguageDetector(seed=detect_seed,
                                      max_length=detect_max_length)
-    post_df['lan
+    post_df['languages'] = apply_parallel(detector.get_probabilities,
+                                                      post_df.filtered_body,
+                                                      ncores=ncores,
+                                                      chunksize=chunksize)
+    post_df['en_prob'] = post_df.lang
