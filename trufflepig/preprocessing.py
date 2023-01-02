@@ -352,4 +352,12 @@ def preprocess(post_df, ncores=4, chunksize=500,
 
     logger.info('Computing mistakes per word')
     post_df['errors_per_word'] = post_df.num_spelling_errors / post_df.num_words
-    to_drop = post_df.
+    to_drop = post_df.loc[post_df.errors_per_word > max_errors_per_word]
+    post_df.drop(to_drop.index, inplace=True)
+    logger.info('Filtered according to spelling mistake limit {} per word '
+                'kept {} posts.'.format(max_errors_per_word, len(post_df)))
+
+    logger.info('Intermediate garbage collection.')
+    gc.collect()
+
+   
