@@ -365,4 +365,9 @@ def preprocess(post_df, ncores=4, chunksize=500,
     post_df['unique_ratio'] = post_df.unique_words / post_df.num_words
 
     logger.info('Computing characters and characters per word')
-    post_df['num_chars'] = post_df.tokens.apply(lambda x: tfsm.count
+    post_df['num_chars'] = post_df.tokens.apply(lambda x: tfsm.count_characters(x))
+    post_df['chars_per_word'] = post_df.num_chars / post_df.num_words
+
+    logger.info('Counting connectors')
+    post_df['num_connectors'] = post_df.tokens.apply(lambda x: tfsm.count_connectors(x))
+    post_df['connectors_per_sentence'] = post_df.num_connectors / 
