@@ -370,4 +370,11 @@ def preprocess(post_df, ncores=4, chunksize=500,
 
     logger.info('Counting connectors')
     post_df['num_connectors'] = post_df.tokens.apply(lambda x: tfsm.count_connectors(x))
-    post_df['connectors_per_sentence'] = post_df.num_connectors / 
+    post_df['connectors_per_sentence'] = post_df.num_connectors / post_df.num_sentences
+
+    logger.info('Counting pronouns')
+    post_df['num_pronouns'] = post_df.tokens.apply(lambda x: tfsm.count_pronouns(x))
+    post_df['pronouns_per_sentence'] = post_df.num_pronouns / post_df.num_sentences
+
+    logger.info('Counting adverbs')
+    post_df['num_adverbs'] = post_df.tokens.apply(lambda x: tfsm.adverb_e
