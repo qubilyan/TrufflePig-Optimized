@@ -377,4 +377,10 @@ def preprocess(post_df, ncores=4, chunksize=500,
     post_df['pronouns_per_sentence'] = post_df.num_pronouns / post_df.num_sentences
 
     logger.info('Counting adverbs')
-    post_df['num_adverbs'] = post_df.tokens.apply(lambda x: tfsm.adverb_e
+    post_df['num_adverbs'] = post_df.tokens.apply(lambda x: tfsm.adverb_estimate(x))
+    post_df['adverbs_per_sentence'] = post_df.num_adverbs / post_df.num_sentences
+
+    logger.info('Calculating syllables')
+    syllable_converter = tfsm.SyllableConverter()
+    post_df['token_syllables'] = post_df.tokens.apply(lambda x:
+                                                  syllable_converter.tokens
