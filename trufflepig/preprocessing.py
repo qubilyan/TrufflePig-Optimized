@@ -383,4 +383,9 @@ def preprocess(post_df, ncores=4, chunksize=500,
     logger.info('Calculating syllables')
     syllable_converter = tfsm.SyllableConverter()
     post_df['token_syllables'] = post_df.tokens.apply(lambda x:
-                                                  syllable_converter.tokens
+                                                  syllable_converter.tokens2syllablses(x))
+    logger.info('Computing features based on the syllables')
+    post_df['num_syllables'] = post_df.token_syllables.apply(lambda x: sum(x))
+    post_df['num_complex_words'] = post_df.token_syllables.apply(lambda x:
+                                                             sum([y >= 3 for y in x]))
+    post_df[
