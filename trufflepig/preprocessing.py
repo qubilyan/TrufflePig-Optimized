@@ -418,4 +418,15 @@ def preprocess(post_df, ncores=4, chunksize=500,
     return post_df
 
 
-def load_or_preprocess(pos
+def load_or_preprocess(post_frame, filename, *args,
+                       overwrite=False, store=True,
+                       steem_args_for_upvote=None,
+                       bots=tfga.BITBOTS,
+                       **kwargs):
+    """ Tries to load a preprocessed frame if not found preprocessing starts.
+
+    Parameters
+    ----------
+    post_frame: DataFrame
+    filename: str
+     
