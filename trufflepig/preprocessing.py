@@ -392,4 +392,9 @@ def preprocess(post_df, ncores=4, chunksize=500,
     post_df['average_syllables'] = post_df.token_syllables.apply(lambda x: np.mean(x))
     post_df['syllable_variance'] = post_df.token_syllables.apply(lambda x: np.var(x))
     post_df['syllable_skew'] = post_df.token_syllables.apply(lambda x: spst.skew(x))
-    post_df['syllable_k
+    post_df['syllable_kurtosis'] = post_df.token_syllables.apply(lambda x: spst.kurtosis(x))
+
+    logger.info('Computing readability indices')
+    post_df['gunning_fog_index'] = tfsm.gunning_fog_index(num_words=post_df.num_words,
+                                                        num_complex_words=post_df.num_complex_words,
+                           
