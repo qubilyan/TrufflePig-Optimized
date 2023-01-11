@@ -404,4 +404,8 @@ def preprocess(post_df, ncores=4, chunksize=500,
     post_df['smog_index']= tfsm.smog_index(num_complex_words=post_df.num_complex_words,
                                          num_sentences=post_df.num_sentences)
     post_df['automated_readability_index'] = tfsm.automated_readability_index(num_chars=post_df.num_chars,
-                       
+                                                                        num_words=post_df.num_words,
+                                                                        num_sentences=post_df.num_sentences)
+    post_df['coleman_liau_index'] = tfsm.coleman_liau_index(num_chars=post_df.num_chars,
+                                                            num_words=post_df.num_words,
+    
