@@ -388,4 +388,8 @@ def preprocess(post_df, ncores=4, chunksize=500,
     post_df['num_syllables'] = post_df.token_syllables.apply(lambda x: sum(x))
     post_df['num_complex_words'] = post_df.token_syllables.apply(lambda x:
                                                              sum([y >= 3 for y in x]))
-    post_df[
+    post_df['complex_word_ratio'] = post_df.num_complex_words / post_df.num_words
+    post_df['average_syllables'] = post_df.token_syllables.apply(lambda x: np.mean(x))
+    post_df['syllable_variance'] = post_df.token_syllables.apply(lambda x: np.var(x))
+    post_df['syllable_skew'] = post_df.token_syllables.apply(lambda x: spst.skew(x))
+    post_df['syllable_k
