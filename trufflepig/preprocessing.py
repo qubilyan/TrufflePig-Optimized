@@ -397,4 +397,7 @@ def preprocess(post_df, ncores=4, chunksize=500,
     logger.info('Computing readability indices')
     post_df['gunning_fog_index'] = tfsm.gunning_fog_index(num_words=post_df.num_words,
                                                         num_complex_words=post_df.num_complex_words,
-                           
+                                                        num_sentences=post_df.num_sentences)
+    post_df['flesch_kincaid_index'] = tfsm.flesch_kincaid_index(num_syllables=post_df.num_syllables,
+                                                              num_words=post_df.num_words,
+                                                              num_sentences=post_df.
