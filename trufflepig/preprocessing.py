@@ -408,4 +408,14 @@ def preprocess(post_df, ncores=4, chunksize=500,
                                                                         num_sentences=post_df.num_sentences)
     post_df['coleman_liau_index'] = tfsm.coleman_liau_index(num_chars=post_df.num_chars,
                                                             num_words=post_df.num_words,
-    
+                                                            num_sentences=post_df.num_sentences)
+
+    if dropna:
+        logger.info('Dropping NaN rows')
+        post_df.dropna(inplace=True)
+    logger.info('Final data set has {} shape'.format(post_df.shape))
+
+    return post_df
+
+
+def load_or_preprocess(pos
