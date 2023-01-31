@@ -450,4 +450,10 @@ def load_or_preprocess(post_frame, filename, *args,
         logger.info('Found file {} will load it'.format(filename))
         post_frame = pd.read_pickle(filename, compression='gzip')
     else:
-        logger.info('File {} not found, 
+        logger.info('File {} not found, will start prepocessing'.format(filename))
+        post_frame = preprocess(post_frame, *args, **kwargs)
+        if steem_args_for_upvote:
+            logger.info('Looking for bought upvotes!')
+            min_datetime = post_frame.created.min()
+            max_datetime = post_frame.created.max() + pd.Timedelta(days=8)
+            upvote_payments, _ = tfga.get_upv
