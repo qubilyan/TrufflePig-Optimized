@@ -437,4 +437,17 @@ def load_or_preprocess(post_frame, filename, *args,
     overwrite: bool
         If preprocessing should be started and overwrite existing file
     store: bool
-        If preprocessed frame should be sto
+        If preprocessed frame should be stored to file
+    kwargs: **kwargs
+        Arguments passed to preprocessing
+
+    Returns
+    -------
+    DataFrame
+
+    """
+    if os.path.isfile(filename) and not overwrite:
+        logger.info('Found file {} will load it'.format(filename))
+        post_frame = pd.read_pickle(filename, compression='gzip')
+    else:
+        logger.info('File {} not found, 
