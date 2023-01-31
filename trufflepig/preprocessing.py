@@ -429,4 +429,12 @@ def load_or_preprocess(post_frame, filename, *args,
     ----------
     post_frame: DataFrame
     filename: str
-     
+        Filename of data to load
+    args: *args
+        Arguments passed to normal preprocessing
+    steem_args_for_upvote: dict
+        Steem arguments, leave None to not load corrections
+    overwrite: bool
+        If preprocessing should be started and overwrite existing file
+    store: bool
+        If preprocessed frame should be sto
