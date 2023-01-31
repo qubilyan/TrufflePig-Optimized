@@ -456,4 +456,8 @@ def load_or_preprocess(post_frame, filename, *args,
             logger.info('Looking for bought upvotes!')
             min_datetime = post_frame.created.min()
             max_datetime = post_frame.created.max() + pd.Timedelta(days=8)
-            upvote_payments, _ = tfga.get_upv
+            upvote_payments, _ = tfga.get_upvote_payments_to_bots(steem_args_for_upvote,
+                                                                min_datetime=min_datetime,
+                                                                max_datetime=max_datetime,
+                                                                bots=bots)
+            post_frame = compute
