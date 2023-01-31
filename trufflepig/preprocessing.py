@@ -476,3 +476,14 @@ def compute_bidbot_correction(post_frame, upvote_payments, sbd_punishment_factor
     post_frame['sbd_bought_reward'] = 0.
     post_frame['steem_bought_reward'] = 0.
     post_frame['bought_votes'] = 0
+
+    post_frame.set_index(['author', 'permalink'], inplace=True)
+
+    for (author, permalink), payments in upvote_payments.items():
+        if (author, permalink) in post_frame.index:
+            sbd = 0
+            steem = 0
+            votes = 0
+            for payment in payments.values():
+                amount = Amount(payment['amount'])
+                value = amou
