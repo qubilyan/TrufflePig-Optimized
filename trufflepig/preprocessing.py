@@ -460,4 +460,11 @@ def load_or_preprocess(post_frame, filename, *args,
                                                                 min_datetime=min_datetime,
                                                                 max_datetime=max_datetime,
                                                                 bots=bots)
-            post_frame = compute
+            post_frame = compute_bidbot_correction(post_frame,
+                                                   upvote_payments)
+        if store:
+            directory = os.path.dirname(filename)
+            if not os.path.isdir(directory):
+                os.makedirs(directory)
+            logger.info('Storing file {} to disk'.format(filename))
+            po
