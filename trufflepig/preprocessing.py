@@ -486,4 +486,13 @@ def compute_bidbot_correction(post_frame, upvote_payments, sbd_punishment_factor
             votes = 0
             for payment in payments.values():
                 amount = Amount(payment['amount'])
-                value = amou
+                value = amount.amount
+                asset = amount.asset
+                votes += 1
+                if asset == 'SBD':
+                    sbd += value
+                elif asset == 'STEEM':
+                    steem += value
+                else:
+                    raise RuntimeError('W00t?')
+            post_frame.loc[(author, permali
