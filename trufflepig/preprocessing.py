@@ -495,4 +495,12 @@ def compute_bidbot_correction(post_frame, upvote_payments, sbd_punishment_factor
                     steem += value
                 else:
                     raise RuntimeError('W00t?')
-            post_frame.loc[(author, permali
+            post_frame.loc[(author, permalink),
+                       ['sbd_bought_reward',
+                        'steem_bought_reward',
+                        'bought_votes']] = sbd, steem, votes
+
+    post_frame.reset_index(inplace=True)
+    post_frame['adjusted_reward'] = post_frame.reward - \
+                                    post_frame.sbd_bought_reward * sbd_punishment_factor - \
+  
