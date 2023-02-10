@@ -503,4 +503,9 @@ def compute_bidbot_correction(post_frame, upvote_payments, sbd_punishment_factor
     post_frame.reset_index(inplace=True)
     post_frame['adjusted_reward'] = post_frame.reward - \
                                     post_frame.sbd_bought_reward * sbd_punishment_factor - \
-  
+                                    post_frame.steem_bought_reward * steem_punishment_factor
+    post_frame.loc[post_frame.adjusted_reward < 0, 'adjusted_reward'] = 0
+    post_frame['adjusted_votes'] = post_frame.votes - post_frame.bought_votes
+    post_frame.loc[post_frame.adjusted_votes < 0, 'adjusted_votes'] = 0
+
+    num_articles 
