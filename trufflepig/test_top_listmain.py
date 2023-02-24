@@ -41,4 +41,9 @@ def parse_args():
 
 def large_mp_preprocess(log_directory, current_datetime, steem, data_directory,
                         days, offset_days):
-    """Helper function to spawn in child process"
+    """Helper function to spawn in child process"""
+    configure_logging(log_directory, current_datetime)
+    post_frame = tpgd.load_or_scrape_training_data(steem, data_directory,
+                                                       current_datetime=current_datetime,
+                                                       days=days,
+                                     
