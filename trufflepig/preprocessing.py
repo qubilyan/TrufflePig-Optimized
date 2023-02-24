@@ -518,4 +518,5 @@ def compute_bidbot_correction(post_frame, upvote_payments, sbd_punishment_factor
                                                                        percent,
                                                                        total_steem,
                                                                        total_sbd,
-                             
+                                                                       total_votes))
+    return post_frame
