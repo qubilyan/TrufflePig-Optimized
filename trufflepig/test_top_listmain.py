@@ -33,4 +33,12 @@ def parse_args():
     """Parses command line arguments"""
     parser = argparse.ArgumentParser(description='TrufflePig Bot')
     parser.add_argument('--broadcast', action="store_false",
-       
+                        default=True)
+    parser.add_argument('--now', action='store', default=None)
+    args = parser.parse_args()
+    return args.broadcast, args.now
+
+
+def large_mp_preprocess(log_directory, current_datetime, steem, data_directory,
+                        days, offset_days):
+    """Helper function to spawn in child process"
