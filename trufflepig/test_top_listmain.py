@@ -46,4 +46,12 @@ def large_mp_preprocess(log_directory, current_datetime, steem, data_directory,
     post_frame = tpgd.load_or_scrape_training_data(steem, data_directory,
                                                        current_datetime=current_datetime,
                                                        days=days,
-                                     
+                                                       offset_days=offset_days,
+                                                       ncores=32)
+    return tppp.preprocess(post_frame, ncores=8)
+
+
+def load_and_preprocess_2_frames(log_directory, current_datetime, steem,
+                                 data_directory, offset_days=8,
+                                 days=7, days2=7):
+    """ Func
