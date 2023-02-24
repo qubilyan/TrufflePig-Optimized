@@ -514,4 +514,8 @@ def compute_bidbot_correction(post_frame, upvote_payments, sbd_punishment_factor
     total_sbd = post_frame.sbd_bought_reward.sum()
     total_votes = post_frame.bought_votes.sum()
     logger.info('Found {} upvoted articles ({:.2f}%) with '
-                'total {:.3f} STEEM {:.3f
+                'total {:.3f} STEEM {:.3f} SBD, and {} bought votes!'.format(num_articles,
+                                                                       percent,
+                                                                       total_steem,
+                                                                       total_sbd,
+                             
