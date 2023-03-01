@@ -54,4 +54,24 @@ def large_mp_preprocess(log_directory, current_datetime, steem, data_directory,
 def load_and_preprocess_2_frames(log_directory, current_datetime, steem,
                                  data_directory, offset_days=8,
                                  days=7, days2=7):
-    """ Func
+    """ Function to load and preprocess the time span split into 2
+    for better memory footprint
+
+    Parameters
+    ----------
+    log_directory: str
+    current_datetime: datetime
+    steem: MPSteem
+    data_directory: str
+    offset_days: int
+    days: int
+    days2: int
+    ncores: int
+
+    Returns
+    -------
+    DataFrame
+
+    """
+    # hack for better memory footprint,
+    # see https://sta
