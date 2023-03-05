@@ -74,4 +74,8 @@ def load_and_preprocess_2_frames(log_directory, current_datetime, steem,
 
     """
     # hack for better memory footprint,
-    # see https://sta
+    # see https://stackoverflow.com/questions/15455048/releasing-memory-in-python
+    with concurrent.futures.ProcessPoolExecutor(max_workers=1) as executor:
+        post_frame = executor.submit(large_mp_preprocess,
+                                     log_directory=log_directory,
+                                     current_datetime=current_dat
