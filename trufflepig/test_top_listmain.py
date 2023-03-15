@@ -96,4 +96,11 @@ def load_and_preprocess_2_frames(log_directory, current_datetime, steem,
     # We need to reset the index because due to concatenation
     # the default indices are duplicates!
     post_frame.reset_index(inplace=True, drop=True)
-    logger.info('Com
+    logger.info('Combining 2 frames into 1')
+    post_frame = tppp.filter_duplicates(post_frame)
+
+    logger.info('Searching for bid bots and bought votes')
+    min_datetime = post_frame.created.min()
+    max_datetime = post_frame.created.max() + pd.Timedelta(days=8)
+    upvote_payments, _ = tpad.get_upvote_payments_to_bots(steem=steem,
+                                  
