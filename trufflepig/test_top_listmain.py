@@ -84,4 +84,9 @@ def load_and_preprocess_2_frames(log_directory, current_datetime, steem,
                                      days=days,
                                      offset_days=offset_days).result()
     with concurrent.futures.ProcessPoolExecutor(max_workers=1) as executor:
-        post_frame2 
+        post_frame2 = executor.submit(large_mp_preprocess,
+                                     log_directory=log_directory,
+                                     current_datetime=current_datetime,
+                                     steem=steem,
+                                     data_directory=data_directory,
+                                     days
