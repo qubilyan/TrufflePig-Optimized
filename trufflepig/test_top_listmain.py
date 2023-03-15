@@ -111,4 +111,15 @@ def load_and_preprocess_2_frames(log_directory, current_datetime, steem,
     return post_frame
 
 
-def m
+def main():
+    """Main loop started from command line"""
+
+    no_broadcast, current_datetime = parse_args()
+
+    if current_datetime is None:
+        current_datetime = pd.datetime.utcnow()
+    else:
+        current_datetime = pd.to_datetime(current_datetime)
+
+    data_directory = os.path.join(config.PROJECT_DIRECTORY, 'scraped_data')
+    mo
