@@ -89,4 +89,11 @@ def load_and_preprocess_2_frames(log_directory, current_datetime, steem,
                                      current_datetime=current_datetime,
                                      steem=steem,
                                      data_directory=data_directory,
-                                     days
+                                     days=days2,
+                                     offset_days=offset_days + days).result()
+
+    post_frame = pd.concat([post_frame, post_frame2], axis=0)
+    # We need to reset the index because due to concatenation
+    # the default indices are duplicates!
+    post_frame.reset_index(inplace=True, drop=True)
+    logger.info('Com
