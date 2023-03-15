@@ -103,4 +103,12 @@ def load_and_preprocess_2_frames(log_directory, current_datetime, steem,
     min_datetime = post_frame.created.min()
     max_datetime = post_frame.created.max() + pd.Timedelta(days=8)
     upvote_payments, _ = tpad.get_upvote_payments_to_bots(steem=steem,
-                                  
+                                                  min_datetime=min_datetime,
+                                                  max_datetime=max_datetime)
+    logger.info('Adjusting votes and reward')
+    post_frame = tppp.compute_bidbot_correction(post_frame=post_frame,
+                                                upvote_payments=upvote_payments)
+    return post_frame
+
+
+def m
