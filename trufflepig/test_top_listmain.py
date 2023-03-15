@@ -122,4 +122,13 @@ def main():
         current_datetime = pd.to_datetime(current_datetime)
 
     data_directory = os.path.join(config.PROJECT_DIRECTORY, 'scraped_data')
-    mo
+    model_directoy = os.path.join(config.PROJECT_DIRECTORY, 'trained_models')
+    log_directory =  os.path.join(config.PROJECT_DIRECTORY, 'logs')
+
+
+
+    configure_logging(log_directory, current_datetime)
+
+    logger.info('STARTING main script at {}'.format(current_datetime))
+    if no_broadcast:
+        logger.inf
