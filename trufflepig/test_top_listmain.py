@@ -131,4 +131,15 @@ def main():
 
     logger.info('STARTING main script at {}'.format(current_datetime))
     if no_broadcast:
-        logger.inf
+        logger.info('Run without broadcasting.')
+    else:
+        logger.info('ATTENTION I WILL BROADCAST TO STEEMIT!!!')
+    time.sleep(2)
+
+    steem = MPSteem(nodes=config.NODES, no_broadcast=no_broadcast)
+    # To post stuff
+    account = config.ACCOUNT
+    poster = Poster(account=account, steem=steem)
+
+    prediction_frame = tpgd.scrape_hour_data(steem=steem,
+            
