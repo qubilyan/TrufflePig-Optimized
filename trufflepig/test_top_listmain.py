@@ -142,4 +142,12 @@ def main():
     poster = Poster(account=account, steem=steem)
 
     prediction_frame = tpgd.scrape_hour_data(steem=steem,
-            
+                                             current_datetime=current_datetime,
+                                             ncores=32,
+                                             offset_hours=2)
+    prediction_frame = tppp.preprocess(prediction_frame, ncores=8)
+
+
+    permalink = 'daily-truffle-picks-2018-03-27'
+
+    overv
