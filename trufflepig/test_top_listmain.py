@@ -150,4 +150,10 @@ def main():
 
     permalink = 'daily-truffle-picks-2018-03-27'
 
-    overv
+    overview_permalink = 'weekly-truffle-updates-2018-12'
+
+    logger.info('Computing the top trending without bidbots')
+    logger.info('Searching for bid bots and bought votes')
+    min_datetime = prediction_frame.created.min()
+    max_datetime = prediction_frame.created.max() + pd.Timedelta(days=1)
+    upvot
