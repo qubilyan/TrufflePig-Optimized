@@ -156,4 +156,8 @@ def main():
     logger.info('Searching for bid bots and bought votes')
     min_datetime = prediction_frame.created.min()
     max_datetime = prediction_frame.created.max() + pd.Timedelta(days=1)
-    upvot
+    upvote_payments, bots = tpad.get_upvote_payments_to_bots(steem=steem,
+                                                  min_datetime=min_datetime,
+                                                  max_datetime=max_datetime)
+    logger.info('Adjusting votes and reward')
+    sorted_frame = tppp.compute_bidbot_correction(post_frame=prediction_fram
