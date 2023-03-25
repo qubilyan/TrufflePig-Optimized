@@ -160,4 +160,11 @@ def main():
                                                   min_datetime=min_datetime,
                                                   max_datetime=max_datetime)
     logger.info('Adjusting votes and reward')
-    sorted_frame = tppp.compute_bidbot_correction(post_frame=prediction_fram
+    sorted_frame = tppp.compute_bidbot_correction(post_frame=prediction_frame,
+                                                upvote_payments=upvote_payments)
+    tt0b.create_trending_post(sorted_frame,
+                              upvote_payments=upvote_payments,
+                              poster=poster,
+                              topN_permalink=permalink,
+                              overview_permalink=overview_permalink,
+ 
