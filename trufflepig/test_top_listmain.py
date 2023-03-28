@@ -167,4 +167,11 @@ def main():
                               poster=poster,
                               topN_permalink=permalink,
                               overview_permalink=overview_permalink,
- 
+                              current_datetime=current_datetime,
+                              bots=bots)
+
+    logger.info('DONE at {}'.format(current_datetime))
+
+
+if __name__ == '__main__':
+    main()
