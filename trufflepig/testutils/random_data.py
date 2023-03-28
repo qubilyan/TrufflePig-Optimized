@@ -115,3 +115,30 @@ def create_post():
     created = pd.datetime.utcnow()
 
     randtags = np.random.randint(0, len(TAGS), 5)
+    tags = tuple(set(TAGS[x] for x in randtags))
+
+    randauthor = np.random.randint(0, len(AUTHORS))
+    author = AUTHORS[randauthor]
+
+    author_reputation = 2000000000 * ntwords
+
+    post = {
+            'title': title,
+            'reward': reward,
+            'votes': votes,
+            'active_votes': [dict(voter='marc{}'.format(x), percent=42)
+                            for x in range(votes)],
+            'created': created,
+            'tags': tags,
+            'body': body,
+            'author': author,
+            'permalink': permalink,
+            'author_reputation': author_reputation
+        }
+
+    return post
+
+
+def create_n_random_posts(n, seed=42):
+    np.random.seed(seed)
+    return [create_post() for _ in range(n)]
