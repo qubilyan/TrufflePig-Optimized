@@ -24,4 +24,13 @@ def compute_total_sbd(upvote_payments):
 
 
 def create_trending_post(post_frame, upvote_payments, poster, topN_permalink,
-                 
+                         overview_permalink, current_datetime, bots=()):
+    total_paid_sbd, total_paid_steem = compute_total_sbd(upvote_payments)
+
+    bots = set(bots)
+
+    logger.info('People spend {} SBD and {} Steem on Bid Bots the last 24 '
+                'hours.'.format(total_paid_sbd, total_paid_steem))
+
+    # exclude bit bots
+    no_bid_bots_frame =
