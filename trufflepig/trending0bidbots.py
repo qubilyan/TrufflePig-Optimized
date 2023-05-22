@@ -33,4 +33,13 @@ def create_trending_post(post_frame, upvote_payments, poster, topN_permalink,
                 'hours.'.format(total_paid_sbd, total_paid_steem))
 
     # exclude bit bots
-    no_bid_bots_frame =
+    no_bid_bots_frame = post_frame.loc[post_frame.bought_votes == 0, :].copy()
+
+    # exclude self votes
+    self_votes = []
+    for idx, row in no_bid_bots_frame.iterrows():
+        self_votes.append(row.author in {x['voter'] for x in row.active_votes})
+    self_votes = np.array(self_votes)
+    no_bid_bots_frame = no_bid_bots_frame.loc[~self_votes, :]
+
+    # exlude al
