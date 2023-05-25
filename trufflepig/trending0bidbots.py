@@ -51,4 +51,12 @@ def create_trending_post(post_frame, upvote_payments, poster, topN_permalink,
     bot_votes = np.array(bot_votes)
     no_bid_bots_frame = no_bid_bots_frame.loc[~bot_votes, :]
 
-    no_bid_bots_fram
+    no_bid_bots_frame.sort_values('reward', inplace=True, ascending=False)
+
+    logger.info('Self/Bot Voted Posts {} out of '
+                '{}'.format(len(post_frame) - len(no_bid_bots_frame),
+                                                  len(post_frame)))
+
+    logger.info('TOPLIST NO BID-BOTS AND SELF-VOTES')
+    for x in range(10):
+        what
