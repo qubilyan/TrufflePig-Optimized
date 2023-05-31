@@ -64,4 +64,10 @@ def create_trending_post(post_frame, upvote_payments, poster, topN_permalink,
                     '**by @{author} with a current reward of {reward} '
                     'SBD'.format(rank=x+1,
                                  title=what.title,
-                                 author=what.aut
+                                 author=what.author,
+                                 permalink=what.permalink,
+                                 reward=what.reward))
+
+    tbpd.post_top_trending_list(no_bid_bots_frame, poster, current_datetime,
+                                overview_permalink=overview_permalink,
+                                trufflepicks_permalink=topN_permalink,
