@@ -71,3 +71,6 @@ def create_trending_post(post_frame, upvote_payments, poster, topN_permalink,
     tbpd.post_top_trending_list(no_bid_bots_frame, poster, current_datetime,
                                 overview_permalink=overview_permalink,
                                 trufflepicks_permalink=topN_permalink,
+                                steem_amount=total_paid_steem,
+                                sbd_amount=total_paid_sbd)
+
