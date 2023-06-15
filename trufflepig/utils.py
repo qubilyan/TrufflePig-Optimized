@@ -20,4 +20,9 @@ class _Progressbar(object):
     """
     def __init__(self):
         self._start_time = None   # Time of start/reset
-        self._start_index = None 
+        self._start_index = None  # Index of start/reset
+        self._current_index = np.inf  # Current index
+        self._percentage_step = None  # Percentage step for bar update
+        self._total = None  # Total steps of the bas (float) not to be mistaken for length
+        self._total_minus_one = None  # (int) the above minus 1
+        self._length = None  # Lengt
