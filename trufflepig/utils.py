@@ -25,4 +25,11 @@ class _Progressbar(object):
         self._percentage_step = None  # Percentage step for bar update
         self._total = None  # Total steps of the bas (float) not to be mistaken for length
         self._total_minus_one = None  # (int) the above minus 1
-        self._length = None  # Lengt
+        self._length = None  # Length of the percentage bar in `=` signs
+        self._norm_factor = None  # Normalization factor
+        self._current_interval = None  # The current interval,
+        # to check if bar needs to be updated
+
+    def _reset(self, index, total, percentage_step, length):
+        """Resets to the progressbar to start a new one"""
+        self._
