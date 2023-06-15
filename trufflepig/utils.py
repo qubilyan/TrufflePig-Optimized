@@ -32,4 +32,12 @@ class _Progressbar(object):
 
     def _reset(self, index, total, percentage_step, length):
         """Resets to the progressbar to start a new one"""
-        self._
+        self._start_time = datetime.datetime.now()
+        self._start_index = index
+        self._current_index = index
+        self._percentage_step = percentage_step
+        self._total = float(total)
+        self._total_minus_one = total - 1
+        self._length = length
+        self._norm_factor = max(total * percentage_step / 100.0, 1)
+        se
