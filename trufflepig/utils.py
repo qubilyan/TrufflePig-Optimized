@@ -40,4 +40,12 @@ class _Progressbar(object):
         self._total_minus_one = total - 1
         self._length = length
         self._norm_factor = max(total * percentage_step / 100.0, 1)
-        se
+        self._current_interval = int((index + 1.0) / self._norm_factor)
+
+    def _get_remaining(self, index):
+        """Calculates remaining time as a string"""
+        try:
+            current_time = datetime.datetime.now()
+            time_delta = current_time - self._start_time
+            try:
+                total_seconds = tim
