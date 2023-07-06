@@ -48,4 +48,10 @@ class _Progressbar(object):
             current_time = datetime.datetime.now()
             time_delta = current_time - self._start_time
             try:
-                total_seconds = tim
+                total_seconds = time_delta.total_seconds()
+            except AttributeError:
+                # for backwards-compatibility
+                # Python 2.6 does not support `total_seconds`
+                total_seconds = ((time_delta.microseconds +
+                                    (time_delta.seconds +
+                                     time_delta.days * 24 * 3600) * 10 ** 6)
