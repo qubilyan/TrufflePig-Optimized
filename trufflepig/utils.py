@@ -59,4 +59,10 @@ class _Progressbar(object):
                                     total_seconds / float(index - self._start_index) -
                                     total_seconds)
             remaining_delta = datetime.timedelta(seconds=remaining_seconds)
-            remaining_str = ', 
+            remaining_str = ', remaining: ' + str(remaining_delta)
+        except ZeroDivisionError:
+            remaining_str = ''
+        return remaining_str
+
+    def __call__(self, index, total, percentage_step=5, logger='print', log_level=logging.INFO,
+                 reprint=False, time=True, length=20, fmt_string=None,  reset=Fa
