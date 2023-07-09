@@ -65,4 +65,14 @@ class _Progressbar(object):
         return remaining_str
 
     def __call__(self, index, total, percentage_step=5, logger='print', log_level=logging.INFO,
-                 reprint=False, time=True, length=20, fmt_string=None,  reset=Fa
+                 reprint=False, time=True, length=20, fmt_string=None,  reset=False):
+        """Plots a progress bar to the given `logger` for large for loops.
+
+        To be used inside a for-loop at the end of the loop.
+
+        :param index: Current index of for-loop
+        :param total: Total size of for-loop
+        :param percentage_step: Percentage step with which the bar should be updated
+        :param logger:
+
+          
