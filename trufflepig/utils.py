@@ -81,4 +81,11 @@ class _Progressbar(object):
         :param log_level: Log level with which to log.
         :param reprint:
 
-            If no new line should be plotted but carriage return (works only for printi
+            If no new line should be plotted but carriage return (works only for printing)
+
+        :param time: If the remaining time should be calculated and displayed
+        :param length: Length of the bar in `=` signs.
+        :param fmt_string:
+
+            A string which contains exactly one `%s` in order to incorporate the progressbar.
+            If such a string is given, ``fmt_string % progressbar`` is print
