@@ -100,4 +100,14 @@ class _Progressbar(object):
             The progressbar string or None if the string has not been updated.
 
 
-        "
+        """
+        reset = (reset or
+                 index <= self._current_index or
+                 total != self._total)
+        if reset:
+            self._reset(index, total, percentage_step, length)
+
+        statement = None
+        indexp1 = index + 1.0
+        next_interval = int(indexp1 / self._norm_factor)
+        ending = index >
