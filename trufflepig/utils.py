@@ -88,4 +88,16 @@ class _Progressbar(object):
         :param fmt_string:
 
             A string which contains exactly one `%s` in order to incorporate the progressbar.
-            If such a string is given, ``fmt_string % progressbar`` is print
+            If such a string is given, ``fmt_string % progressbar`` is printed/logged.
+
+        :param reset:
+
+            If the progressbar should be restarted. If progressbar is called with a lower
+            index than the one before, the progressbar is automatically restarted.
+
+        :return:
+
+            The progressbar string or None if the string has not been updated.
+
+
+        "
