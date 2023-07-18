@@ -110,4 +110,14 @@ class _Progressbar(object):
         statement = None
         indexp1 = index + 1.0
         next_interval = int(indexp1 / self._norm_factor)
-        ending = index >
+        ending = index >= self._total_minus_one
+
+        if next_interval > self._current_interval or ending or reset:
+            if time:
+                remaining_str = self._get_remaining(index)
+            else:
+                remaining_str = ''
+
+            if ending:
+                statement = '[' + '=' * self._length +']100.0%'
+            else:
