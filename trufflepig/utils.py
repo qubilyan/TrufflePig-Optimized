@@ -126,4 +126,12 @@ class _Progressbar(object):
                 percentage = indexp1 / self._total * 100.0
                 if reset:
                     statement = ('[' + '=' * bars +
-                                 ' ' * spaces + ']' + ' %4.1f' % percentage
+                                 ' ' * spaces + ']' + ' %4.1f' % percentage + '%')
+                else:
+                    statement = ('[' + '=' * bars +
+                                 ' ' * spaces + ']' + ' %4.1f' % percentage + '%' +
+                                 remaining_str)
+
+            if fmt_string:
+                statement = fmt_string % statement
+            if logger == 'print':
