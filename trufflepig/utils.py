@@ -121,3 +121,9 @@ class _Progressbar(object):
             if ending:
                 statement = '[' + '=' * self._length +']100.0%'
             else:
+                bars = int((indexp1 / self._total) * self._length)
+                spaces = self._length - bars
+                percentage = indexp1 / self._total * 100.0
+                if reset:
+                    statement = ('[' + '=' * bars +
+                                 ' ' * spaces + ']' + ' %4.1f' % percentage
