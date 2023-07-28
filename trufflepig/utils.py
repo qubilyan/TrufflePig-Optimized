@@ -135,3 +135,13 @@ class _Progressbar(object):
             if fmt_string:
                 statement = fmt_string % statement
             if logger == 'print':
+                if reprint:
+                    print('\r' + statement, end='', flush=True)
+                else:
+                    print(statement)
+            elif logger is not None:
+                if isinstance(logger, str):
+                    logger = logging.getLogger(logger)
+                logger.log(msg=statement, level=log_level)
+
+   
