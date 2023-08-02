@@ -144,4 +144,15 @@ class _Progressbar(object):
                     logger = logging.getLogger(logger)
                 logger.log(msg=statement, level=log_level)
 
-   
+        self._current_interval = next_interval
+        self._current_index = index
+
+        return statement
+
+
+_progressbar = _Progressbar()
+
+
+def progressbar(index, total, percentage_step=10, logger='print', log_level=logging.INFO,
+                 reprint=True, time=True, length=20, fmt_string=None, reset=False):
+  
