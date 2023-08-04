@@ -166,4 +166,12 @@ def progressbar(index, total, percentage_step=10, logger='print', log_level=logg
             progressbar(index=irun, total=42, reprint=True) # shows a growing progressbar
 
 
-    There is no initial
+    There is no initialisation of the progressbar necessary before the for-loop.
+    The progressbar will be reset automatically if used in another for-loop.
+
+    :param index: Current index of for-loop
+    :param total: Total size of for-loop
+    :param percentage_step: Steps with which the bar should be plotted
+    :param logger:
+
+        Logger to write to - wit
