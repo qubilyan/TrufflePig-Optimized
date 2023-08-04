@@ -155,4 +155,15 @@ _progressbar = _Progressbar()
 
 def progressbar(index, total, percentage_step=10, logger='print', log_level=logging.INFO,
                  reprint=True, time=True, length=20, fmt_string=None, reset=False):
-  
+    """Plots a progress bar to the given `logger` for large for loops.
+
+    To be used inside a for-loop at the end of the loop:
+
+    .. code-block:: python
+
+        for irun in range(42):
+            my_costly_job() # Your expensive function
+            progressbar(index=irun, total=42, reprint=True) # shows a growing progressbar
+
+
+    There is no initial
