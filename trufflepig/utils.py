@@ -174,4 +174,12 @@ def progressbar(index, total, percentage_step=10, logger='print', log_level=logg
     :param percentage_step: Steps with which the bar should be plotted
     :param logger:
 
-        Logger to write to - wit
+        Logger to write to - with level INFO. If string 'print' is given, the print statement is
+        used. Use ``None`` if you don't want to print or log the progressbar statement.
+
+    :param log_level: Log level with which to log.
+    :param reprint:
+
+        If no new line should be plotted but carriage return (works only for printing)
+
+    :param time: 
