@@ -182,4 +182,13 @@ def progressbar(index, total, percentage_step=10, logger='print', log_level=logg
 
         If no new line should be plotted but carriage return (works only for printing)
 
-    :param time: 
+    :param time: If the remaining time should be estimated and displayed
+    :param length: Length of the bar in `=` signs.
+    :param fmt_string:
+
+        A string which contains exactly one `%s` in order to incorporate the progressbar.
+        If such a string is given, ``fmt_string % progressbar`` is printed/logged.
+
+    :param reset:
+
+    
