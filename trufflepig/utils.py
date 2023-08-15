@@ -199,4 +199,12 @@ def progressbar(index, total, percentage_step=10, logger='print', log_level=logg
         The progressbar string or `None` if the string has not been updated.
 
     """
-    return _progressbar(index=index, total=total, percentage_step=perc
+    return _progressbar(index=index, total=total, percentage_step=percentage_step,
+                        logger=logger, log_level=log_level, reprint=reprint,
+                        time=time, length=length, fmt_string=fmt_string, reset=reset)
+
+
+def clean_up_directory(directory, keep_last=25):
+    """ Removes files in `directory`
+
+    Sorts files lexicographically and removes all except
