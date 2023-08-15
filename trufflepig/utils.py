@@ -208,3 +208,13 @@ def clean_up_directory(directory, keep_last=25):
     """ Removes files in `directory`
 
     Sorts files lexicographically and removes all except
+    the `keep_last` ones.
+
+    """
+    filenames = os.listdir(directory)
+    filenames = [os.path.join(directory, x) for x in filenames]
+    filenames = sorted([x for x in filenames if os.path.isfile(x)])
+    nfiles = len(filenames)
+    if nfiles > keep_last:
+        until = nfiles - keep_last
+        logger.info('Founc {} files, will delete {}
