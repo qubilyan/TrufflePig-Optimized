@@ -217,4 +217,10 @@ def clean_up_directory(directory, keep_last=25):
     nfiles = len(filenames)
     if nfiles > keep_last:
         until = nfiles - keep_last
-        logger.info('Founc {} files, will delete {}
+        logger.info('Founc {} files, will delete {} and keep '
+                    '{}'.format(nfiles, until, keep_last))
+        filenames = filenames[:until]
+        for kdx, filename in enumerate(filenames):
+            logger.info('Removing file {} ({}/{})'.format(filename,
+                                                          kdx + 1,
+              
