@@ -223,4 +223,12 @@ def clean_up_directory(directory, keep_last=25):
         for kdx, filename in enumerate(filenames):
             logger.info('Removing file {} ({}/{})'.format(filename,
                                                           kdx + 1,
-              
+                                                          keep_last))
+            os.remove(filename)
+    else:
+        logger.info('Found only {} files in `{}`, less than the number to keep '
+                    '({})'.format(nfiles, directory, keep_last))
+
+
+def configure_logging(directory, current_datetime, bot_account='trufflepig'):
+    """ Configures l
