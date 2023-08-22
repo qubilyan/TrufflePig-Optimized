@@ -231,4 +231,17 @@ def clean_up_directory(directory, keep_last=25):
 
 
 def configure_logging(directory, current_datetime, bot_account='trufflepig'):
-    """ Configures l
+    """ Configures logging to stdout and file
+
+    Parameters
+    ----------
+    directory: str
+    current_datetime: datetime
+    bot_account: str
+
+    """
+    if not os.path.isdir(directory):
+        os.makedirs(directory)
+
+    filename = '{bot_account}_{time}.txt'.format(bot_account=bot_account,
+                                             
