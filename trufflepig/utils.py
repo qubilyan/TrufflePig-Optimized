@@ -260,4 +260,11 @@ def error_retry(f, retries=3, sleep_time=11, errors=(RPCError,),
     def wrapped(*args, **kwargs):
         for retry in range(retries + 1):
             try:
-            
+                result =  f(*args, **kwargs)
+                if retry > 0:
+                    logger.warning('Needed retry {} out of {} for '
+                                 '{}!'.format(retry, retries, f))
+                return result
+            except errors as exc:
+                if retry + 1 >= retries:
+                    if not isinstan
