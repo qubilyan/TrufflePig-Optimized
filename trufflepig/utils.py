@@ -244,4 +244,10 @@ def configure_logging(directory, current_datetime, bot_account='trufflepig'):
         os.makedirs(directory)
 
     filename = '{bot_account}_{time}.txt'.format(bot_account=bot_account,
-                                             
+                                                 time=current_datetime.strftime('%Y-%m-%d'))
+    filename = os.path.join(directory, filename)
+
+    format=('%(asctime)s %(processName)s:%(name)s:'
+                  '%(funcName)s:%(lineno)s:%(levelname)s: %(message)s')
+    handlers = [logging.StreamHandler(), logging.FileHandler(filename)]
+    logging.basicConfig(level=logging.INFO, format=forma
