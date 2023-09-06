@@ -267,4 +267,13 @@ def error_retry(f, retries=3, sleep_time=11, errors=(RPCError,),
                 return result
             except errors as exc:
                 if retry + 1 >= retries:
-                    if not isinstan
+                    if not isinstance(exc, not_log_errors):
+                        logger.exception('Failed all {} retries for '
+                                         '{}!'.format(retries, f))
+                    raise
+                time.sleep(sleep_time)
+    return wrapped
+
+
+def none_retry(f, retries=16, sleep_time=2):
+    """Explicit decorator fo
