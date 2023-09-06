@@ -250,4 +250,14 @@ def configure_logging(directory, current_datetime, bot_account='trufflepig'):
     format=('%(asctime)s %(processName)s:%(name)s:'
                   '%(funcName)s:%(lineno)s:%(levelname)s: %(message)s')
     handlers = [logging.StreamHandler(), logging.FileHandler(filename)]
-    logging.basicConfig(level=logging.INFO, format=forma
+    logging.basicConfig(level=logging.INFO, format=format,
+                        handlers=handlers)
+
+
+def error_retry(f, retries=3, sleep_time=11, errors=(RPCError,),
+                not_log_errors=(PostDoesNotExist,)):
+    """Explicit decorator for Error retries"""
+    def wrapped(*args, **kwargs):
+        for retry in range(retries + 1):
+            try:
+            
