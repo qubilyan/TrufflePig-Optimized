@@ -276,4 +276,15 @@ def error_retry(f, retries=3, sleep_time=11, errors=(RPCError,),
 
 
 def none_retry(f, retries=16, sleep_time=2):
-    """Explicit decorator fo
+    """Explicit decorator for not None retries"""
+    def wrapped(*args, **kwargs):
+        for retry in range(retries + 1):
+            result =  f(*args, **kwargs)
+
+            if result is not None:
+                if retry > 0:
+                    logger.warning('Needed retry {} out of {} for '
+                                 '{}!'.format(retry, retries, f))
+                return result
+
+       
