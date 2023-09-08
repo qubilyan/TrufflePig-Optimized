@@ -287,4 +287,13 @@ def none_retry(f, retries=16, sleep_time=2):
                                  '{}!'.format(retry, retries, f))
                 return result
 
-       
+            if retry + 1 >= retries:
+                logger.error('Failed all {} retries for '
+                                 '{}! Return None!'.format(retries, f))
+            time.sleep(sleep_time)
+        return None
+    return wrapped
+
+
+def none_error_retry(f, retries=7, sleep_time=11,
+                
