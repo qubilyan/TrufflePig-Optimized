@@ -303,4 +303,6 @@ def none_error_retry(f, retries=7, sleep_time=11,
                                   retries=retries,
                                   sleep_time=sleep_time,
                                   errors=errors,
-       
+                                  not_log_errors=not_log_errors),
+                      retries=retries,
+                      sleep_time=sleep_time)
