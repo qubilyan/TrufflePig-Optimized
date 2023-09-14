@@ -12,4 +12,6 @@ Screened out posts which receive less payment than they deserved are referred to
 
 ### The Implementation
 
-A multi-output [Random Forest](http:/
+A multi-output [Random Forest](http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html) is used for model training. Model training is done using posts older than 7 days which have already been paid, having features like post length, number of spelling errors, and readability scores.
+
+The [Steem Python](https://github.com/steemit/steem-pyt
