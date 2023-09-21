@@ -26,4 +26,14 @@ The execution route follows as:
 
 4. More recent data is then scrapped and checked for truffle posts using the trained model.
 
-5. The bot publishes a toplist of truffle posts on which it both upvotes and com
+5. The bot publishes a toplist of truffle posts on which it both upvotes and comments.
+
+Clone the project directory:
+> `$ git clone https://github.com/qubilyan/TrufflePig-Optimized.git`
+
+Add the project directory to your `PYTHONPATH`:
+> `$ export PYTHONPATH=$PYTHONPATH:<path_to_project>`
+
+### Open Source Usage
+
+This project is open source and is free for **non-commercial** usage. Please refer to the LICENSE for more details.
