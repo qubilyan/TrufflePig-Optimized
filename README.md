@@ -14,4 +14,10 @@ Screened out posts which receive less payment than they deserved are referred to
 
 A multi-output [Random Forest](http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html) is used for model training. Model training is done using posts older than 7 days which have already been paid, having features like post length, number of spelling errors, and readability scores.
 
-The [Steem Python](https://github.com/steemit/steem-pyt
+The [Steem Python](https://github.com/steemit/steem-python) official library is utilized by the bot to scrape data from the Steemit blockchain and post a toplist of the daily found truffle posts using its trained model.
+
+The execution route follows as:
+
+1. The data is scrapped from the blockchain if available or loaded from disk if possible.
+
+2. The scrap
