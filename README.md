@@ -20,4 +20,10 @@ The execution route follows as:
 
 1. The data is scrapped from the blockchain if available or loaded from disk if possible.
 
-2. The scrap
+2. The scrapped posts are processed and filtered for machine learning model training.
+
+3. The model is then trained using the processed data if a trained model does not exist already.
+
+4. More recent data is then scrapped and checked for truffle posts using the trained model.
+
+5. The bot publishes a toplist of truffle posts on which it both upvotes and com
